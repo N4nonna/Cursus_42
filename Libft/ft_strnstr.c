@@ -6,57 +6,67 @@
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:15:36 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/07 18:49:32 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/07 22:51:50 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+int ft_strncmp(char *s1, char *s2, size_t len)
+{
+    long unsigned int i;
+
+    i= 0;
+    while (s1[i] && (i < len))
+    {
+        if (s1[i] != s2[i])
+            return (s1[i] - s2[i]);
+        i++;
+    }
+    return (0);
+}
+
+int ft_strlen(const char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
 
 char    *ft_strnstr(const char *big, const char *little, size_t len)
 {
-    char    *haystack;
-    char    *needle;
-    char    *temp;
+    size_t i;
+    long unsigned int slen;
 
-    haystack = (char *)big;
-    needle = (char *)little;
-    temp = haystack;
-    if (*little == '\0')
-        return (haystack);
-    else if (needle - haystack < len)
-        return (0);
-    else
+    i = 0;
+    slen = ft_strlen(little);
+    if (little == NULL || slen == 0)
+        return ((char *)big);
+    if (slen > len)
+        return (NULL);
+    while (i < len)
     {
-        printf("%s --- %s --- %s\n", haystack, needle, temp);
-        while ((*haystack != '\0' || *needle != '\0') && len--)
+        if (ft_strncmp((char *)&big[i], (char *)little, slen) == 0)
         {
-            if (*haystack == *needle)
-                temp = haystack;
-            printf("%s --- %s --- %s\n", haystack, needle, temp);
-            while ((*haystack == *needle) && (len > 0))
-            {
-                needle++;
-                haystack++;
-                printf("%s --- %s --- %s\n", haystack, needle, temp);
-                if (*needle == '\0')
-                {
-                    printf("%s --- %s --- %s\n", haystack, needle, temp);
-                    return (temp);
-                    break;
-                }
-            }
-            haystack++;
+            if (i + slen > len)
+                return (NULL);
+            return ((char *)&big[i]);
         }
-        return (0);
+        i++;
     }
+    return (NULL);
 }
 
-int main(void)
+/*int main(void)
 {
     const char *s1 = "Il fait beau aujourd'hui !";
-    const char *s2 = "beau";
-    char *ret = ft_strnstr(s1, s2, 10);
+    const char *s2 = "beaU";
+    char *ret = ft_strnstr(s1, s2, 27);
 
     printf("Original string : %s\nSearching this word : %s\nResult : %s", s1, s2, ret);
-}
+}*/
