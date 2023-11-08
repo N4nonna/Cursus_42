@@ -1,34 +1,45 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 12:03:09 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/07 17:09:14 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/08 15:21:57 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/08 15:24:25 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 
-char    *ft_strchr (const char *str, int c)
+#include <unistd.h>
+
+void ft_putchar_fd(char c, int fd)
 {
-    char *temp;
-    
-    temp = (char *)str;
-    while (*temp != '\0')
-    {
-        if (*temp == c)
-            return (temp);
-        temp++;
-    }
-    return (0);
+    write(fd, &c, 1);
 }
 
-/*int main (void)
+void	ft_putnbr_fd(int nb, int fd)
 {
-    const char *str = "Il fait beau aujourd'hui !";
-    int c = 'a';
-    printf ("le reponse est : %s", ft_strchr(str, c));
-}*/
+	unsigned int	i;
+
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		i = -nb;
+	}
+	else
+	{
+		i = nb;
+	}
+	if (i > 9)
+	{
+		ft_putnbr_fd(i / 10, fd);
+		i %= 10;
+	}
+	ft_putchar_fd(i + '0', fd);
+}
+
+int main()
+{
+	ft_putnbr_fd(-42, 1);
+}
