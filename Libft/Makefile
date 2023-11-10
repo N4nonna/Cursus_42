@@ -1,33 +1,63 @@
-
-HEAD =../include/ft.h
+NAME = libft.a
 
 CC=gcc
-CFLAGS=-I -Wall -Wextra -Werror
 
-_OBJ=../srcs/ft_putchar.c\
-	../srcs/ft_swap.c\
-	../srcs/ft_putstr.c\
-	../srcs/ft_strlen.c\
-	../srcs/ft_strcmp.c
+CFLAGS= -Wall -Wextra -Werror
 
-$(OBJ): $(_OBJ) $(HEAD)
-	$(CC) -c -o $@ $< $(CFLAGS)
+SRC= ft_atoi.c \
+	ft_isascii.c \
+	ft_memchr.c \
+	ft_putchar_fd.c \
+	ft_strchr.c \
+	ft_strlen.c \
+	ft_strtrim.c \
+	ft_bzero.c \
+	ft_isdigit.c \
+	ft_memcmp.c \
+	ft_putendl_fd.c \
+	ft_strdup.c \
+	ft_strmapi.c \
+	ft_substr.c \
+	ft_calloc.c \
+	ft_isprint.c \
+	ft_memcpy.c \
+	ft_putnbr_fd.c \
+	ft_strjoin.c \
+	ft_strncmp.c \
+	ft_tolower.c \
+	ft_isalnum.c \
+	ft_itoa.c \
+	ft_memmove.c \
+	ft_putstr_fd.c \
+	ft_strlcat.c \
+	ft_strnstr.c \
+	ft_toupper.c \
+	ft_isalpha.c \
+	ft_memset.c \
+	ft_split.c \
+	ft_strlcpy.c \
+	ft_strrchr.c
 
-OBJ= ../srcs/ft_putchar.o\
-	../srcs/ft_swap.o\
-	../srcs/ft_putstr.o\
-	../srcs/ft_strlen.o\
-	../srcs/ft_strcmp.o
+OBJ= ${SRC:.c=.o}
 
-all: $(OBJ)
-	ar rcs libft.a $(OBJ)
+.c.o:
+			${CC} ${CFLAGS} -I./ -c $< -o ${<:.c=.o}
 
-libft.a: all
+all:		${NAME}
+
+so:
+			$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+			gcc -nostartfiles -shared -o libft.so $(OBJ)
+
+${NAME}:	$(OBJ)	
+			ar rcs ${NAME} $(OBJ)
 
 clean:
-	rm -f $(OBJ)
+			rm -f $(OBJ)
 
-fclean: clean
-	rm libft.a
+fclean:		clean
+			rm -f ${NAME}${NAME}: all
 
-re: fclean all
+re:			fclean all
+
+.PHONY:	all bonus clean fclean re

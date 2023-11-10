@@ -6,21 +6,11 @@
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:13:27 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 15:22:20 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/07 23:17:52 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
-
-int	ft_strlen(char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
 
 char	*ft_strdup(char *src)
 {

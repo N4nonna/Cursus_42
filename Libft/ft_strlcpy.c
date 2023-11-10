@@ -1,16 +1,32 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/06 16:59:50 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/06 17:04:10 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+size_t    ft_strlcpy (char *dest, char *src, size_t size)
 {
-    return (c >= 0 && c <= 127);
+    unsigned int i;
+
+    i = 0;
+    if (src[i] == '\0')
+        return (0);
+    while (i < size - 1 && src[i])
+    {
+        dest[i] = src [i];
+        i++;
+    }
+    if (size > 0)
+        dest[i] = '\0';
+    while (src[i] != '\0')
+        i++;
+    return (i);
 }

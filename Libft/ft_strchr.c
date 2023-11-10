@@ -1,16 +1,34 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/07 12:03:09 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/08 12:42:50 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+char    *ft_strchr(const char *str, int c)
 {
-    return (c >= 0 && c <= 127);
+    char *temp;
+    
+    temp = (char *)str;
+    while (*temp != '\0')
+    {
+        if (*temp == c)
+            return (temp);
+        temp++;
+    }
+    return (0);
 }
+
+/*int main (void)
+{
+    const char *str = "Il fait beau aujourd'hui !";
+    int c = 'a';
+    printf ("le reponse est : %s", ft_strchr(str, c));
+}*/

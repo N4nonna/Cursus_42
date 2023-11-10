@@ -1,16 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/06 16:29:32 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/06 16:49:37 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+int ft_strncmp (char *s1, char *s2, size_t n)
 {
-    return (c >= 0 && c <= 127);
+    size_t i;
+
+    i= 0;
+    while (s1[i] && i < n)
+    {
+        if (s1[i] != s2[i])
+            return (s1[i] - s2[i]);
+        i++;
+    }
+    return (s1[i] - s2[i]);
 }

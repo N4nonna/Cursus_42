@@ -1,16 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/08 15:06:30 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/08 15:12:49 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+void ft_putchar_fd(char c, int fd)
 {
-    return (c >= 0 && c <= 127);
+    write(fd, &c, 1);
 }
+
+/*int main ()
+{
+    ft_putchar_fd('A', 1);
+    return 0;
+}*/

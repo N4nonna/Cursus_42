@@ -1,16 +1,26 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/08 15:19:58 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/08 15:21:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+void ft_putendl_fd(char *s, int fd)
 {
-    return (c >= 0 && c <= 127);
+    int i;
+    
+    i = 0;
+    while (s[i])
+    {
+        write (fd, &s[i], 1);
+        i++;
+    }
+    write (fd, "\n", 2);
 }
