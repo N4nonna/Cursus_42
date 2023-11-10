@@ -23,13 +23,3 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
         *idest++ = *isrc++;
     return (dest);
 }
-
-/*int    main (void)
-{
-    const unsigned char    src[50] = "Il fait beau aujourd'hui !";
-    unsigned char   dest[50] = "";
-    printf("Original string : %s", src);
-    ft_memcpy(dest, src, 12);
-    printf("\nModified string : %s\n", dest);
-    return (0);
-}*/

@@ -12,21 +12,9 @@
 
 #include "libft.h"
 
-int is_upper (char c)
+int ft_tolower(int c)
 {
-    return (c >= 'A' && c <= 'Z');
-}
-
-char *ft_tolower (char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (is_upper(str[i]))
-            str[i] += 32;
-        i++;
-    }
-    return (str);
+    if (c >= 'A' && c <= 'Z')
+        c += 32;
+    return (c);
 }

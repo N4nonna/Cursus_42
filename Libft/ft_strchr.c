@@ -15,8 +15,14 @@
 char    *ft_strchr(const char *str, int c)
 {
     char *temp;
-    
+
     temp = (char *)str;
+    if (c == '\0')
+    {
+        *temp = '\0';
+        return (temp);
+    }
+
     while (*temp != '\0')
     {
         if (*temp == c)
@@ -29,6 +35,6 @@ char    *ft_strchr(const char *str, int c)
 /*int main (void)
 {
     const char *str = "Il fait beau aujourd'hui !";
-    int c = 'a';
+    int c = '\0';
     printf ("le reponse est : %s", ft_strchr(str, c));
 }*/
