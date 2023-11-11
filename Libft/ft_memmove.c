@@ -14,36 +14,28 @@
 
 void *ft_memmove(void *dest, const void *src, size_t n)
 {
-    unsigned char *idest;
-    const unsigned char   *isrc;
-    unsigned char   temp[n];
-    long unsigned int i;
+    int   len;
+    size_t i;
     
-    idest = (unsigned char *)dest;
-    isrc = (const unsigned char *)src;
-    
+    if (dest == src)
+        return (dest);
     i = 0;
-    while (i < n)
+    if (dest < src)
     {
-        temp[i] = isrc[i];
-        i++;
+        while (i < n)
+        {
+            ((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+            i++;
+        }
     }
-    i = 0;
-    while (i < n)
+    else
     {
-        idest[i] = temp[i];
-        i++;
+        while (i < n)
+        {
+            len = n - 1 - i;
+            ((unsigned char *)dest)[len] = ((unsigned char *)src)[len];
+            i++;
+        }
     }
     return (dest);
-}
-
-int main (void)
-{
-    unsigned char dest[50] = "BLABLABLA";
-    unsigned const char src[50] = "Il fait beau aujourd'hui !";
-    
-    printf("Original string : %s", src);
-    ft_memmove(dest + 9, src, 12);
-    printf("\nModified string : %s\n", dest);
-    return (0);
 }

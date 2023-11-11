@@ -19,10 +19,8 @@ char    *ft_strnstr(const char *big, const char *little, size_t len)
 
     i = 0;
     slen = ft_strlen(little);
-    if (little == NULL || slen == 0)
+    if (slen == 0)
         return ((char *)big);
-    if (slen > len)
-        return (NULL);
     while (i < len)
     {
         if (ft_strncmp((char *)&big[i], (char *)little, slen) == 0)
@@ -35,12 +33,3 @@ char    *ft_strnstr(const char *big, const char *little, size_t len)
     }
     return (NULL);
 }
-
-/*int main(void)
-{
-    const char *s1 = "Il fait beau aujourd'hui !";
-    const char *s2 = "beaU";
-    char *ret = ft_strnstr(s1, s2, 27);
-
-    printf("Original string : %s\nSearching this word : %s\nResult : %s", s1, s2, ret);
-}*/
