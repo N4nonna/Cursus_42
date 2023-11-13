@@ -12,30 +12,43 @@
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, unsigned int slen)
+char	*ft_strncpy(char *dest, const char *src, size_t size)
 {
-	while (*src && slen--)
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (dest);
+    unsigned char *ptr;
+
+    ptr = (unsigned char *)dest;
+    if (dest == src)
+        return (dest);
+    while (*src && size - 1)
+    {
+        *(unsigned char *)dest = *(unsigned char *)src;
+        dest++;
+        src++;
+        size--;
+    }
+    while (size)
+    {
+        *dest++ = '\0';
+        size--;
+    }
+    return ((char *)ptr);
 }
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
     char    *ret;
-    unsigned int slen;
 
-    slen = len - start;
-    ret = (char *) malloc(sizeof(char) * (slen + 1));
-
+    if (len == 0 || start >= ft_strlen(s))
+	{
+		ret = malloc(sizeof(char));
+		*ret = 0;
+		return (ret);
+	}
+    ret = malloc(sizeof(char) * (len + 1));
     if (!ret)
         return (NULL);
-    ft_strncpy(ret, (s + start), slen);
-
+    *ret = 0;
+    ret = ft_strncpy(ret, s + start, len + 1);
     return (ret);
 }
 

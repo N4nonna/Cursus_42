@@ -29,50 +29,25 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-int	tab_len(int size, char **tab, char *sep)
+static int	tab_len(char *tab, char *sep)
 {
-	int	i;
 	int	len;
 
-	i = 0;
-	len = 0;
-	while (i < size)
-	{
-		len = len + ft_strlen(tab[i]);
-		i++;
-	}
-	len = len + (size - 1) * ft_strlen(sep) + 1;
+	len = (ft_strlen(tab) - 1) + ft_strlen(sep);
 	return (len);
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		i;
 	char	*dest;
 
-	if (size == 0)
-	{
-		dest = malloc(sizeof(char));
-		*dest = 0;
-		return (dest);
-	}
-	dest = (char *) malloc(sizeof(char) * tab_len(size, strs, sep));
+	if (!s1 || !s2)
+		return (0);
+	dest = (char *)malloc(sizeof(char) * (tab_len(s1, s2)));
 	if (!dest)
 		return (NULL);
 	*dest = 0;
-	i = 0;
-	while (i < size)
-	{
-		ft_strcat(dest, strs[i]);
-		if (i <size - 1)
-			ft_strcat(dest, sep);
-		i++;
-	}
+	ft_strcat(dest, s1);
+	ft_strcat(dest, s2);
 	return (dest);
 }
-
-/*int	main(int ac, char **av)
-{
-	printf("%s\n", ft_strjoin(ac - 2, av + 1, av[ac - 1]));
-	return (0);
-}*/

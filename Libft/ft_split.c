@@ -12,21 +12,7 @@
 
 #include "libft.h"
 
-int	ft_is_sep(char c, char *sep)
-{
-	int	i;
-
-	i = 0;
-	while(sep[i])
-	{
-		if (c == sep[i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	ft_count_words(char *str, char *sep)
+int	ft_count_words(char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -35,11 +21,11 @@ int	ft_count_words(char *str, char *sep)
 	i = 0;
 	flag = 1;
 	count = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] && (ft_is_sep(str[i], sep) == 0) && flag == 0)
+		if (s[i] && (s[i] == c) && flag == 0)
 			flag = 1;
-		if (str[i] && (ft_is_sep(str[i], sep) == 1) && flag == 1)
+		if (s[i] && (s[i] != c) && flag == 1)
 		{
 			count++;
 			flag = 0;
@@ -49,37 +35,37 @@ int	ft_count_words(char *str, char *sep)
 	return (count);
 }
 
-int		ft_strlen_split(char *src, char *sep)
+int		ft_strlen_split(char const *s, char c)
 {
 	int	i;
 
 	i = 0;
-	while (src[i] && ft_is_sep(src[i], sep))
+	while (s[i] && s[i] == c)
 		i++;
 	return (i);
 }
 
-char	*ft_strdup_split(char *str, char *sep)
+char	*ft_strdup_split(char const *s, char c)
 {
 	char	*dup;
 	int		i;
 	int		len;
 
 	i = 0;
-	len = ft_strlen_split(str, sep);
-	dup = malloc(sizeof(char) * len + 1);
-	if (dup == NULL)
-		return (0);
-	while (str[i] && ft_is_sep(str[i], sep) == 1)
+	len = ft_strlen_split(s, c);
+	dup = malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	while (s[i] && s[i] != c)
 	{
-		dup[i] = str[i];
+		dup[i] = ((char *)s)[i];
 		i++;
 	}
 	dup[i] = '\0';
 	return (dup);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		i;
@@ -88,16 +74,18 @@ char	**ft_split(char *str, char *charset)
 
 	i = 0;
 	j = 0;
-	count_words = ft_count_words(str, charset);
-	split = (char **) malloc(sizeof(char *) * (count_words + 1));
-	if (split == NULL)
+	if (!s || !c)
 		return (0);
+	count_words = ft_count_words(s, c);
+	split = (char **) malloc(sizeof(char *) * (count_words + 1));
+	if (!split)
+		return (NULL);
 	while (i < count_words)
 	{
-		while (ft_is_sep(str[j], charset) == 0)
+		while (s[j] == c)
 			j++;
-		split[i] = ft_strdup_split(&str[j], charset);
-		j = j + ft_strlen_split(split[i], charset);
+		split[i] = ft_strdup_split(&s[j], c);
+		j = j + ft_strlen_split(split[i], c);
 		i++;
 	}
 	split[i] = 0;
