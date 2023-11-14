@@ -20,12 +20,11 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
     i = 0;
     len = ft_strlen((char *)s);
-    str = NULL;
     if (!s || !f)
-        return (str);
-    str = (char *)malloc(sizeof(char) * (len + 1));
-    if (str == NULL)
         return (0);
+    str = (char *)malloc(sizeof(char) * (len + 1));
+    if (!str)
+        return (NULL);
     while (i < len)
     {
         str[i] = f(i, s[i]);

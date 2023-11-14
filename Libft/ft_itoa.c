@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void    ft_reverse(char *str, int len)
+/*void    ft_reverse(char *str, int len)
 {
     int start;
     int end;
@@ -28,43 +28,83 @@ void    ft_reverse(char *str, int len)
         start++;
         end--;
     }
-}
+}*/
 
-char    *ft_itoa(int num, char *str, int base)
+int ft_len_itoa(int n)
 {
-    int i;
-    int isNegative;
-    int ret;
+    size_t i;
 
     i = 0;
-    isNegative = 0;
-    ret = 0;
-    if (num == 0)
+    if (n < 0)
+        i++;
+    if (!n)
+        return (i + 1);
+    while (n)
     {
-        str[i++] = '0';
-        str[i] = '\0';
-        return (str);
+        i++;
+        n = n / 10;
     }
-    if (num < 0 && base == 10)
+    return (i);
+}
+
+static char *ft_intTochar(int n)
+{
+    size_t i;
+    char    *str;
+
+    str = malloc(sizeof(char *) * ft_len_itoa(n) + 1);
+    if (!str)
+        return(NULL);
+    i = ft_len_itoa(n) - 1;
+    str[ft_len_itoa(n)] = '\0';
+    if (n < 0)
     {
-        isNegative = 1;
-        num = -num;
+        str[0] = '-';
+        n = -n;
     }
-    while (num != 0)
+    if (!n) {
+        str[i] = '0';
+        return(str);
+    }
+    while (n != 0)
     {
-        ret = num % base;
-        if (ret > 9)
-            str[i++] = (ret - 10) + 'a';
-        else
-            str[i++] = ret + '0';
-        num = num / base;
+        str[i--] = n % 10 + '0';
+        n = n / 10;
     }
-    if (isNegative)
-        str[i++] = '-';
-    str[i] = '\0';
-    ft_reverse(str, i);
+    /*if (i == 0)
+        str[i++] = '0';*/
+    
+    // ft_reverse(str, i);
     return (str);
 }
+
+char *ft_itoa(int n)
+{
+    char    *s;
+    // size_t  len;
+    // size_t  i;
+
+    s = ft_intTochar(n);
+    // if (!str)
+        // return (0);
+    // len = ft_strlen((const char *)str);
+    // s = malloc(sizeof(char) * (len + 1));
+    // if (!s)
+        // return (NULL);
+    // i = 0;
+    // while (i < len)
+    // {
+        // s[i] = str[i];
+        // i++;
+    // }
+    // s[i] = '\0';
+    return (s);
+}
+
+// int main(int ac, char **av) {
+//     printf("itoa = %s\n", ft_itoa(atoi(av[1])));
+//     return(0);
+// }
 
 /*int main()
 {

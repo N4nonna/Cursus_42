@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, char const *src)
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ char	*ft_strcat(char *dest, char *src)
 	i = ft_strlen(dest);
 	while (src[j])
 	{
-		dest[i] = src[j];
+		dest[i] = ((char *)src)[j];
 		i++;
 		j++;
 	}
@@ -29,7 +29,7 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-static int	tab_len(char *tab, char *sep)
+static int	tab_len(char const *tab, char const *sep)
 {
 	int	len;
 
@@ -37,7 +37,7 @@ static int	tab_len(char *tab, char *sep)
 	return (len);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
 
