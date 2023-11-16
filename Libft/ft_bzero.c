@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 22:55:33 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/08 14:45:10 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:30:37 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-void    ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    char *ptr;
-    
-    ptr = (char *)s;
-    while (n-- > 0)
-        *ptr++ = '\0';
+	char	*ptr;
+
+	ptr = (char *)s;
+	while (n-- > 0)
+		*ptr++ = '\0';
 }

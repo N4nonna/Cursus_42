@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:03:09 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/08 12:42:50 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:52:38 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-char    *ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
-    while (*str && *str != c)
-        str++;
-    if (*str == c)
-        return ((char *)str);
-    return (0);
+	while (*str && *str != c)
+		str++;
+	if (*str == c)
+		return ((char *)str);
+	return (0);
 }
 
 /*int main (void)

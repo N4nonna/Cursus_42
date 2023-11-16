@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:26 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/14 00:37:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:52:03 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-static char		**ft_freeAll(char **split, size_t i)
+static char	**ft_freeall(char **split, size_t i)
 {
 	while (split[i])
 	{
@@ -23,9 +23,9 @@ static char		**ft_freeAll(char **split, size_t i)
 	return (NULL);
 }
 
-static size_t	ft_wordLen(char const *s, char c)
+static size_t	ft_wordlen(char const *s, char c)
 {
-	size_t len;
+	size_t	len;
 	size_t	i;
 
 	len = 0;
@@ -58,7 +58,7 @@ static char	*ft_strndup(char const *s, size_t n)
 	return (dup);
 }
 
-static size_t	ft_countWords(char const *s, char c)
+static size_t	ft_countwords(char const *s, char c)
 {
 	size_t	count;
 	size_t	i;
@@ -73,7 +73,7 @@ static size_t	ft_countWords(char const *s, char c)
 	{
 		count++;
 		while (s[i] && s[i] != c)
-			i++;			
+			i++;
 		while (s[i] && s[i] == c)
 			i++;
 	}
@@ -85,28 +85,26 @@ char	**ft_split(char const *s, char c)
 	char	**split;
 	size_t	i;
 	size_t	j;
-	size_t	count;
 	size_t	len;
-	
+
 	if (!s)
 		return (0);
-	count = ft_countWords(s, c);
-	split = (char **) malloc(sizeof(char *) * (count + 1));
+	split = (char **) malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
 	if (!split)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i < count)
+	while (i < ft_countwords(s, c))
 	{
 		while (s[j] && s[j] == c)
 			j++;
-		len = ft_wordLen(&s[j], c);
+		len = ft_wordlen(&s[j], c);
 		split[i] = ft_strndup(&s[j], len);
 		if (!split[i])
-			return (ft_freeAll(split, i));
+			return (ft_freeall(split, i));
 		j = j + len;
 		i++;
 	}
-	split[count] = NULL;
+	split[ft_countwords(s, c)] = NULL;
 	return (split);
 }

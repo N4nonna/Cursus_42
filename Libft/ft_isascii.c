@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:39:38 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:34:20 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-int ft_isascii (int c)
+#include "libft.h"
+
+int	ft_isascii(int c)
 {
-    return (c >= 0 && c <= 127);
+	return (c >= 0 && c <= 127);
 }

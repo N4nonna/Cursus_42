@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:24:44 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/10 14:47:47 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:34:44 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#include "libft.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }

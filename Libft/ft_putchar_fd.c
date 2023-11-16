@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <escoda.manon@gmail.com>           +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:06:30 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/08 15:12:49 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:43:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write (fd, &c, 1);
+	write (fd, &c, 1);
 }
 
 /*int main ()
