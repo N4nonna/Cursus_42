@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:08:36 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 18:14:55 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:27:16 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 18:02:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,9 +34,20 @@ char	*ft_strncpy(char *dest, const char *src, size_t size)
 	return ((char *)ptr);
 }
 
+/*static size_t	ft_len(char const *s, unsigned int start)
+{
+	size_t	i;
+
+	i = start;
+	while (s[i])
+		i++;
+	return (i);
+}*/
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ret;
+	//size_t	totallen;
 
 	if (!s)
 		return (0);
@@ -46,7 +57,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		*ret = 0;
 		return (ret);
 	}
-	ret = malloc(sizeof(char) * (len + 1));
+	//totallen = ft_len(s, start);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (NULL);
 	*ret = 0;

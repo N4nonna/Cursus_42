@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 17:15:36 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 18:04:08 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:26:43 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 16:37:43 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	slen = ft_strlen(little);
 	if (slen == 0)
 		return ((char *)big);
+	if (ft_strlen(big) == 0)
+		return (0);
 	while (i < len)
 	{
 		if (ft_strncmp((char *)&big[i], (char *)little, slen) == 0)

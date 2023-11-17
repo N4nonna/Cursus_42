@@ -1,6 +1,6 @@
 NAME = libft.a
 
-CC=gcc
+CC= cc
 
 CFLAGS= -Wall -Wextra -Werror
 
@@ -48,7 +48,7 @@ all:		${NAME}
 
 so:
 			$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-			gcc -nostartfiles -shared -o libft.so $(OBJ)
+			cc -nostartfiles -shared -o libft.so $(OBJ)
 
 ${NAME}:	$(OBJ)	
 			ar rcs ${NAME} $(OBJ)

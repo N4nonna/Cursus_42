@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 12:03:09 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 17:52:38 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:25:26 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 17:22:55 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,9 +14,9 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	while (*str && *str != c)
+	while (*str && *str != (unsigned char)c)
 		str++;
-	if (*str == c)
+	if (*str == (unsigned char)c)
 		return ((char *)str);
 	return (0);
 }

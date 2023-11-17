@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:21:37 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 17:37:42 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:23:56 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 17:18:33 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,23 +14,21 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const char	*ptr;
-
-	ptr = (const char *)s;
-	while (n-- > 0)
+	while (n--)
 	{
-		if (*ptr == c)
-			return ((void *)ptr);
-		ptr ++;
+		if (*(unsigned char *)s++ == (unsigned char)c)
+			return ((void *)s - 1);
 	}
-	return (0);
+	return (NULL);
 }
 
 /*int main (void)
 {
-    const unsigned char s[50] = "Il fait beau aujourd'hui !";
+    const unsigned char s[] = {0, 1, 2, 3, 4, 5};
     char *ret;
-    ret = ft_memchr(s, 'z', 40);
+	int test = 2;
+    ret = ft_memchr(s, test, 3);
     printf("%s --> %s", s, ret);
+	printf("%d\n", test);
     return (0);
 }*/

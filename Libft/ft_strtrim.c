@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:02:40 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 18:13:45 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:27:06 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:27:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -38,7 +38,7 @@ static int	ft_startlen(unsigned char *str, unsigned char *set)
 	return (i);
 }
 
-int	ft_endlen(unsigned char *str, unsigned char *set)
+static size_t	ft_endlen(unsigned char *str, unsigned char *set)
 {
 	size_t	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:39:03 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/16 17:30:16 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:20:57 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 16:26:03 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,8 +15,15 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
+	size_t	x;
 
-	if (nmemb == 0 || size == 0)
+	x = nmemb * size;
+	if (nmemb != 0 && x / nmemb != size)
+		return (NULL);
+	else if ((size < 0 && nmemb < 0)
+		|| (nmemb < 0 && size > 0) || (nmemb > 0 && size < 0))
+		return (NULL);
+	else if (nmemb == 0 || size == 0)
 	{
 		nmemb = size;
 		size = 1;
