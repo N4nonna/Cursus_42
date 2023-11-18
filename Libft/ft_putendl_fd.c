@@ -14,13 +14,18 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s)
-	{
-		while (*s)
-		{
-			if (write (fd, s++, 1) == -1)
-				write (fd, "Failed write\n", 13);
-		}
-		write (fd, "\n", 2);
-	}
+	ft_putstr_fd(s, fd);
+	ft_putstr_fd("\n", fd);
 }
+
+/*int main ()
+{
+	char *s1 = "lorem ipsum dolor sit amet";
+	char *s2 = "  lorem\nipsum\rdolor\tsit amet  ";
+	char *s3 = "";
+	char *s4 = "lorem ipsum do\0lor sit amet";
+	ft_putendl_fd(s1, 1);
+	ft_putendl_fd(s2, 1);
+	ft_putendl_fd(s3, 1);
+	ft_putendl_fd(s4, 1);
+}*/

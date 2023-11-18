@@ -33,7 +33,7 @@ static int	tab_len(char const *tab, char const *sep)
 {
 	int	len;
 
-	len = (ft_strlen(tab) - 1) + ft_strlen(sep);
+	len = (ft_strlen(tab)) + ft_strlen(sep);
 	return (len);
 }
 
@@ -43,7 +43,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (0);
-	dest = (char *)malloc(sizeof(char) * (tab_len(s1, s2)));
+	dest = (char *)malloc(sizeof(char) * (tab_len(s1, s2) + 1));
 	if (!dest)
 		return (NULL);
 	*dest = 0;
