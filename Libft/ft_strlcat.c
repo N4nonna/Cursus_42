@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_strnlen(char *s, size_t maxlen)
+static size_t	ft_strnlen(char *s, size_t maxlen)
 {
 	char	*p;
 
@@ -41,12 +41,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	}
 	return (dstlen + srclen);
 }
-
-/*int	main()
-{
-	char	destination[] = "This is ";
-	const char	source[] = "a potentially long string";
-	long unsigned int 	nb = 16;
-	printf("My ft_strlcat : %ld\n", ft_strlcat(destination, source, nb));
-    printf("Real strlcat : 33");
-}*/

@@ -16,11 +16,3 @@ int	ft_isalpha(int c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
-
-/*void main (void)
-{
-    unsigned char c;
-
-    c = 'a';
-    ft_isalpha(c);
-}*/

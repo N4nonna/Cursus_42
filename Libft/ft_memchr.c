@@ -21,14 +21,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
-/*int main (void)
-{
-    const unsigned char s[] = {0, 1, 2, 3, 4, 5};
-    char *ret;
-	int test = 2;
-    ret = ft_memchr(s, test, 3);
-    printf("%s --> %s", s, ret);
-	printf("%d\n", test);
-    return (0);
-}*/

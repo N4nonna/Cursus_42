@@ -33,19 +33,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str[i] = '\0';
 	return (str);
 }
-
-/*char f(unsigned int i, char c)
-{
-    char str;
-    str = c + 1;
-    return (str);
-}
-
-int main ()
-{
-    char const *string = "Hello, World!";
-    printf("Original string : %s\n", string);
-    char *ret = ft_strmapi(string, *f);
-    printf("New string : %s\n", ret);
-    return 0;
-}*/

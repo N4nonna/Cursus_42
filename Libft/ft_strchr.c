@@ -20,10 +20,3 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)str);
 	return (0);
 }
-
-/*int main (void)
-{
-    const char *str = "Il fait beau aujourd'hui !";
-    int c = '\0';
-    printf ("le reponse est : %s", ft_strchr(str, c));
-}*/
