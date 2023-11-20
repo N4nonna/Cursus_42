@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 14:33:55 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/19 15:10:15 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:25:10 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:25:12 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	d_or_i_tag(va_list arg, int counter)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	value;
-	int	printed;
-
-	value = va_arg(arg, int);
-	printed = print_int10(value);
-	counter += printed;
-	return (counter);
+	if (s)
+	{
+		while (*s)
+		{
+			if (write (fd, s++, 1) == -1)
+				write (fd, "Failed write\n", 13);
+		}
+	}
 }
