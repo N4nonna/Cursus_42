@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:34:02 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/20 15:58:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:11:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@ static int	ft_intlen(unsigned int n, int size_base)
 
 int	ft_putnbr(int n)
 {
-	long	nbr;
-	int		ret;
+	unsigned int	nbr;
+	int				ret;
 
 	nbr = n;
+	ret = 0;
 	if (n < 0)
 	{
-		ret += write(1, '-', 1);
+		write(1, "-", 1);
 		nbr = -n;
+		ret += 1;
 	}
-	ret += ft_intlen((unsigned int *)nbr, 10);
-	if (nbr > 10)
-		ft_putnbr(nbr / 10);
-	ft_putchar_fd((nbr % 10 + '0'), 1);
+	ret += ft_putnbr_base(nbr, 'd', "0123456789");
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:33:55 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/20 16:00:14 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:11:45 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			counter += wich_tag(arg, format[i + 1]);
+			i++;
 		}
 		else
 			counter += ft_printch(format[i]);
@@ -59,7 +60,7 @@ int	ft_printf(const char *format, ...)
 	return (counter);
 }
 
-int	main()
+/*int	main()
 {
 	int	c = 'A';
 	char	*s = "Bravo !!!";
@@ -70,4 +71,4 @@ int	main()
 	unsigned int	X = 94;
 	ft_printf("%c, %s, %d%%, %i, %u, %x, %X",c , s, d, i, u, x, X);
 	return 0;
-}
+}*/

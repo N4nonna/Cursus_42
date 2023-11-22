@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 14:34:13 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/20 15:58:34 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/22 16:11:48 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_printstr(char *str)
 	int	i;
 
 	i = 0;
-	if (!*str)
+	if (str == NULL)
 	{
 		ft_putstr_fd("(null)", 1);
 		return (6);
@@ -38,6 +38,6 @@ int	ft_printch(int c)
 
 int	ft_printpercent(void)
 {
-	write(1, '%', 1);
+	write(1, "%", 1);
 	return (1);
 }

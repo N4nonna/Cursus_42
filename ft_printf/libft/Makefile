@@ -1,62 +1,70 @@
-NAME = libft.a
+NAME		=	libft.a
+INCLUDES	=	../include
+SRCS_DIR 	=	src/
+OBJS_DIR	=	obj/
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra -I
+RM			=	rm -f
+AR			=	ar rcs
 
-INCLUDE = ../include
+#Sources
 
-CC= cc
+FTIS_DIR	=	ft_is/
+FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
 
-CFLAGS= -Wall -Wextra -Werror -I
+FTMEM_DIR	=	ft_mem/
+FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
 
-SRC= ft_atoi.c \
-	ft_isascii.c \
-	ft_memchr.c \
-	ft_putchar_fd.c \
-	ft_strchr.c \
-	ft_strlen.c \
-	ft_strtrim.c \
-	ft_bzero.c \
-	ft_isdigit.c \
-	ft_memcmp.c \
-	ft_putendl_fd.c \
-	ft_strdup.c \
-	ft_strmapi.c \
-	ft_substr.c \
-	ft_calloc.c \
-	ft_isprint.c \
-	ft_memcpy.c \
-	ft_putnbr_fd.c \
-	ft_strjoin.c \
-	ft_strncmp.c \
-	ft_tolower.c \
-	ft_isalnum.c \
-	ft_itoa.c \
-	ft_memmove.c \
-	ft_putstr_fd.c \
-	ft_strlcat.c \
-	ft_strnstr.c \
-	ft_toupper.c \
-	ft_isalpha.c \
-	ft_memset.c \
-	ft_split.c \
-	ft_strlcpy.c \
-	ft_striteri.c \
-	ft_strrchr.c
+FTPUT_DIR	=	ft_put/
+FTPUT		=	ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
 
-OBJ= ${SRC:.c=.o}
+FTTO_DIR	=	ft_to/
+FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
 
-.c.o:
-			${CC} ${CFLAGS} $(INCLUDE) -c $< -o ${<:.c=.o}
+FTSTR_DIR	=	ft_str/
+FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
+				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
+				ft_strnstr ft_strrchr ft_strtrim ft_substr
 
-all:		${NAME}
+SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
+SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
+SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
+SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
+SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
 
-${NAME}:	$(OBJ)	
-			ar rcs ${NAME} $(OBJ)
+SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+###
+
+OBJSF		=	.cache_exists
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+			@$(AR) $(NAME) $(OBJS)
+			@ranlib $(NAME)
+
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
+			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJSF):
+			@mkdir -p $(OBJS_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTIS_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTMEM_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTPUT_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTTO_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTSTR_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTLST_DIR)
 
 clean:
-			rm -f $(OBJ)
+			@$(RM) -rf $(OBJS_DIR)
+			@$(RM) -f $(OBJSF)
 
 fclean:		clean
-			rm -f ${NAME}${NAME}: all
+			@$(RM) -f $(NAME)
 
 re:			fclean all
 
-.PHONY:	all bonus clean fclean re
+
+.PHONY:		all clean fclean re norm

@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:34:51 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/20 15:59:01 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:11:52 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ int	ft_printpoint(unsigned long long ptr)
 	int	counter;
 
 	counter = 0;
-	counter += write(1, "0x", 2);
 	if (ptr == 0)
-		counter += write(1, "0", 1);
+	{
+		ft_putstr_fd("(nil)", 1);
+		counter += 5;
+	}
 	else
 	{
+		ft_putstr_fd("0x", 1);
 		ft_putptr(ptr);
-		counter += ft_ptrlen(ptr);
+		counter += ft_ptrlen(ptr) + 2;
 	}
 	return (counter);
 }
