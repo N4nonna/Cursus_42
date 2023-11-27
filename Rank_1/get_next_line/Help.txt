@@ -1,0 +1,156 @@
+************************** {get_next_line.c} **************************
+
+------------ [char *get_before_newline(const char *s)] ------------
+
+	get_before_newline take a string and return another string,
+		a copy of the first one but cut after a newline '\n'
+
+1. We define two variables:
+	- char *res (our return value and our malloc)
+	- int i
+2. We create a while lopp with s[i] different of \0 and \n
+	-1. We increase i
+3. if s[i] isn't in the end but is \n, we increase i
+4. res will contains ft_malloc_zero with i+1 for count and sizeof char*
+5. We protect our malloc and redefine i to zero
+6. We create a while loop with s[i] different of \0 and \n
+	-1. res[i] become equal to s[i] and we increase i
+7. outside our while loop, if s[i] is \n
+	-1. res[i] become equal to s[i] and we increase i
+8. We return res
+
+------------ [char *get_after_newline(const char *s)] ------------
+
+	get_after_newline take a string and return another string,
+		a copy of the first one but it start after a newline '\n'
+
+1. We define three variables:
+	- char *res (our return value and our malloc)
+	- int i (our len before \n)
+	- int j (our total len)
+2. We create a while loop with s and s[j]
+	-1. We increase j
+3. We create a while loop with s[i] different of \0 and \n
+	-1. We increase i
+4. If s[i] isn't in the end but is \n, we increase i
+5. res will contain ft_malloc_zero with j - i for count and sizeof char*
+6. We protect our malloc and redefine j to zero
+7. We create a while loop with s[i + j]
+	-1. res[j] become equal to s[i + j] and we increase j
+8. We return res
+
+------------ [void ft_read_line(int fd, char **keep, char **tmp)] ------------
+
+	This functions take three argument, and because it's a void type function, has no
+		return value. It's use is to read our file, malloc our buffer with buffer_size
+			and copy and cut our file line by line.
+
+1. We define two variables :
+	- char *buf (who will be our buffer and our malloc)
+	- int r (our buffer index)
+2. We malloc buf to be the size of a char * and buffer_size +1
+	(don't forget to protect your malloc afterward)
+3. We define r to be equal to 1 and create a while loop with r > 0
+	-1. r get the return value of read(fd, buf, buffer_size)
+	-2. if r = -1, this means there's an error so we free all our variables
+	-3. since read doesn't add a null terminary in the end of a string,
+		we add it manually with buf[r]
+	-4. tmp will become a dupicata of keep with ft_strdup
+		then we'll free keep
+	-5. keep will contains a join version of tmp ans buf with join_strs
+		again, we'll free tmp
+	-6. if keep contains a newline with contains_newline, we break
+4. we end the while loop and free buf.
+
+------------ [char *ft_parse_line(char **keep, char **tmp)] ------------
+
+	This function takes two string argument and return a string. It redefine keep 
+		with the rest of the file after a newline '\n' and return a string of a copy
+			of keep before a newline '\n'.
+
+1. We define a variable: char *line
+2. tmp will become a dupicata of keep with ft_strdup then we'll free keep
+3. keep will contains the return value of get_after_newline
+4. line will contain the return value of get_before_newline
+5. we free our tmp and return line
+
+------------ [char *get_next_line(int fd)] ------------
+
+	We'll use a static variable called *keep,
+		wich will be the part of the string after the new line '\n'
+		and accessible for all the other function in the file
+		(but not in other file because it is not a global variable).
+	fd = File Descriptor, it can be an input or a file,
+			it must be opened in the main.c
+
+1. We define three variables:
+	- STATIC char *keep
+	- char *tmp
+	- char *line (our return value)
+2. We protect our function in the case of fd or buffer_size < 0
+3. We read our file with ft_read_line with fd, &keep and &tmp
+4. If keep isn't in the end and null, line will contain ft_parse_line
+	with keep and tmp
+5. If line is null or if it's in the end we free our keep,
+	line and tmp variables and return null
+6. We return line.
+
+************************** {get_next_line_utils.c} **************************
+
+------------ [char *ft_strdup(const char *s1)] ------------
+
+1. We define two variables :
+	- char *s2 (it will be our return value)
+	- int i (our index)
+2. We protect our function if s1 is null
+	by returning to ft_strdup an empty string
+3. we get the lenght of s1 with i
+4. s2 wil contain ft_malloc_zero with i+1 for count and sizeof char*
+5. we protect our malloc
+6. i = 0 and we create a while loop with s1[i]
+	-1. s2[i] become equal to s1[i] and we increase i
+7. return s2
+
+------------ [char *join_strs(const char *s1, const char *s2)] ------------
+
+1. We define three variables:
+	- char *s (it will be our return value)
+	- int len
+	- int i
+2. we protect our function if s1 and s2 are null by returning null
+3. We get the lenght of s1 with len and the lenght of s2 with i
+4. s will contain ft_malloc_zero with len +i+1 for count and sizeof char*
+5. We protect our malloc
+6. len =-1 and i =-1
+7. We create a while loop with s1 and s1[++len]
+	-1. s[len] become equal to s1[len]
+8. We create another loop outside the first one with s2 and s2[++i]
+	-1. s[len + i] become equal to s2[i]
+9. We return s
+
+------------ [void *ft_malloc_zero(size_t count, size_t size)] ------------
+
+1. We define three variables:
+	- void *r (our malloc and return value)
+	- unsigned char *p (our null string)
+	- size_t total (equal to count * size)
+2. We malloc r with total and we protect our malloc
+3. p become equal to redefined r
+4. We create a while loop with total different to zero
+	-1. *p is equal to end 
+	-2. We increase p and decrease total
+5. We return r
+
+------------ [void ft_free_strs(char **str, char **str2, char **str3)] ------------
+
+1. if str and *str exist, we free *str and *str equal null
+2. if str2 and *str2 exist, we free *str2 and *str2 equal null
+3. if str3 and *str3 exist, we free *str3 and *str3 equal null
+
+------------ [int contains_newline(const char *s)] ------------
+
+1. We define a variable: i equal to zero
+2. We create a while loop with s[i]
+	-1. if s[i] is a \n, we return 1
+	-2. We increase i
+3. We return 0
