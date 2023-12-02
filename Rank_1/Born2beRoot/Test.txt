@@ -1,0 +1,51 @@
+Create new user:
+    sudo useradd <new>
+Display list of user:
+    cat /etc/passwd | awk -F '{print $1}'
+List of users log:
+    sudo users
+Delete user:
+    sudo userdel -r
+Create  a new group:
+    sudo groupadd <newgroup>
+Add user to a group:
+    sudo gpasswd -a <new> <newgroup>
+Removes user to group:
+    sudo gpasswd -d <new> <newgroup>
+Delete group:
+    sudo groupdel <newgroup>
+Display all user in a group:
+    sudo getent group
+Modify Host name:
+    sudo hostnamectl set-hostname <new>
+    hostnamectl status
+
+Password modification1:
+    sudo visudo in var/log/sudo
+Check UFW:
+    sudo ufw status verbose
+Check port rule:
+    sudo ufw status numbered
+Check SSH:
+    sudo systenctl status ssh
+Reboot SSH:
+    sudo systemctl restart ssh
+Connect to ssh:
+    ssh mescoda@127.0.0.1 -p 4242
+Check user settings:
+    chage -l mescoda/root
+Password policy:
+    sudo nano /etc/security/pwquality.conf
+Change user password:
+    sudo passwd user
+Reboot VM:
+    sudo reboot
+Shut VM:
+    sudo halt
+
+Wordpress:
+    http://127.0.0.1:8080
+Fail2Ban:
+    sudo fail2ban-client status
+    sudo fail2ban-client status sshd
+    sudo tail -f /var/log/fail2ban.log
