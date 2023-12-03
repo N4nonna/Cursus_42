@@ -4,7 +4,7 @@ CC= cc
 
 CFLAGS= -Wall -Wextra -Werror
 
-SRCS= mlx_test.c
+SRCS= fdf.c map.c point.c
 
 OBJ= ${SRCS:.c=.o}
 
