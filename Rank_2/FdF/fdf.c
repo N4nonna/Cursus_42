@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 14:02:55 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/03 14:33:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/04 13:47:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fdf.h"
 
 int	main(int ac, char **av)
 {
@@ -25,24 +27,24 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		map_info(&env, env.map_path);
-		check_format(&env, env.map_path);
-		parse_map(&env, env.map_path);
-		three_dim(&env);
-		env_init(&env);
+		map_check_format(&env, env.map_path);
+		map_parse(&env, env.map_path);
+		point_three_dim(&env);
+		map_env_init(&env);
 	}
 	else
-		error("Wrong numbers of arguments.");
+		fdf_error("ERROR: Wrong numbers of arguments. (main)");
 	while (1)
 		;
 }
 
-int	error(char *error_mess)
+int	fdf_error(char *error_mess)
 {
 	ft_printf("%s\n", error_mess);
 	exit (1);
 }
 
-void	free_tab(t_env *env)
+void	fdf_free_tab(t_env *env)
 {
 	int	i;
 

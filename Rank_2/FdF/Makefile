@@ -4,12 +4,12 @@ CC= cc
 
 CFLAGS= -Wall -Wextra -Werror
 
-SRCS= fdf.c map.c point.c
+SRCS= fdf.c map.c point.c limits.c hooks.c draw.c
 
-OBJ= ${SRCS:.c=.o}
+OBJ= ${SRCS:%.c=%.o}
 
-%.o: %.c
-	$(CC) $(CFLAGS) -Ifdf.h -Ilibft -I/usr/include -Imlx_linux -O3 -c $< -o $@
+%.o:		%.c
+			$(CC) $(CFLAGS) -I./libft/include -I./mlx_linux -c $? -o $@
 
 all:		${NAME}
 
@@ -20,11 +20,11 @@ ${NAME}:	$(OBJ)
 
 clean:
 			make clean -C libft
-			make -C mlx_linux
+			make clean -C mlx_linux
 			rm -f $(OBJ)
 
 fclean:		clean
-			rm -f ${NAME}: all
+			rm -f ${NAME}
 
 re:			fclean all
 

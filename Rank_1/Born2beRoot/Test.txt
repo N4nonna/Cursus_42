@@ -1,51 +1,61 @@
 Create new user:
-    sudo useradd <new>
+	sudo useradd <new>
 Display list of user:
-    cat /etc/passwd | awk -F '{print $1}'
+	cat /etc/passwd | awk -F '{print $1}'
 List of users log:
-    sudo users
+	sudo users
 Delete user:
-    sudo userdel -r
+	sudo userdel -r
 Create  a new group:
-    sudo groupadd <newgroup>
+	sudo groupadd <newgroup>
 Add user to a group:
-    sudo gpasswd -a <new> <newgroup>
+	sudo gpasswd -a <new> <newgroup>
 Removes user to group:
-    sudo gpasswd -d <new> <newgroup>
+	sudo gpasswd -d <new> <newgroup>
 Delete group:
-    sudo groupdel <newgroup>
+	sudo groupdel <newgroup>
 Display all user in a group:
-    sudo getent group
+	sudo getent group
 Modify Host name:
-    sudo hostnamectl set-hostname <new>
-    hostnamectl status
+	sudo hostnamectl set-hostname <new>
+	hostnamectl status
+Modify password policy:
+	sudo chage -M 30 <username>
+	sudo chage -m 2 <username>
+	sudo chage -W 7 <username>
+Check password policy:
+	sudo chage -l <username>
 
 Password modification1:
-    sudo visudo in var/log/sudo
+	sudo visudo in var/log/sudo
 Check UFW:
-    sudo ufw status verbose
+	sudo ufw status verbose
 Check port rule:
-    sudo ufw status numbered
+	sudo ufw status numbered
 Check SSH:
-    sudo systenctl status ssh
+	sudo systenctl status ssh
 Reboot SSH:
-    sudo systemctl restart ssh
+	sudo systemctl restart ssh
 Connect to ssh:
-    ssh mescoda@127.0.0.1 -p 4242
+	ssh mescoda@127.0.0.1 -p 1313
 Check user settings:
-    chage -l mescoda/root
+	chage -l mescoda/root
 Password policy:
-    sudo nano /etc/security/pwquality.conf
+	sudo nano /etc/security/pwquality.conf
 Change user password:
-    sudo passwd user
+	sudo passwd user
+Stop cron:
+	sudo /etc/init.d/cron stop
+Start cron:
+	sudo /etc/init.d/cron start
 Reboot VM:
-    sudo reboot
+	sudo reboot
 Shut VM:
-    sudo halt
+	sudo halt
 
 Wordpress:
-    http://127.0.0.1:8080
+	http://127.0.0.1:8080
 Fail2Ban:
-    sudo fail2ban-client status
-    sudo fail2ban-client status sshd
-    sudo tail -f /var/log/fail2ban.log
+	sudo fail2ban-client status
+	sudo fail2ban-client status sshd
+	sudo tail -f /var/log/fail2ban.log
