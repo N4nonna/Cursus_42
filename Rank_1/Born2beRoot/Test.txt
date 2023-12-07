@@ -1,5 +1,5 @@
 Create new user:
-	sudo useradd <new>
+	sudo add user <new>
 Display list of user:
 	cat /etc/passwd | awk -F '{print $1}'
 List of users log:
