@@ -1,30 +1,51 @@
-NAME = so_long
+NAME		= so_long
+INCLUDES	= includes
+SRCS_DIR 	= src/
+OBJS_DIR	= obj/
 
-CC= cc
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
+AR			= ar rcs
 
-CFLAGS= -Wall -Wextra -Werror
+# Sources
 
-SRCS= fdf.c map.c point.c limits.c hooks.c draw.c
+SRC_FILES	= check_map\
+			main\
+			map\
+			move\
+			render\
+			set\
+			utils
 
-OBJ= ${SRCS:%.c=%.o}
+SRCS 		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJS 		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-%.o:		%.c
-			$(CC) $(CFLAGS) -I./libft/include -I./mlx_linux -c $? -o $@
+###
+
+OBJSF		= .cache_exists
 
 all:		${NAME}
 
-${NAME}:	$(OBJ)
+$(NAME):	$(OBJS)
 			@make -C libft
 			@make -C mlx_linux
-			$(CC) $(OBJ) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+			@$(CC) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c | $(OBJSF)
+			@$(CC) $(CFLAGS) -I $(INCLUDES) -I./libft/include -I./mlx_linux -c $? -o $@
+
+$(OBJSF):
+			@mkdir -p $(OBJS_DIR)
 
 clean:
-			make clean -C libft
-			make clean -C mlx_linux
-			rm -f $(OBJ)
+			@make clean -C libft
+			@make clean -C mlx_linux
+			@$(RM) -rf $(OBJS_DIR)
+			@$(RM) -f $(OBJSF)
 
 fclean:		clean
-			rm -f ${NAME}
+			@$(RM) -f $(NAME)
 
 re:			fclean all
 

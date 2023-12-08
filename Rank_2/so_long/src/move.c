@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:52:23 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:09:13 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:19:12 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	move_top(t_data *data)
 	{
 		if (data->map[pos_y - 1][pos_x] != data->content.exit)
 		{
-			data->map[pos_y - 1][pos_x] = data->img.player;
-			data->map[pos_y][pos_x] = data->img.floor;
+			data->map[pos_y - 1][pos_x] = data->content.player;
+			data->map[pos_y][pos_x] = data->content.space;
 			data->count += 1;
 			ft_printf("Number of step:%d\n", data->count);
 		}
@@ -50,8 +50,8 @@ void	move_left(t_data *data)
 	{
 		if (data->map[pos_y][pos_x - 1] != data->content.exit)
 		{
-			data->map[pos_y][pos_x - 1] = data->img.player;
-			data->map[pos_y][pos_x] = data->img.floor;
+			data->map[pos_y][pos_x - 1] = data->content.player;
+			data->map[pos_y][pos_x] = data->content.space;
 			data->count += 1;
 			ft_printf("Number of step:%d\n", data->count);
 		}
@@ -77,8 +77,8 @@ void	move_down(t_data *data)
 	{
 		if (data->map[pos_y + 1][pos_x] != data->content.exit)
 		{
-			data->map[pos_y + 1][pos_x] = data->img.player;
-			data->map[pos_y][pos_x] = data->img.floor;
+			data->map[pos_y + 1][pos_x] = data->content.player;
+			data->map[pos_y][pos_x] = data->content.space;
 			data->count += 1;
 			ft_printf("Number of step:%d\n", data->count);
 		}
@@ -104,8 +104,8 @@ void	move_right(t_data *data)
 	{
 		if (data->map[pos_y][pos_x + 1] != data->content.exit)
 		{
-			data->map[pos_y][pos_x + 1] = data->img.player;
-			data->map[pos_y][pos_x] = data->img.floor;
+			data->map[pos_y][pos_x + 1] = data->content.player;
+			data->map[pos_y][pos_x] = data->content.space;
 			data->count += 1;
 			ft_printf("Number of step:%d\n", data->count);
 		}

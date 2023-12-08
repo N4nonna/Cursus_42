@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:34:19 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:13:18 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:13:25 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	map_free(t_data *data)
 	}
 	free(data->map);
 	data->map = NULL;
-	return (0);
+	return ;
 }
 
 char	*map_get(int fd)
@@ -36,7 +36,7 @@ char	*map_get(int fd)
 
 	buff = ft_strdup("");
 	line = ft_strdup("");
-	count = get_next_line(fd);
+	count = gnl(fd, &line);
 	if (count > 0)
 	{
 		tmp = buff;
@@ -46,7 +46,7 @@ char	*map_get(int fd)
 			free(line);
 			free(tmp);
 			line = ft_strdup("");
-			count = get_next_line(fd);
+			count = gnl(fd, &line);
 			tmp = buff;
 		}
 		return (buff);
@@ -62,21 +62,21 @@ char	**map_parse(int fd, t_data *data)
 	i = 1;
 	data->map = ft_split(map_get(fd), '\n');
 	check_content(data);
-	if (!(check_format_line(data->map)) || !(map_check_square(data->map)))
-		map_free(data);
+	if (!(check_rect(data->map)) || !(map_check_square(data->map)))
+		return (ft_free(data));
 	if (!(check_line(data->map[0], data->content.wall)))
-		map_free(data);
+		return (ft_free(data));
 	while (data->map[i])
 	{
 		if (!(check_col(data->map[i], data->content.wall, data)))
-			map_free(data);
-		else if (!(check_other(data->map[i], data->content)))
-			map_free(data);
+			return (ft_free(data));
+		else if (!(check_other(data->map[i], &data->content)))
+			return (ft_free(data));
 		i++;
 	}
 	data->height = i;
 	if (!(check_line(data->map[i - 1], data->content.wall)))
-		map_free(data);
+		return (ft_free(data));
 	return (data->map);
 }
 
@@ -86,20 +86,20 @@ char	**map_core(char **str, t_data *data)
 
 	fd = 0;
 	data->map = NULL;
-	if (ft_strchr(str[1], ".ber") == 0)
-		return (error("Error\nWrong map format. Need '.ber'.(map_core)\n"));
+	if (is_ber(str[1]) == 0)
+		return (ft_error("Error\nWrong map format. Need '.ber'.(map_core)\n"));
 	else
 	{
 		fd = open(str[1], O_RDONLY);
 		if (fd > 0)
 			data->map = map_parse(fd, data);
 		else
-			return (error("Error\nCan't read file.(map_core)"));
+			return (ft_error("Error\nCan't read file.(map_core)"));
 		if (data->content.count_c == 0 || data->content.count_e != 1
 			|| data->content.count_p != 1 || data->map != NULL)
 		{
 			map_free(data);
-			return (error("Error\nInvalid content.(map_core)\n"));
+			return (ft_error("Error\nInvalid content.(map_core)\n"));
 		}
 	}
 	return (data->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:11 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:17:01 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:19:56 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	render_core(t_data *data)
 	if (data->mlx_win == NULL)
 	{
 		free(data->mlx_win);
-		return (MLX_ERROR);
+		return ;
 	}
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press, data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:06:30 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/27 19:07:14 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 12:39:33 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #  define BUFFER_SIZE 10
 # endif
 
+// GNL RETURNING CHAR
 char	*get_next_line(int fd);
 
 char	*ft_strjoin(const char *s1, const char *s2);
@@ -27,5 +28,9 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *s);
+
+// GNL RETURNING INT
+char	*str_add(char *str, char buff);
+int	gnl(int fd, char **str);
 
 #endif

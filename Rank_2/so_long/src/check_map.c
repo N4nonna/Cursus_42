@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:59:42 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:09:34 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 12:57:56 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	check_content(t_data *data)
 	}
 }
 
-int	check_format_line(char **map)
+int	check_rect(char **map)
 {
 	int	x;
 	int	y;

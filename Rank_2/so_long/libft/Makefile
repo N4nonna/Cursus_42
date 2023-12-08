@@ -30,7 +30,7 @@ FTPRINTF_DIR	=	ft_printf/
 FTPRINTF	=	ft_printf ft_print_int ft_print_pointer ft_print_string
 
 FTGET_DIR	=	ft_get/
-FTGET		=	get_next_line get_next_line_utils
+FTGET		=	get_next_line get_next_line_utils gnl
 
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
@@ -74,6 +74,5 @@ fclean:		clean
 			@$(RM) -f $(NAME)
 
 re:			fclean all
-
 
 .PHONY:		all clean fclean re

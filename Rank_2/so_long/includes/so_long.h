@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 13:17:10 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:15:22 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:08:44 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		map_check_square(char **map);
 //****** CHECK_MAP.C ******
 int		check_col(char *map_line, char wall, t_data *data);
 int		check_line(char *map_line, char wall);
-int		check_other(char *map_line, t_cont content);
+int		check_other(char *map_line, t_cont *content);
 void	check_content(t_data *data);
 int		check_rect(char **map);
 
@@ -112,5 +112,11 @@ void	render_other(t_data *data);
 int		render(t_data *data);
 void	render_core(t_data *data);
 void	render_print_img(t_data *data, void *img, int x, int y);
+
+//****** UTILS.C ******
+char	**ft_error(char *error_mess);
+char	**ft_free(t_data *data);
+int		is_ber(const char *str);
+
 
 #endif

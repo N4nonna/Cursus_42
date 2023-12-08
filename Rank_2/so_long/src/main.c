@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:31:37 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 18:15:41 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:11:32 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	key_press(int keysym, t_data *data)
 		move_down(data);
 	if (keysym == XK_d)
 		move_right(data);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -94,11 +95,11 @@ int	main(int ac, char **av)
 		data.count = 0;
 		data.mlx_ptr = mlx_init();
 		set_content(&(data.content));
-		data.map = map_core(av[1], &data);
+		data.map = map_core(&av[1], &data);
 		if (data.map != NULL)
 		{
 			set_img(&data);
-			core_render(&data);
+			render_core(&data);
 		}
 		else
 			end(&data);
