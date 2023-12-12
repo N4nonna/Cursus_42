@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:48:54 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/06 15:59:20 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 14:06:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	set_img(t_data *data)
 {
-	data->img.height = 80;
-	data->img.width = 80;
-	data->img.floor = "./xpm/[...].xpm";
-	data->img.wall = "./xpm/[...].xpm";
-	data->img.exit = "./xpm/[...].xpm";
-	data->img.player = "./xpm/[...].xpm";
-	data->img.collect = "./xpm/[...].xpm";
+	data->img.height = 32;
+	data->img.width = 32;
+	data->img.floor = "./xpm/possum_floor.xpm";
+	data->img.wall = "./xpm/possum_wall.xpm";
+	data->img.exit = "./xpm/possum_end.xpm";
+	data->img.player = "./xpm/possum_right.xpm";
+	data->img.collect = "./xpm/possum_collect1.xpm";
 	data->img.img_floor = mlx_xpm_file_to_image(data->mlx_ptr,
 			data->img.floor, &(data->img.width), &(data->img.height));
 	data->img.img_wall = mlx_xpm_file_to_image(data->mlx_ptr,

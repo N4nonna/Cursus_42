@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:31:37 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/08 13:11:32 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 09:42:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 		data.count = 0;
 		data.mlx_ptr = mlx_init();
 		set_content(&(data.content));
-		data.map = map_core(&av[1], &data);
+		data.map = map_core(av, &data);
 		if (data.map != NULL)
 		{
 			set_img(&data);

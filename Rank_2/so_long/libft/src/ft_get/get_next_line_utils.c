@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:42:56 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/27 19:06:41 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 18:08:38 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*str_join(const char *s1, const char *s2)
 {
 	char	*s;
 	int		i;
@@ -40,16 +40,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	return (s);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	char	*ptr;
-
-	ptr = (char *)s;
-	while (n-- > 0)
-		*ptr++ = '\0';
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*calloc_bzero(size_t nmemb, size_t size)
 {
 	char	*ptr;
 
@@ -60,21 +51,11 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (ptr);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*str_chr(const char *str, int c)
 {
 	while (*str && *str != (unsigned char)c)
 		str++;
 	if (*str == (unsigned char)c)
 		return ((char *)str);
 	return (0);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }

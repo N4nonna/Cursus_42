@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:59:42 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/08 12:57:56 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 13:44:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	check_other(char *map_line, t_cont *content)
 	{
 		if (content->count_e > 1 || content->count_p > 1)
 		{
-			error("Error\nToo many exit/player.(check_format)\n");
+			error("Error\nToo many exit/player.(check_other)\n");
 			return (0);
 		}
-		if (map_line[i] != content->wall || map_line[i] != content->space
-			|| map_line[i] != content->exit || map_line[i] != content->player
-			|| map_line[i] != content->collect)
+		if (map_line[i] != content->wall && map_line[i] != content->space
+			&& map_line[i] != content->exit && map_line[i] != content->player
+			&& map_line[i] != content->collect)
 		{
-			error("Error\nUnknown symbol on map.(check_format)\n");
+			error("Error\nUnknown symbol on map.(check_other)\n");
 			return (0);
 		}
 		i++;
@@ -110,7 +110,7 @@ int	check_rect(char **map)
 			x++;
 		if (x != count_x)
 		{
-			error("Error\nWrong map format.(check_format)\n");
+			error("Error\nWrong map format.(check_rect)\n");
 			return (0);
 		}
 		x = 0;

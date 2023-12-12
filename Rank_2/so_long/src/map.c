@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:34:19 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/08 13:13:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 12:50:58 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ char	**map_parse(int fd, t_data *data)
 		return (ft_free(data));
 	if (!(check_line(data->map[0], data->content.wall)))
 		return (ft_free(data));
-	while (data->map[i])
+	while (data->map[i] != NULL)
 	{
 		if (!(check_col(data->map[i], data->content.wall, data)))
 			return (ft_free(data));
-		else if (!(check_other(data->map[i], &data->content)))
+		else if (!(check_other(data->map[i], &(data->content))))
 			return (ft_free(data));
 		i++;
 	}
 	data->height = i;
-	if (!(check_line(data->map[i - 1], data->content.wall)))
+	if (!(check_line(data->map[i], data->content.wall)))
 		return (ft_free(data));
 	return (data->map);
 }
@@ -86,7 +86,7 @@ char	**map_core(char **str, t_data *data)
 
 	fd = 0;
 	data->map = NULL;
-	if (is_ber(str[1]) == 0)
+	if (is_ber(str[1], ".ber") == 0)
 		return (ft_error("Error\nWrong map format. Need '.ber'.(map_core)\n"));
 	else
 	{
@@ -95,8 +95,8 @@ char	**map_core(char **str, t_data *data)
 			data->map = map_parse(fd, data);
 		else
 			return (ft_error("Error\nCan't read file.(map_core)"));
-		if (data->content.count_c == 0 || data->content.count_e != 1
-			|| data->content.count_p != 1 || data->map != NULL)
+		if ((data->content.count_c == 0 || data->content.count_e != 1
+				|| data->content.count_p != 1) && data->map != NULL)
 		{
 			map_free(data);
 			return (ft_error("Error\nInvalid content.(map_core)\n"));
@@ -108,15 +108,15 @@ char	**map_core(char **str, t_data *data)
 int	map_check_square(char **map)
 {
 	int	y;
-	int	count_x;
+	int	x;
 
 	y = 0;
-	count_x = 0;
-	while (map[0][count_x])
-		count_x++;
-	while (map[y][count_x])
+	x = 0;
+	while (map[0][x])
+		x++;
+	while (map[y][x])
 		y++;
-	if (count_x == y)
+	if (x == y)
 	{
 		error("Error\nMap is square.(check_format)\n");
 		return (0);

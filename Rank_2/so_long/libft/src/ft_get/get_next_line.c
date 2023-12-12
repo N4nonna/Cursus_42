@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:10:09 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/27 19:06:47 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 18:08:40 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*ft_free(char *keep, char *buff)
 {
 	char	*tmp;
 
-	tmp = ft_strjoin(keep, buff);
+	tmp = str_join(keep, buff);
 	free(keep);
 	return (tmp);
 }
@@ -31,7 +31,7 @@ static char	*get_before_newline(const char *s)
 		return (NULL);
 	while (s[i] && s[i] != '\n')
 		i++;
-	res = ft_calloc(i + 2, sizeof(char));
+	res = calloc_bzero(i + 2, sizeof(char));
 	i = 0;
 	while (s[i] && s[i] != '\n')
 	{
@@ -57,7 +57,7 @@ static char	*get_after_newline(char *s)
 		free(s);
 		return (NULL);
 	}
-	res = ft_calloc((ft_strlen(s) - i + 1), sizeof(char));
+	res = calloc_bzero((ft_strlen(s) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (s[i])
@@ -73,7 +73,7 @@ static char	*ft_read_line(int fd, char *keep)
 
 	if (!keep)
 		keep = ft_calloc(1, 1);
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buff = calloc_bzero(BUFFER_SIZE + 1, sizeof(char));
 	if (!buff)
 		return (NULL);
 	i = 1;
@@ -87,7 +87,7 @@ static char	*ft_read_line(int fd, char *keep)
 		}
 		buff[i] = '\0';
 		keep = ft_free(keep, buff);
-		if (ft_strchr(buff, '\n'))
+		if (str_chr(buff, '\n'))
 			break ;
 	}
 	free(buff);

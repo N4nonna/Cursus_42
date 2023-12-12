@@ -1,6 +1,6 @@
 NAME		= so_long
 INCLUDES	= includes
-SRCS_DIR 	= src/
+SRCS_DIR 	= src2/
 OBJS_DIR	= obj/
 
 CC			= cc
@@ -10,13 +10,14 @@ AR			= ar rcs
 
 # Sources
 
-SRC_FILES	= check_map\
-			main\
-			map\
-			move\
-			render\
-			set\
-			utils
+SRC_FILES	= main\
+			init_map\
+			init_game\
+			check_map\
+			render_map\
+			handle_input\
+			close\
+			end
 
 SRCS 		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))

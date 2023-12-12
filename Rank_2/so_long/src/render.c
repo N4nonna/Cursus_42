@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:11 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/08 13:19:56 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/10 13:17:03 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	render_background(t_data *data)
 		while (data->map[y][i])
 		{
 			if (data->map[y][i] == data->content.wall)
-				render_print_img(data, data->img.wall, i, y);
+				render_print_img(data, data->img.img_wall, i, y);
 			if (data->map[y][i] == data->content.space)
-				render_print_img(data, data->img.floor, i, y);
+				render_print_img(data, data->img.img_floor, i, y);
 			i++;
 		}
 		i = 0;
@@ -43,20 +43,23 @@ void	render_other(t_data *data)
 	y = 0;
 	while (data->map[y])
 	{
-		if (data->map[y][i] == data->content.exit)
-			render_print_img(data, data->img.exit, i, y);
-		if (data->map[y][i] == data->content.collect)
-			render_print_img(data, data->img.collect, i, y);
-		if (data->map[y][i] == data->content.player)
+		while (data->map[y][i])
 		{
-			data->pos.x = i * data->img.width;
-			data->pos.y = y * data->img.height;
-			render_print_img(data, data->img.player, i, y);
+			if (data->map[y][i] == data->content.exit)
+				render_print_img(data, data->img.img_exit, i, y);
+			if (data->map[y][i] == data->content.collect)
+				render_print_img(data, data->img.img_collect, i, y);
+			if (data->map[y][i] == data->content.player)
+			{
+				data->pos.x = i * data->img.width;
+				data->pos.y = y * data->img.height;
+				render_print_img(data, data->img.img_player, i, y);
+			}
+			i++;
 		}
-		i++;
+		i = 0;
+		y++;
 	}
-	i = 0;
-	y++;
 }
 
 int	render(t_data *data)
@@ -78,7 +81,7 @@ void	render_core(t_data *data)
 	}
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press, data);
-	mlx_hook(data, 17, 0, &end, &data);
+	mlx_hook(data->mlx_win, 17, 0, &end, data);
 	mlx_loop(data->mlx_ptr);
 	end(data);
 }
