@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:40:02 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/10 17:46:10 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/14 14:06:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	verify_map_element(t_data *data)
 		error("Invalid map. Wrong exit quantity.(verify_map_element)", data);
 	else if (data->map.count_player != 1)
 		error("Invalid map. Wrong player quantity.(verify_map_element)", data);
+	if (data->map.column == data->map.row)
+		error("Invalid map. Can't be square.(verify_map_element)", data);
 }
 
 void	check_map(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:10 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/10 17:50:11 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/14 13:46:31 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_vars(t_data *data)
 	data->map.count_exit = 0;
 	data->map.count_player = 0;
 	data->move = 0;
-	data->map.column = ft_strlen(data->map.full[0]) - 1;
+	data->map.column = ft_strlen(data->map.full[0]);
 	data->player_sprite = RIGHT;
 }
 

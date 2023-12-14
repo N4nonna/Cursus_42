@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/10 17:50:47 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/14 14:02:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# define IMG_HEIGHT 32
-# define IMG_WIDTH 32
+# define IMG_HEIGHT 64
+# define IMG_WIDTH 64
 
 //MAP PARAMETERS
 
@@ -72,6 +72,7 @@
 # define GREY "\033[0;90m"
 # define CYAN "\033[1;96m"
 # define RESET "\033[0m"
+# define WHITE 0xFFFFFF
 
 typedef enum e_bool
 {

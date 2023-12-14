@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:25:19 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/10 12:46:06 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/14 13:18:05 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	ft_strnchr(char *str, char sep)
 {
@@ -82,7 +83,5 @@ char	**ft_split(char *s, char c)
 			i += count;
 		j++;
 	}
-	split[j] = NULL;
-	free(s);
 	return (split);
 }

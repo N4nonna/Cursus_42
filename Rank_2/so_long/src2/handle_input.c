@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:49:37 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/10 17:46:05 by mescoda          ###   ########.fr       */
+/*   Updated: 2023/12/14 13:54:28 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int	handle_input(int keysym, t_data *data)
 		player_move(data, data->map.player.y + 1, data->map.player.x, FRONT);
 	if (keysym == KEY_RIGHT || keysym == KEY_D)
 		player_move(data, data->map.player.y, data->map.player.x + 1, RIGHT);
+	if (keysym == KEY_ESC || keysym == KEY_Q)
+		close_game(data);
 	return (0);
 }
