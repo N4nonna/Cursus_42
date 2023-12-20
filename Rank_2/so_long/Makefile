@@ -1,6 +1,6 @@
 NAME		= so_long
 INCLUDES	= includes
-SRCS_DIR 	= src2/
+SRCS_DIR 	= src/
 OBJS_DIR	= obj/
 
 CC			= cc
