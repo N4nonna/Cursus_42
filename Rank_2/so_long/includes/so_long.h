@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 14:02:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/02 20:52:01 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -74,12 +75,6 @@
 # define RESET "\033[0m"
 # define WHITE 0xFFFFFF
 
-typedef enum e_bool
-{
-	false,
-	true
-}	t_bool;
-
 typedef struct s_pos
 {
 	int	x;
@@ -110,8 +105,8 @@ typedef struct s_data
 	void	*win_ptr;
 	int		move;
 	int		player_sprite;
+	bool	map_alloc;
 	t_map	map;
-	t_bool	map_alloc;
 	t_img	wall;
 	t_img	floor;
 	t_img	collect;
@@ -144,6 +139,12 @@ void	check_column(t_data *data);
 void	count_map_element(t_data *data);
 void	verify_map_element(t_data *data);
 void	check_map(t_data *data);
+
+//****** MAP_PARSING.C ******
+void	free_matrix(char **matrix);
+char	**blank_grid(t_data *data);
+bool	flood_fill(t_map *map, t_pos point, char **grid);
+void	check_path(t_data *data);
 
 //****** RENDER_MAP.C ******
 void	render_steps(t_data *data);

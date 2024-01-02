@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:40:02 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 14:06:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/02 20:36:22 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ void	check_map(t_data *data)
 	check_column(data);
 	count_map_element(data);
 	verify_map_element(data);
+	check_path(data);
 }

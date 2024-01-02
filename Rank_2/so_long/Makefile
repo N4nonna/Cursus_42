@@ -14,6 +14,7 @@ SRC_FILES	= main\
 			init_map\
 			init_game\
 			check_map\
+			map_parsing\
 			render_map\
 			handle_input\
 			close\
