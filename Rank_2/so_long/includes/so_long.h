@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/03 13:32:23 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:02:24 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	identify_sprite(t_data *data, int y, int x);
 int		render_map(t_data *data);
 
 //****** HANDLE_INPUT.C ******
+void	handle_exit(t_data *data, int new_y, int new_x, int player);
 void	player_move(t_data *data, int new_y, int new_x, int player);
 int		handle_input(int keysym, t_data *data);
 
