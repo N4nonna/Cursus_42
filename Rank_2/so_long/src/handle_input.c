@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:49:37 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 13:54:28 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:02:36 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	handle_exit(t_data *data, int new_y, int new_x, int player)
+{
+	int	x;
+	int	y;
+
+	data->player_sprite = player;
+	x = data->map.player.x;
+	y = data->map.player.y;
+	data->map.full[y][x] = EXIT;
+	data->map.count_exit++;
+	if (data->map.full[new_y][new_x] == COLLECT)
+		data->map.count_collect--;
+	data->map.player.x = new_x;
+	data->map.player.y = new_y;
+	data->map.full[new_y][new_x] = PLAYER;
+	data->move++;
+	render_map(data);
+}
 
 void	player_move(t_data *data, int new_y, int new_x, int player)
 {
@@ -20,14 +39,17 @@ void	player_move(t_data *data, int new_y, int new_x, int player)
 	data->player_sprite = player;
 	x = data->map.player.x;
 	y = data->map.player.y;
-	if (data->map.full[new_y][new_x] == EXIT && data->map.count_collect == 0)
+	if ((data->map.full[new_y][new_x] == EXIT && data->map.count_collect == 0))
 		victory(data);
-	else if ((data->map.full[new_y][new_x] == FLOOR)
-		|| (data->map.full[new_y][new_x] == COLLECT))
+	else if (data->map.full[y][x] == PLAYER && data->map.count_exit == 0)
+		handle_exit(data, new_y, new_x, player);
+	else if (data->map.full[new_y][new_x] != WALL)
 	{
 		data->map.full[y][x] = FLOOR;
 		if (data->map.full[new_y][new_x] == COLLECT)
 			data->map.count_collect--;
+		else if (data->map.full[new_y][new_x] == EXIT)
+			data->map.count_exit--;
 		data->map.player.x = new_x;
 		data->map.player.y = new_y;
 		data->map.full[new_y][new_x] = PLAYER;
