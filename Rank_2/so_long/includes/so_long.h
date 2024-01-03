@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/02 20:52:01 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:32:23 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@
 # define WALL_XPM "./xpm/possum_wall.xpm"
 # define FLOOR_XPM "./xpm/possum_floor.xpm"
 # define COLLECT_XPM "./xpm/possum_collect1.xpm"
-# define P_FRONT_XPM "./xpm/possum_right.xpm"
+# define P_FRONT_XPM "./xpm/possum_front.xpm"
 # define P_LEFT_XPM "./xpm/possum_left.xpm"
 # define P_RIGHT_XPM "./xpm/possum_right.xpm"
 # define P_BACK_XPM "./xpm/possum_left.xpm"
-# define OPEN_EXIT_XPM "./xpm/possum_end.xpm"
-# define CLOSE_EXIT_XPM "./xpm/possum_end.xpm"
+# define OPEN_EXIT_XPM "./xpm/trash_open.xpm"
+# define CLOSE_EXIT_XPM "./xpm/trash_close.xpm"
 
 //COLOR
 
@@ -96,6 +96,8 @@ typedef struct s_map
 	int		count_collect;
 	int		count_exit;
 	int		count_player;
+	int		collect;
+	bool	exit;
 	t_pos	player;
 }	t_map;
 

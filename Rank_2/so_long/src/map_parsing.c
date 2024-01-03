@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:38:46 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/02 20:55:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:30:19 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,33 @@ char	**blank_grid(t_data *data)
 			free_matrix(blank_grid);
 			error("Invalid malloc allocation.(blank_grid)", data);
 		}
-		i ++;
+		i++;
 	}
 	return (blank_grid);
 }
 
 bool	flood_fill(t_map *map, t_pos point, char **grid)
 {
-	int		collect;
-	bool	exit;
-
-	collect = 0;
-	exit = false;
 	if (grid[point.y][point.x] == WALL)
 		return (false);
 	else if (grid[point.y][point.x] == COLLECT)
-		collect += 1;
+		map->collect++;
 	else if (grid[point.y][point.x] == EXIT)
-		exit = true;
+		map->exit = true;
 	grid[point.y][point.x] = WALL;
 	flood_fill(map, (t_pos){point.x + 1, point.y}, grid);
 	flood_fill(map, (t_pos){point.x - 1, point.y}, grid);
 	flood_fill(map, (t_pos){point.x, point.y + 1}, grid);
 	flood_fill(map, (t_pos){point.x, point.y - 1}, grid);
-	return (collect == map->count_collect && exit);
+	return (map->collect == map->count_collect && map->exit);
 }
 
 void	check_path(t_data *data)
 {
 	char	**grid;
 
+	data->map.collect = 0;
+	data->map.exit = false;
 	grid = blank_grid(data);
 	if (!flood_fill(&data->map, data->map.player, grid))
 	{
