@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:10 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 13:46:31 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 15:21:10 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_vars(t_data *data)
 	data->map.count_player = 0;
 	data->move = 0;
 	data->map.column = ft_strlen(data->map.full[0]);
-	data->player_sprite = RIGHT;
+	data->player_sprite = FRONT;
 }
 
 void	init_mlx(t_data *data)
@@ -61,6 +61,8 @@ void	init_sprites(t_data *data)
 	data->p_left = new_sprite(mlx, P_LEFT_XPM, data);
 	data->p_back = new_sprite(mlx, P_BACK_XPM, data);
 	data->p_right = new_sprite(mlx, P_RIGHT_XPM, data);
+	data->enemy = new_sprite(mlx, ENEMY_XPM, data);
+	data->p_dead = new_sprite(mlx, P_DEAD_XPM, data);
 	data->open_exit = new_sprite(mlx, OPEN_EXIT_XPM, data);
 	data->close_exit = new_sprite(mlx, CLOSE_EXIT_XPM, data);
 }

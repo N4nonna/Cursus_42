@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/03 19:02:24 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 15:27:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define COLLECT 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
+# define ENEMY 'B'
 
 //KEYS
 
@@ -53,6 +54,7 @@
 # define LEFT 2
 # define RIGHT 3
 # define BACK 4
+# define DEAD 5
 
 //XPM SPRITES
 
@@ -62,7 +64,9 @@
 # define P_FRONT_XPM "./xpm/possum_front.xpm"
 # define P_LEFT_XPM "./xpm/possum_left.xpm"
 # define P_RIGHT_XPM "./xpm/possum_right.xpm"
-# define P_BACK_XPM "./xpm/possum_left.xpm"
+# define P_BACK_XPM "./xpm/possum_back.xpm"
+# define P_DEAD_XPM "./xpm/possum_dead.xpm"
+# define ENEMY_XPM "./xpm/possum_enemy.xpm"
 # define OPEN_EXIT_XPM "./xpm/trash_open.xpm"
 # define CLOSE_EXIT_XPM "./xpm/trash_close.xpm"
 
@@ -118,6 +122,8 @@ typedef struct s_data
 	t_img	p_left;
 	t_img	p_back;
 	t_img	p_right;
+	t_img	p_dead;
+	t_img	enemy;
 }	t_data;
 
 //****** MAIN.C ******
@@ -162,6 +168,7 @@ int		handle_input(int keysym, t_data *data);
 
 //****** CLOSE.C ******
 int		victory(t_data *data);
+int		game_over(t_data *data);
 int		close_game(t_data *data);
 int		error(char *message, t_data *data);
 

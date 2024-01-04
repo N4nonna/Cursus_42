@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:03:55 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 14:04:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 15:24:57 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	render_steps(t_data *data)
 	char	*string;
 
 	move = ft_itoa(data->move);
+	if (!move)
+		return ;
 	string = ft_strjoin("Steps : ", move);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 20, WHITE, string);
 	free(move);
@@ -40,6 +42,8 @@ void	render_player(t_data *data, int y, int x)
 		render_sprite(data, data->p_back, y, x);
 	if (data->player_sprite == RIGHT)
 		render_sprite(data, data->p_right, y, x);
+	if (data->player_sprite == DEAD)
+		render_sprite(data, data->p_dead, y, x);
 }
 
 void	identify_sprite(t_data *data, int y, int x)
@@ -62,6 +66,8 @@ void	identify_sprite(t_data *data, int y, int x)
 	}
 	else if (param == PLAYER)
 		render_player(data, y, x);
+	else if (param == ENEMY)
+		render_sprite(data, data->enemy, y, x);
 }
 
 int	render_map(t_data *data)

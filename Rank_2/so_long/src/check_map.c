@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:40:02 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/02 20:36:22 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:51:02 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	count_map_element(t_data *data)
 		x = 0;
 		while (x < data->map.column)
 		{
-			if (!ft_strchr("CEP01", data->map.full[y][x]))
+			if (!ft_strchr("CEP01B", data->map.full[y][x]))
 				error("Invalid map parameter.(count_map_element)", data);
 			else if (data->map.full[y][x] == PLAYER)
 			{

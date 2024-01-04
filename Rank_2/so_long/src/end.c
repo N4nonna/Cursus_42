@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:35:22 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/20 11:48:23 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 15:21:22 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	destroy_img(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, data->p_front.xpm_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->p_left.xpm_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->p_right.xpm_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->p_dead.xpm_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->enemy.xpm_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->close_exit.xpm_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->open_exit.xpm_ptr);
 }

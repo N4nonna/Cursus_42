@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:12:08 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/20 11:33:26 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 15:14:41 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
+	if (!data)
+		return (0);
 	check_args(ac, av, data);
 	init_map(data, av[1]);
 	init_vars(data);
