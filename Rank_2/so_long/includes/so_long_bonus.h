@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 19:02:48 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/18 19:01:21 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -33,6 +33,7 @@
 # define COLLECT 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
+# define ENEMY 'B'
 
 //KEYS
 
@@ -53,6 +54,7 @@
 # define LEFT 2
 # define RIGHT 3
 # define BACK 4
+# define DEAD 5
 
 //XPM SPRITES
 
@@ -63,6 +65,8 @@
 # define P_LEFT_XPM "./xpm/possum_left.xpm"
 # define P_RIGHT_XPM "./xpm/possum_right.xpm"
 # define P_BACK_XPM "./xpm/possum_back.xpm"
+# define P_DEAD_XPM "./xpm/possum_dead.xpm"
+# define ENEMY_XPM "./xpm/possum_enemy.xpm"
 # define OPEN_EXIT_XPM "./xpm/trash_open.xpm"
 # define CLOSE_EXIT_XPM "./xpm/trash_close.xpm"
 
@@ -99,7 +103,14 @@ typedef struct s_map
 	int		collect;
 	bool	exit;
 	t_pos	player;
+	t_pos	enemy;
 }	t_map;
+
+typedef struct s_enemy
+{
+	int				dir;
+	struct s_enemy	*next;
+}	t_enemy;
 
 typedef struct s_data
 {
@@ -108,6 +119,7 @@ typedef struct s_data
 	int		move;
 	int		player_sprite;
 	bool	map_alloc;
+	t_enemy	grrr;
 	t_map	map;
 	t_img	wall;
 	t_img	floor;
@@ -118,6 +130,8 @@ typedef struct s_data
 	t_img	p_left;
 	t_img	p_back;
 	t_img	p_right;
+	t_img	p_dead;
+	t_img	enemy;
 }	t_data;
 
 //****** MAIN.C ******
@@ -160,8 +174,14 @@ void	handle_exit(t_data *data, int new_y, int new_x, int player);
 void	player_move(t_data *data, int new_y, int new_x, int player);
 int		handle_input(int keysym, t_data *data);
 
+//****** ENEMY_MOVE.C ******
+void	move_enemy(t_data *data);
+int		enemy_hor(t_data *data);
+int		enemy_ver(t_data *data);
+
 //****** CLOSE.C ******
 int		victory(t_data *data);
+int		game_over(t_data *data);
 int		close_game(t_data *data);
 int		error(char *message, t_data *data);
 

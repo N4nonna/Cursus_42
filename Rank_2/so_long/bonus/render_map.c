@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:03:55 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 19:04:21 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/18 19:03:27 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	render_player(t_data *data, int y, int x)
 		render_sprite(data, data->p_back, y, x);
 	if (data->player_sprite == RIGHT)
 		render_sprite(data, data->p_right, y, x);
+	if (data->player_sprite == DEAD)
+		render_sprite(data, data->p_dead, y, x);
 }
 
 void	identify_sprite(t_data *data, int y, int x)
@@ -64,6 +66,8 @@ void	identify_sprite(t_data *data, int y, int x)
 	}
 	else if (param == PLAYER)
 		render_player(data, y, x);
+	else if (param == ENEMY)
+		render_sprite(data, data->enemy, y, x);
 }
 
 int	render_map(t_data *data)
@@ -83,6 +87,5 @@ int	render_map(t_data *data)
 		y++;
 	}
 	render_steps(data);
-	ft_printf(CYAN"Steps: %d\n"RESET, data->move);
 	return (0);
 }

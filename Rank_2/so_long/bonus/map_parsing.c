@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:38:46 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 18:38:42 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:30:29 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**blank_grid(t_data *data)
 
 bool	flood_fill(t_map *map, t_pos point, char **grid)
 {
-	if (grid[point.y][point.x] == WALL)
+	if (grid[point.y][point.x] == WALL || grid[point.y][point.x] == ENEMY)
 		return (false);
 	else if (grid[point.y][point.x] == COLLECT)
 		map->collect++;

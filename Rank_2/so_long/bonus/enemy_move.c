@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemy_move.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 14:32:03 by mescoda           #+#    #+#             */
+/*   Updated: 2024/01/18 17:58:06 by mescoda          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	enemy_ver(t_data *data)
@@ -52,7 +64,7 @@ void	move_enemy(t_data *data)
 {
 	int	dir;
 
-	dir = data->enemy.dir;
+	dir = data->grrr.dir;
 	if (dir == 1)
 	{
 		if (!enemy_ver(data))
