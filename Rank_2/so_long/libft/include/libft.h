@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:28:00 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/20 12:03:37 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/24 12:24:57 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int nb, int fd);
 
 char	**ft_split(char const *s, char c);
+char	*ft_strappend(char **s1, const char *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *src);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

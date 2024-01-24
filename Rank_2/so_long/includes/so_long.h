@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 19:02:48 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/24 12:25:40 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ int		main(int ac, char **av);
 //****** INIT_MAP.C ******
 void	check_args(int ac, char **av, t_data *data);
 void	check_empty_line(char *map, t_data *data);
-char	*str_append(char **s1, const char *s2);
 void	init_map(t_data *data, char *av);
 
 //****** INIT_GAME.C ******

@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:53:48 by mescoda           #+#    #+#             */
-/*   Updated: 2023/12/14 13:11:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/01/24 12:26:26 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,6 @@ void	check_empty_line(char *map, t_data *data)
 	}
 }
 
-char	*str_append(char **s1, const char *s2)
-{
-	char	*str;
-
-	if (!*s1 || !s2)
-		return (NULL);
-	str = (char *)ft_calloc((ft_strlen(*s1) + ft_strlen(s2)) + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, *s1, ft_strlen(*s1) + 1);
-	ft_strlcat(str, s2, ft_strlen(*s1) + ft_strlen(s2) + 1);
-	free(*s1);
-	return (str);
-}
-
 void	init_map(t_data *data, char *av)
 {
 	char	*map;
@@ -86,7 +71,7 @@ void	init_map(t_data *data, char *av)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		map = str_append(&map, line);
+		map = ft_strappend(&map, line);
 		free(line);
 		data->map.row++;
 	}

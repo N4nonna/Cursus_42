@@ -2,6 +2,8 @@ NAME		= so_long
 INCLUDES	= includes
 SRCS_DIR 	= src/
 OBJS_DIR	= obj/
+GIT_URL		= https://github.com/42Paris/minilibx-linux
+GIT_DIR		= mlx_linux
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
@@ -27,22 +29,26 @@ OBJS 		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJSF		= .cache_exists
 
-all:		${NAME}
+all:		git_create ${NAME}
 
 $(NAME):	$(OBJS)
 			@make -C libft
-			@make -C mlx_linux
+			@make -C $(GIT_DIR)
 			@$(CC) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c | $(OBJSF)
+			@cd $(GIT_DIR)
 			@$(CC) $(CFLAGS) -I $(INCLUDES) -I./libft/include -I./mlx_linux -c $? -o $@
+
+git_create: 
+			@git clone $(GIT_URL) $(GIT_DIR)
 
 $(OBJSF):
 			@mkdir -p $(OBJS_DIR)
 
 clean:
 			@make clean -C libft
-			@make clean -C mlx_linux
+			@$(RM) -rf $(GIT_DIR)
 			@$(RM) -rf $(OBJS_DIR)
 			@$(RM) -f $(OBJSF)
 
@@ -51,4 +57,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:	all bonus clean fclean re
+.PHONY:	all git_create clean fclean re
