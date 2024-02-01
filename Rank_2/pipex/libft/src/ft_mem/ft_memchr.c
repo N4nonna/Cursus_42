@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:23:56 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 17:18:33 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
-
-	i = 0;
-	if (str == NULL)
+	while (n--)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		if (*(unsigned char *)s++ == (unsigned char)c)
+			return ((void *)s - 1);
 	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (NULL);
 }

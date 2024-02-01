@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_strappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2024/01/24 12:23:36 by mescoda           #+#    #+#             */
+/*   Updated: 2024/01/24 12:24:17 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+char	*ft_strappend(char **s1, const char *s2)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	if (str == NULL)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	if (!*s1 || !s2)
+		return (NULL);
+	str = (char *)ft_calloc((ft_strlen(*s1) + ft_strlen(s2)) + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, *s1, ft_strlen(*s1) + 1);
+	ft_strlcat(str, s2, ft_strlen(*s1) + ft_strlen(s2) + 1);
+	free(*s1);
+	return (str);
 }

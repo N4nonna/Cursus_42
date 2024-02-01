@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:24:24 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:24:26 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	i;
+	size_t	i;
+	int		len;
 
+	if (dest == src)
+		return (dest);
 	i = 0;
-	if (str == NULL)
+	if (dest < src)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
-	while (str[i])
+	else
 	{
-		write(1, &str[i], 1);
-		i++;
+		while (i < n)
+		{
+			len = n - 1 - i;
+			((unsigned char *)dest)[len] = ((unsigned char *)src)[len];
+			i++;
+		}
 	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (dest);
 }

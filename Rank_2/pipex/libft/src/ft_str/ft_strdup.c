@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:25:34 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:25:36 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+char	*ft_strdup(const char *src)
 {
-	int	i;
+	int		i;
+	char	*dest;
 
+	i = ft_strlen(src);
+	dest = malloc(sizeof(char) * (i + 1));
+	if (dest == NULL)
+		return (0);
 	i = 0;
-	if (str == NULL)
+	while (src[i])
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		dest[i] = ((char *)src)[i];
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	dest[i] = 0;
+	return (dest);
 }

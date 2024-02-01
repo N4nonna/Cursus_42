@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:09:08 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:10:15 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+int	ft_atoi(const char *str)
 {
-	int	i;
+	int	string;
+	int	sign;
 
-	i = 0;
-	if (str == NULL)
+	string = 0;
+	sign = 1;
+	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		if (*str == '-')
+			sign = -sign;
+		str++;
 	}
-	while (str[i])
+	while (*str >= '0' && *str <= '9')
 	{
-		write(1, &str[i], 1);
-		i++;
+		string = string * 10 + (*str - '0');
+		str++;
 	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (string * sign);
 }

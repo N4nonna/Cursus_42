@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:26:43 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 16:37:43 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	i;
+	size_t				i;
+	long unsigned int	slen;
 
 	i = 0;
-	if (str == NULL)
+	slen = ft_strlen(little);
+	if (slen == 0)
+		return ((char *)big);
+	if (len == 0 || ft_strlen(big) == 0)
+		return (0);
+	while (i < len)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		if (ft_strncmp((char *)&big[i], (char *)little, slen) == 0)
+		{
+			if (i + slen > len)
+				return (NULL);
+			return ((char *)&big[i]);
+		}
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (NULL);
 }

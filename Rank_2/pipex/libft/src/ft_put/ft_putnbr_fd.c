@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:03:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:13:33 by mescoda          ###   ########.fr       */
+/*   Created: 2023/11/17 15:25:02 by mescoda           #+#    #+#             */
+/*   Updated: 2023/11/17 15:25:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printstr(char *str)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	int	i;
+	unsigned int	i;
 
-	i = 0;
-	if (str == NULL)
+	if (nb < 0)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		ft_putchar_fd('-', fd);
+		i = -nb;
 	}
-	while (str[i])
+	else
 	{
-		write(1, &str[i], 1);
-		i++;
+		i = nb;
 	}
-	return (i);
-}
-
-int	ft_printch(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
+	if (i > 9)
+	{
+		ft_putnbr_fd(i / 10, fd);
+		i %= 10;
+	}
+	ft_putchar_fd(i + '0', fd);
 }
