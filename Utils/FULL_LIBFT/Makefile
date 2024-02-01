@@ -22,12 +22,15 @@ FTTO_DIR	=	ft_to/
 FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
 
 FTSTR_DIR	=	ft_str/
-FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
+FTSTR		=	ft_split ft_strappend ft_strchr ft_strdup ft_striteri ft_strjoin \
 				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
 				ft_strnstr ft_strrchr ft_strtrim ft_substr
 
 FTPRINTF_DIR	=	ft_printf/
 FTPRINTF	=	ft_printf ft_print_int ft_print_pointer ft_print_string
+
+FTGET_DIR	=	ft_get/
+FTGET		=	get_next_line #get_next_line_utils
 
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
@@ -35,6 +38,7 @@ SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
 SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
 SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
 SRC_FILES+=$(addprefix $(FTPRINTF_DIR),$(FTPRINTF))
+SRC_FILES+=$(addprefix $(FTGET_DIR),$(FTGET))
 
 SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
