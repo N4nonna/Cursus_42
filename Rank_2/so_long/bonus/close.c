@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:34:28 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/04 15:30:08 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:31:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ int	close_game(t_data *data)
 {
 	ft_printf(CYAN"Steps: %d\n"RESET, data->move);
 	ft_printf(GREY"CLOSED\n"RESET);
+	free_all(data);
 	exit(EXIT_FAILURE);
 }
 
 int	error(char *message, t_data *data)
 {
-	if (data->map_alloc == true)
-		free_map(data);
-	free(data);
 	ft_printf(RED"Error\n"GREY"%s\n"RESET, message);
+	free_all(data);
 	exit(EXIT_FAILURE);
 }

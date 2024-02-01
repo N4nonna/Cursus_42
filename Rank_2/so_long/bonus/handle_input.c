@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:49:37 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 17:59:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:34:00 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	player_move(t_data *data, int new_y, int new_x, int player)
 		victory(data);
 	else if (data->map.full[new_y][new_x] == ENEMY)
 		game_over(data);
-	else if (data->map.full[y][x] == PLAYER && data->map.count_exit == 0)
-		handle_exit(data, new_y, new_x, player);
 	else if (data->map.full[new_y][new_x] != WALL)
 	{
+		if (data->map.full[y][x] == PLAYER && data->map.count_exit == 0)
+			handle_exit(data, new_y, new_x, player);
 		data->map.full[y][x] = FLOOR;
 		if (data->map.full[new_y][new_x] == COLLECT)
 			data->map.count_collect--;
