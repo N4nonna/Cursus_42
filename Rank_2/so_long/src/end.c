@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:35:22 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 11:27:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/05 12:31:06 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	destroy_img(t_data *data)
 void	free_all(t_data *data)
 {
 	destroy_img(data);
+	free_map(data);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
