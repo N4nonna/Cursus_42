@@ -21,3 +21,7 @@ So_long --> https://github.com/madebypixel02/so_long
    --> Change background of sprites so it isn't black anymore
 
    --> Create animation for sprites
+
+
+GENERAL :
+   --> https://github.com/tmatis/funcheck (check segfault)
