@@ -53,6 +53,7 @@ clean:
 			@$(RM) -f $(OBJSF)
 
 fclean:		clean
+			@make fclean -C libft
 			@$(RM) -f $(NAME)
 
 re:			fclean all
