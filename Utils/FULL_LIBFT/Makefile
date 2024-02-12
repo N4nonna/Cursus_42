@@ -12,6 +12,10 @@ AR			=	ar rcs
 FTIS_DIR	=	ft_is/
 FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
 
+FTLST_DIR	=	ft_lst/
+FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone ft_lstlast \
+				ft_lstnew ft_lstsize
+
 FTMEM_DIR	=	ft_mem/
 FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
 
@@ -36,6 +40,7 @@ FTUTILS_DIR	=	ft_utils/
 FTUTILS		=	ft_free_tab
 
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
+SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
 SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
 SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
@@ -63,6 +68,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
 $(OBJSF):
 			@mkdir -p $(OBJS_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTIS_DIR)
+			@mkdir -p $(OBJS_DIR)$(FTLST_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTMEM_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTPUT_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTTO_DIR)
