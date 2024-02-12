@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/11 13:16:16 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 18:19:09 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	handle_exit(int n_exit)
-{
-	if (n_exit == 1)
-		ft_putstr_fd("./pipex infile cmd cmd outfile\n", 2);
-	exit(0);
-}
-
-int	open_file(char *file, int in_out)
-{
-	int	ret;
-
-	if (in_out == 0)
-		ret = open(file, O_RDONLY, 0777);
-	if (in_out == 1)
-		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (ret == -1)
-		exit(0);
-	return (ret);
-}
 
 char	*get_env(char *name, char **env)
 {
@@ -56,6 +36,14 @@ char	*get_env(char *name, char **env)
 	return (NULL);
 }
 
+static char	*strjoin_bis(char *ret, const char *str, const char *c)
+{
+	ret = ft_strjoin(str, c);
+	if (!ret)
+		exit(EXIT_FAILURE);
+	return (ret);
+}
+
 char	*get_path(char *cmd, char **env)
 {
 	int		i;
@@ -69,8 +57,8 @@ char	*get_path(char *cmd, char **env)
 	s_cmd = ft_split(cmd, ' ');
 	while (allpath[++i])
 	{
-		path = ft_strjoin(allpath[i], "/");
-		exec = ft_strjoin(path, s_cmd[0]);
+		path = strjoin_bis(path, allpath[i], "/");
+		exec = strjoin_bis(exec, path, s_cmd[0]);
 		free(path);
 		if (access(exec, F_OK | X_OK) == 0)
 		{
