@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/12 18:07:57 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 18:34:20 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	execute(char *cmd, char **env)
 	if (execve(path, s_cmd, env) == -1)
 	{
 		perror("exec: command not found: ");
-		perror(s_cmd[0]);
 		ft_free_tab(s_cmd);
 		exit(EXIT_FAILURE);
 	}
@@ -69,7 +68,7 @@ int	main(int ac, char **av, char **env)
 	pid = fork();
 	if (pid == -1)
 		exit (EXIT_FAILURE);
-	if (!pid)
+	while (!pid)
 		child(av, p_fd, env);
 	parent(av, p_fd, env);
 }
