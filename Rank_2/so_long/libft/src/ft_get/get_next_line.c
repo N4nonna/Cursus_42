@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:10:09 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/27 19:06:47 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:17:57 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char	*get_before_newline(const char *s)
 	while (s[i] && s[i] != '\n')
 		i++;
 	res = ft_calloc(i + 2, sizeof(char));
+	if (!res)
+		return (NULL);
 	i = 0;
 	while (s[i] && s[i] != '\n')
 	{
@@ -58,6 +60,8 @@ static char	*get_after_newline(char *s)
 		return (NULL);
 	}
 	res = ft_calloc((ft_strlen(s) - i + 1), sizeof(char));
+	if (!res)
+		return (NULL);
 	i++;
 	j = 0;
 	while (s[i])

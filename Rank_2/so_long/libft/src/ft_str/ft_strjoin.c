@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:25:52 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/17 15:25:55 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:10:33 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*dest;
 
 	if (!s1 || !s2)
-		return (0);
+		return (NULL);
 	dest = (char *)malloc(sizeof(char) * (tab_len(s1, s2) + 1));
 	if (!dest)
 		return (NULL);

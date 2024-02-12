@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:20:57 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/17 16:26:03 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:13:56 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb != 0 && x / nmemb != size)
 		return (NULL);
 	ptr = malloc(nmemb * size);
-	if (ptr)
-		ft_bzero(ptr, (nmemb * size));
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, (nmemb * size));
 	return (ptr);
 }

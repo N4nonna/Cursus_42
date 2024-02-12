@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:10 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 18:37:05 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/05 13:40:17 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	init_mlx(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
-		free(data->mlx_ptr);
 		error("Can't find mlx pointer.(init_mlx)", data);
+		free(data->mlx_ptr);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 	data->map.column * IMG_WIDTH, data->map.row * IMG_HEIGHT, "so_long");
 	if (data->win_ptr == NULL)
 	{
-		free(data->mlx_ptr);
 		error("Can't create window.(init_mlx)", data);
+		free(data->mlx_ptr);
 	}
 }
 

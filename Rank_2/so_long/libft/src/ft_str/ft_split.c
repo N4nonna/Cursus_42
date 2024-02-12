@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:25:19 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/17 15:25:21 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:13:16 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 	size_t	len;
 
-	if (!s)
-		return (0);
+	if (!s || !c)
+		return (NULL);
 	split = (char **) malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
 	if (!split)
 		return (NULL);
