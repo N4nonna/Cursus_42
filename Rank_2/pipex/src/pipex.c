@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/12 18:34:20 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/14 12:45:28 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	execute(char *cmd, char **env)
 	path = get_path(s_cmd[0], env);
 	if (execve(path, s_cmd, env) == -1)
 	{
-		perror("exec: command not found: ");
+		perror("exec: command not found: \n");
 		ft_free_tab(s_cmd);
 		exit(EXIT_FAILURE);
 	}
@@ -37,6 +37,7 @@ void	child(char **av, int *p_fd, char **env)
 	dup2(fd, STDIN_FILENO);
 	dup2(p_fd[1], STDOUT_FILENO);
 	close(p_fd[0]);
+	close(fd);
 	execute(av[2], env);
 }
 
@@ -50,6 +51,7 @@ void	parent(char **av, int *p_fd, char **env)
 	dup2(fd, STDOUT_FILENO);
 	dup2(p_fd[0], STDIN_FILENO);
 	close(p_fd[1]);
+	close(fd);
 	execute(av[3], env);
 }
 
@@ -67,7 +69,7 @@ int	main(int ac, char **av, char **env)
 		exit (EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
-		exit (EXIT_FAILURE);
+		perror("Fork: ");
 	while (!pid)
 		child(av, p_fd, env);
 	parent(av, p_fd, env);
