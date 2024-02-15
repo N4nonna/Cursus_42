@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:57:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/14 18:38:58 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:56:17 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Verifiy if all element are numbers (with only one sign)
-bool	valid_int(char *element)
+static bool	valid_int(char *element)
 {
 	bool			is_int;
 	unsigned int	i;
@@ -34,7 +34,7 @@ bool	valid_int(char *element)
 }
 
 // ATOI but verify if there is an overflow and return this information only
-bool	atoiv(const char *str, int *n)
+static bool	atoiv(const char *str, int *n)
 {
 	int		sign;
 	bool	overflow;
@@ -58,7 +58,7 @@ bool	atoiv(const char *str, int *n)
 }
 
 // Verify if all numbers are differents
-bool	double_int(int n, t_stack *stack)
+static bool	double_int(int n, t_stack *stack)
 {
 	int	i;
 

@@ -6,11 +6,30 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:37:54 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/11 14:48:49 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:06:55 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	insertion_sort(int *arr, size_t size)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	j = 1;
+	while (j < size)
+	{
+		i = j - 1;
+		k = arr[j++];
+		while (i >= 0 && arr[i + 1] < arr[i])
+		{
+			arr[i + 1] = arr[i];
+			arr[i--] = k;
+		}
+	}
+}
 
 static int	*sorted_array(t_stack *stack)
 {

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 14:18:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 15:27:17 by mescoda          ###   ########.fr       */
+/*   Created: 2024/02/15 16:57:39 by mescoda           #+#    #+#             */
+/*   Updated: 2024/02/15 17:06:10 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	main(int ac, char **av)
-{
-	t_stack	*stack;
+# include "libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-	stack = get_stack(ac - 1, &av[1]);
-	index_stack(&stack);
-	sort(stack);
-	free_stack(stack);
-	return (0);
-}
+
+#endif
