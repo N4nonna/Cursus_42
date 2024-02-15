@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:57:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 15:56:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/15 18:01:02 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_stack	*get_stack(int size, char **args)
 	while (args[i] && !status)
 		status = fill_element(stack, args[i++]);
 	if (status)
-		error(&stack, NULL, status);
+		error(stack, NULL, status);
 	reverse_array(stack->array, stack->top + 1);
 	return (stack);
 }
