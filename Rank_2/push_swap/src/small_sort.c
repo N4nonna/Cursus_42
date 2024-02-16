@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:22:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 15:23:10 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:19:25 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,21 @@ void	three_sort(t_stack *a)
 
 	arr = a->array;
 	if (arr[0] > arr[1] && arr[1] < arr[2] && arr[2] < arr[0])
-		//RA
+		run(a, NULL, SA);
 	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] > arr[0])
-		//RRA
+		run(a, NULL, RRA);
 	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] > arr[0])
-		//RRA + SA
+	{
+		run(a, NULL, SA);
+		run(a, NULL, RRA);
+	}
 	else if (arr[0] > arr[1] && arr[1] < arr[2] && arr[2] > arr[0])
-		//SA
-	else
-		//RA + SA
+		run(a, NULL, RA);
+	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] < arr[0])
+	{
+		run(a, NULL, SA);
+		run(a, NULL, RA);
+	}
 }
 
 void	put_top(t_stack *a, t_stack *b)
@@ -39,13 +45,13 @@ void	put_top(t_stack *a, t_stack *b)
 	if (to_move == top_b)
 		to_move = min(a);
 	rot_a(a, to_move);
-	//PUSH A
+	run(a, b, PA);
 }
 
 void	comp_small_sort(t_stack *a, t_stack *b)
 {
-	//PUSH B
-	small_sort(a, b);
+	n_run(a, b, PB, a->top - 2);
+	three_sort(a);
 	while (b->top >= 0)
 		put_top(a, b);
 	rot_a(a, 0);
@@ -54,7 +60,7 @@ void	comp_small_sort(t_stack *a, t_stack *b)
 void	small_sort(t_stack *a, t_stack *b)
 {
 	if (a->top == 1)
-		// SWAP
+		run(a, NULL, SA);
 	else if (a->top == 2)
 		three_sort(a);
 	else

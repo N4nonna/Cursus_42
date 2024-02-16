@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:28:00 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/03 11:58:34 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 13:17:38 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isspace(int c);
 
 // ********** FT_LST **********
 typedef struct s_list

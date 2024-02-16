@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:16:29 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/14 19:27:30 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:31:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	reverse_rotate(t_stack *stack)
 
 void	push(t_stack *from, t_stack *to)
 {
-	if (from-> top == -1)
+	if (from->top == -1)
 		return ;
 	to->array[++to->top] = from->array[from->top--];
 }

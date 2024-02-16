@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:57:39 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 18:01:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:08:16 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,36 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 
-# define STACK_BUFFER
-# define INT_MIN
+// UTILS
+# define STACK_BUFFER 1024
+# define COMPLEXE_LIMIT 5
+
+// COLORS
+# define GREEN "\033[0;32m"
+# define RED "\033[1;31m"
+# define GREY "\033[0;90m"
+# define CYAN "\033[1;96m"
+# define RESET "\033[0m"
+
+// COMMANDS
+# define SA "SA"
+# define SB "SB"
+# define PA "PA"
+# define PB "PB"
+# define RA "RA"
+# define RB "RB"
+# define RRA "RRA"
+# define RRB "RRB"
 
 typedef struct s_stack
 {
-	int	*array;
-	int	top;
-	int	size;
+	int				*array;
+	int				top;
+	unsigned int	size;
 }	t_stack;
 
 // MAIN.C

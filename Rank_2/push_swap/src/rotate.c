@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:20:25 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/14 18:37:32 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 15:31:52 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	rot_a(t_stack *a, int n)
 		find--;
 	if (find < 0)
 		return ;
-	if (find < a->top / 2)
-		// RRA
+	else if (find < a->top / 2)
+		n_run(a, NULL, RRA, find + 1);
 	else
-		// RA
+		n_run(a, NULL, RA, a->top - find);
 }
 
 void	rot_b(t_stack *b, int n)
@@ -72,8 +72,8 @@ void	rot_b(t_stack *b, int n)
 		find--;
 	if (find < 0)
 		return ;
-	if (find < b->top / 2)
-		// RRB
+	else if (find < b->top / 2)
+		n_run(NULL, b, RRB, find + 1);
 	else
-		// RB
+		n_run(NULL, b, RB, b->top - find);
 }

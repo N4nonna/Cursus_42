@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:03:40 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 16:56:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:36:00 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	sort(t_stack *a)
 
 	if (is_sort(a) || a->top == 0)
 		return ;
+	b = initialize(a->size);
 	if (a->top < COMPLEXE_LIMIT)
 		small_sort(a, b);
-	else
-		complex_sort(a, b);
-	free(b);
+	//else
+	//	complex_sort(a, b);
+	free_stack(b);
 }

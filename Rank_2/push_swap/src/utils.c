@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:58:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/15 16:03:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/16 13:15:12 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	n_swap(int *a, int *b)
 
 void	reverse_array(int *arr, size_t size)
 {
-	static int	i;
+	static size_t	i;
 
 	if (i < size)
 	{
-		n_swap(arr[i++], arr[size - 1]);
+		n_swap(&arr[i++], &arr[size - 1]);
 		reverse_array(arr, size - 1);
 	}
 	i = 0;
