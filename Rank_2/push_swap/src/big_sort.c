@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:23:41 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 18:06:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/19 18:45:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	complex_sort(t_stack *a, t_stack *b)
 	int		_min;
 	int		_max;
 
-	chunk = a->top + 1 / CONST_CHUNK + 1;
-	step = a->top + 1 / chunk;
+	chunk = (a->top + 1) / CONST_CHUNK + 1;
+	step = (a->top + 1) / chunk;
 	_max = max(a);
 	while (chunk >= 1)
 	{
