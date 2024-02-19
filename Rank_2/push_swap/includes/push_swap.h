@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:57:39 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 16:08:16 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/19 18:06:14 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 // UTILS
 # define STACK_BUFFER 1024
 # define COMPLEXE_LIMIT 5
+# define CONST_CHUNK 50
 
 // COLORS
 # define GREEN "\033[0;32m"
@@ -55,10 +56,16 @@ int		fill_element(t_stack *stack, char *arg);
 
 // INDEX.C
 void	index_stack(t_stack **stack);
+int		n_index(t_stack *stack, int n);
 
 // SORT.C
 void	sort(t_stack *a);
 bool	is_sort(t_stack *stack);
+
+// BIG_SORT.C
+void	move_top(t_stack *a, int min, int max);
+void	move_min_max(t_stack *b);
+void	complex_sort(t_stack *a, t_stack *b);
 
 // SMALL_SORT.C
 void	small_sort(t_stack *a, t_stack *b);
@@ -92,6 +99,8 @@ void	free_stack(t_stack *stack);
 void	free_array(void **array);
 
 // UTILS.C
+int		from_bottom(t_stack *stack, int min, int max);
+int		from_top(t_stack *stack, int min, int max);
 t_stack	*initialize(unsigned int size);
 void	reverse_array(int *arr, size_t size);
 

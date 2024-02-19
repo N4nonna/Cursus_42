@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:22:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 18:19:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/19 14:40:17 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	put_top(t_stack *a, t_stack *b)
 
 	top_b = b->array[b->top];
 	to_move = closest_abv(a, top_b);
-	if (to_move == top_b)
+	if (to_move == top_b && a->top >= 0)
 		to_move = min(a);
 	rot_a(a, to_move);
 	run(a, b, PA);

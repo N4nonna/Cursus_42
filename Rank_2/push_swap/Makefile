@@ -27,6 +27,7 @@ SRC_FILES	= check_args \
 			rotate \
 			run \
 			small_sort \
+			big_sort \
 			sort \
 			utils
 

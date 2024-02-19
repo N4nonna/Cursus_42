@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:37:54 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 13:00:35 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/19 18:02:20 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,14 @@ void	index_stack(t_stack **stack)
 	ft_memcpy((*stack)->array, array, ((*stack)->top + 1) * sizeof(*array));
 	free(copy);
 	free(array);
+}
+
+int	n_index(t_stack *stack, int n)
+{
+	int	i;
+
+	i = stack->top;
+	while (stack->array[i] != n && i >= 0)
+		i--;
+	return (i);
 }
