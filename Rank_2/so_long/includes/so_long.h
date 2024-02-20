@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 12:39:34 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:14:27 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,9 @@ typedef struct s_data
 
 //****** MAIN.C ******
 int		main(int ac, char **av);
+
+//****** INIT_VARS.C ******
+void	init_data(t_data *data);
 
 //****** INIT_MAP.C ******
 void	check_args(int ac, char **av, t_data *data);

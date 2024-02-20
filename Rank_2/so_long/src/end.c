@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:35:22 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/05 12:31:06 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:45:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	free_map(t_data *data)
 
 	i = 0;
 	while (i < data->map.row)
-		free(data->map.full[i++]);
+	{
+		free(data->map.full[i]);
+		data->map.full[i++] = NULL;
+	}
 	free(data->map.full);
+	data->map.full = NULL;
 }
 
 void	destroy_img(t_data *data)
@@ -53,5 +57,7 @@ void	free_all(t_data *data)
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	data->mlx_ptr = NULL;
 	free(data);
+	data = NULL;
 }

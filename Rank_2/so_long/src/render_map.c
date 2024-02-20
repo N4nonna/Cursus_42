@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:03:55 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/18 19:04:21 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:45:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	render_steps(t_data *data)
 	string = ft_strjoin("Steps : ", move);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 20, WHITE, string);
 	free(move);
+	move = NULL;
 	free(string);
+	string = NULL;
 }
 
 void	render_sprite(t_data *data, t_img sprite, int row, int column)

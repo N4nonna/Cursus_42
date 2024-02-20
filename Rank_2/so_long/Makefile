@@ -10,9 +10,18 @@ CFLAGS		= -Wall -Wextra -Werror -g3
 RM			= rm -f
 AR			= ar rcs
 
-# Sources
+# COLOR
+
+GREEN		= '\033[0;32m'
+RED			= '\033[1;31m'
+GREY		= '\033[0;90m'
+CYAN		= '\033[1;96m'
+RESET		= '\033[0m'
+
+# SOURCES
 
 SRC_FILES	= main\
+			init_vars\
 			init_map\
 			init_game\
 			check_map\
@@ -35,6 +44,7 @@ $(NAME):	$(OBJS)
 			@make -C libft
 			@make -C $(GIT_DIR)
 			@$(CC) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+			@echo ${CYAN}"Compilation done"${RESET}
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c | $(OBJSF)
 			@cd $(GIT_DIR)
@@ -51,10 +61,12 @@ clean:
 			@$(RM) -rf $(GIT_DIR)
 			@$(RM) -rf $(OBJS_DIR)
 			@$(RM) -f $(OBJSF)
+			@echo ${GREEN}"Clean done"${RESET}
 
 fclean:		clean
 			@make fclean -C libft
 			@$(RM) -f $(NAME)
+			@echo ${GREEN}"Fclean done"${RESET}
 
 re:			fclean all
 

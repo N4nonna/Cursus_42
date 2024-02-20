@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:53:48 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/05 13:53:03 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:40:51 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	free_other(char *elem)
+{
+	free(elem);
+	elem = NULL;
+}
 
 void	check_args(int ac, char **av, t_data *data)
 {
@@ -33,13 +39,13 @@ void	check_empty_line(char *map, t_data *data)
 	i = 0;
 	if (map[0] == '\n')
 	{
-		free(map);
+		free_other(map);
 		error("Invalid map.\
 		Musn't beggin with empty line.(check_empty_line)", data);
 	}
 	else if (map[ft_strlen(map) - 1] == '\n')
 	{
-		free(map);
+		free_other(map);
 		error("Invalid map.\
 		Musn't end with empty line.(check_empty_line)", data);
 	}
@@ -47,7 +53,7 @@ void	check_empty_line(char *map, t_data *data)
 	{
 		if (map[i] == '\n' && map[i + 1] == '\n')
 		{
-			free(map);
+			free_other(map);
 			error("Invalid map.\
 			Has empty line in middle.(check_empty_line)", data);
 		}
@@ -72,12 +78,12 @@ void	init_map(t_data *data, char *av)
 		if (!line)
 			break ;
 		map = ft_strappend(&map, line);
-		free(line);
+		free_other(line);
 		data->map.row++;
 	}
 	close(fd);
 	check_empty_line(map, data);
 	data->map.full = ft_split(map, '\n');
 	data->map_alloc = true;
-	free(map);
+	free_other(map);
 }
