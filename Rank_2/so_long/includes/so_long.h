@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:22:20 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/20 15:14:27 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:22:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@
 # define GREY "\033[0;90m"
 # define CYAN "\033[1;96m"
 # define RESET "\033[0m"
+# define WHITE 0xFFFFFF
 
 typedef struct s_pos
 {

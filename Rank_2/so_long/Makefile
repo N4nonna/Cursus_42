@@ -4,6 +4,7 @@ SRCS_DIR 	= src/
 OBJS_DIR	= obj/
 GIT_URL		= https://github.com/42Paris/minilibx-linux
 GIT_DIR		= mlx_linux
+MLX_LIB		= libmlx_Linux.a
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
@@ -38,34 +39,33 @@ OBJS 		= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJSF		= .cache_exists
 
-all:		git_create ${NAME}
+all:		${MLX_LIB} ${NAME}
 
 $(NAME):	$(OBJS)
 			@make -C libft
-			@make -C $(GIT_DIR)
 			@$(CC) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 			@echo ${CYAN}"Compilation done"${RESET}
 
-$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c | $(OBJSF)
-			@cd $(GIT_DIR)
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
+			@mkdir -p $(OBJS_DIR)
 			@$(CC) $(CFLAGS) -I $(INCLUDES) -I./libft/include -I./mlx_linux -c $? -o $@
 
-git_create: 
+${GIT_DIR}: 
 			@git clone $(GIT_URL) $(GIT_DIR)
 
-$(OBJSF):
-			@mkdir -p $(OBJS_DIR)
+${MLX_LIB}:	${GIT_DIR}
+			@make -C $(GIT_DIR)
+			@cp ${GIT_DIR}/${MLX_LIB} .
 
 clean:
 			@make clean -C libft
 			@$(RM) -rf $(GIT_DIR)
 			@$(RM) -rf $(OBJS_DIR)
-			@$(RM) -f $(OBJSF)
 			@echo ${GREEN}"Clean done"${RESET}
 
 fclean:		clean
 			@make fclean -C libft
-			@$(RM) -f $(NAME)
+			@$(RM) -f $(NAME) ${MLX_LIB}
 			@echo ${GREEN}"Fclean done"${RESET}
 
 re:			fclean all
