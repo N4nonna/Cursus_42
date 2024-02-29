@@ -6,14 +6,12 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:10 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/29 12:46:41 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/29 15:05:26 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-//TEST if window size is bigger than screen size
 void	init_vars(t_data *data)
 {
 	int	i;
