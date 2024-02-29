@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:10 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/28 19:05:04 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:46:41 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_vars(t_data *data)
 		i++;
 	}
 	data->map.column = ft_strlen(data->map.full[0]);
-	if ((data->map.row * IMG_HEIGHT >= MAX_ROW)
-		|| (data->map.column * IMG_WIDTH >= MAX_COL))
+	if ((data->map.row * IMG_HEIGHT > MAX_ROW)
+		|| (data->map.column * IMG_WIDTH > MAX_COL))
 		error("Wrong map. Map too big. (init_vars)", data);
 	data->player_sprite = FRONT;
 }
