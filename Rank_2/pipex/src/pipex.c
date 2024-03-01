@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/14 12:45:28 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:21:32 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	execute(char *cmd, char **env)
 	if (execve(path, s_cmd, env) == -1)
 	{
 		perror("exec: command not found: \n");
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
 		ft_free_tab(s_cmd);
 		exit(EXIT_FAILURE);
 	}
@@ -34,9 +36,12 @@ void	child(char **av, int *p_fd, char **env)
 	fd = open(av[1], O_RDONLY, 0777);
 	if (fd == -1)
 		exit (EXIT_FAILURE);
-	dup2(fd, STDIN_FILENO);
-	dup2(p_fd[1], STDOUT_FILENO);
+	if (dup2(fd, STDIN_FILENO) == -1)
+		close(STDIN_FILENO);
+	if (dup2(p_fd[1], STDOUT_FILENO) == -1)
+		close(STDOUT_FILENO);
 	close(p_fd[0]);
+	close(p_fd[1]);
 	close(fd);
 	execute(av[2], env);
 }
@@ -48,10 +53,13 @@ void	parent(char **av, int *p_fd, char **env)
 	fd = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 		exit (EXIT_FAILURE);
-	dup2(fd, STDOUT_FILENO);
-	dup2(p_fd[0], STDIN_FILENO);
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		close(STDOUT_FILENO);
+	if (dup2(p_fd[0], STDIN_FILENO) == -1)
+		close(STDIN_FILENO);
 	close(p_fd[1]);
 	close(fd);
+	close(p_fd[0]);
 	execute(av[3], env);
 }
 
@@ -63,14 +71,14 @@ int	main(int ac, char **av, char **env)
 	if (ac != 5)
 	{
 		perror("./pipex infile cmd cmd outfile\n");
-		exit (EXIT_FAILURE);
+		exit (127);
 	}
 	if (pipe(p_fd) == -1)
 		exit (EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
 		perror("Fork: ");
-	while (!pid)
+	if (!pid)
 		child(av, p_fd, env);
 	parent(av, p_fd, env);
 }
