@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:10:09 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/01 12:12:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/01 13:00:47 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	*ft_free(char *keep, char *buff)
 
 	tmp = ft_strjoin(keep, buff);
 	free(keep);
+	keep = NULL;
 	return (tmp);
 }
 
@@ -55,6 +56,7 @@ static char	*get_after_newline(char *s)
 	if (!s[i])
 	{
 		free(s);
+		s = NULL;
 		return (NULL);
 	}
 	res = ft_calloc((ft_strlen(s) - i + 1), sizeof(char));
@@ -63,6 +65,7 @@ static char	*get_after_newline(char *s)
 	while (s[i])
 		res[j++] = s[i++];
 	free(s);
+	s = NULL;
 	return (res);
 }
 
@@ -91,6 +94,7 @@ static char	*ft_read_line(int fd, char *keep)
 			break ;
 	}
 	free(buff);
+	buff = NULL;
 	return (keep);
 }
 

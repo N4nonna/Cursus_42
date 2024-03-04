@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:25:19 by mescoda           #+#    #+#             */
-/*   Updated: 2023/11/17 15:25:21 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:49:47 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ static char	**ft_freeall(char **split, size_t i)
 	while (split[i])
 	{
 		free(split[i]);
+		split[i] = NULL;
 		i++;
 	}
 	free(split);
+	split = NULL;
 	return (NULL);
 }
 

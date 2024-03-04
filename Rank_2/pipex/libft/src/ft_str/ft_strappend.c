@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:23:36 by mescoda           #+#    #+#             */
-/*   Updated: 2024/01/24 12:24:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:51:13 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char	*ft_strappend(char **s1, const char *s2)
 	ft_strlcpy(str, *s1, ft_strlen(*s1) + 1);
 	ft_strlcat(str, s2, ft_strlen(*s1) + ft_strlen(s2) + 1);
 	free(*s1);
+	*s1 = NULL;
 	return (str);
 }
