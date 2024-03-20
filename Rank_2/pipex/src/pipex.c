@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/01 18:21:32 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/20 16:32:43 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,23 @@ void	execute(char *cmd, char **env)
 {
 	char	**s_cmd;
 	char	*path;
+	int		exec;
 
 	s_cmd = ft_split(cmd, ' ');
 	path = get_path(s_cmd[0], env);
-	if (execve(path, s_cmd, env) == -1)
+	exec = execve(path, s_cmd, env);
+	if (exec == -1)
 	{
+		if (access(exec, F_OK) == 0)
+		{
+			perror("access: \n");
+			exit(126);
+		}
 		perror("exec: command not found: \n");
 		close(STDIN_FILENO);
 		close(STDOUT_FILENO);
 		ft_free_tab(s_cmd);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 }
 
@@ -33,7 +40,7 @@ void	child(char **av, int *p_fd, char **env)
 {
 	int	fd;
 
-	fd = open(av[1], O_RDONLY, 0777);
+	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		exit (EXIT_FAILURE);
 	if (dup2(fd, STDIN_FILENO) == -1)
@@ -58,8 +65,8 @@ void	parent(char **av, int *p_fd, char **env)
 	if (dup2(p_fd[0], STDIN_FILENO) == -1)
 		close(STDIN_FILENO);
 	close(p_fd[1]);
-	close(fd);
 	close(p_fd[0]);
+	close(fd);
 	execute(av[3], env);
 }
 
