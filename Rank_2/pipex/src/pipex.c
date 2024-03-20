@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/20 16:32:43 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:23:22 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,12 @@ void	execute(char *cmd, char **env)
 {
 	char	**s_cmd;
 	char	*path;
-	int		exec;
 
 	s_cmd = ft_split(cmd, ' ');
 	path = get_path(s_cmd[0], env);
-	exec = execve(path, s_cmd, env);
-	if (exec == -1)
+	if (execve(path, s_cmd, env) == -1)
 	{
-		if (access(exec, F_OK) == 0)
-		{
-			perror("access: \n");
-			exit(126);
-		}
-		perror("exec: command not found: \n");
+		perror("exec ");
 		close(STDIN_FILENO);
 		close(STDOUT_FILENO);
 		ft_free_tab(s_cmd);
@@ -84,7 +77,7 @@ int	main(int ac, char **av, char **env)
 		exit (EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
-		perror("Fork: ");
+		perror("Fork ");
 	if (!pid)
 		child(av, p_fd, env);
 	parent(av, p_fd, env);
