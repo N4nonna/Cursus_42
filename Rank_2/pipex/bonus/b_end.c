@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   b_end.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/27 15:40:25 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/01 15:32:35 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
+/*if outfile error, cmd need to act and not just exit*/
 void	error_msg(char *err)
 {
 	perror(err);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_child.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:04:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/27 15:42:18 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/01 14:36:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	child(char **av, char **env, t_pipex pip)
 			free_child(&pip);
 			exit(1);
 		}
+		close(pip.infile);
+		close(pip.outfile);
 		execve(pip.cmd, pip.cmd_arg, env);
 	}
 }

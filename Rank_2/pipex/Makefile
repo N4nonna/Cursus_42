@@ -28,7 +28,11 @@ OBJS		= $(SRCS:.c=.o)
 # BONUS
 
 BONUS_DIR	= bonus/
-BONUS_FILES	= b_pipex.c b_child.c b_utils.c b_end.c
+BONUS_FILES	= b_pipex.c\
+			b_child.c\
+			b_utils.c\
+			b_end.c\
+			b_heredoc.c
 BONUS_SRCS	= $(addprefix $(BONUS_DIR), $(BONUS_FILES))
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
