@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:28:44 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/27 15:41:42 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 12:55:03 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_pipex
 	int		pipe_num;
 	int		*pipe;
 	int		index;
+	int		heredoc;
 	char	**cmd_path;
 	char	*cmd;
 	char	**cmd_arg;
@@ -46,12 +47,16 @@ typedef struct s_pipex
 // B_PIPEX
 int		main(int ac, char **av, char **env);
 void	close_pipe(t_pipex *pipex);
-void	create_pipe(t_pipex *pipex);
-void	outfile(char *av, t_pipex *pipex);
-void	infile(char **av, t_pipex *pipex);
+//void	create_pipe(t_pipex *pipex);
+//void	outfile(char *av, t_pipex *pipex);
+//void	infile(char **av, t_pipex *pipex);
 
 // B_CHILD
 void	child(char **av, char **env, t_pipex pip);
+
+// B_HEREDOC
+int		is_heredoc(char *av, t_pipex *p);
+void	heredoc(char *av, t_pipex *p);
 
 // B_UTILS
 char	*get_cmd(char **path, char *arg);

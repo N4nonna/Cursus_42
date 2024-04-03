@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_end.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/01 15:32:35 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 12:28:38 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	free_parent(t_pipex *p)
 	i = 0;
 	close(p->infile);
 	close(p->outfile);
+	if (p->heredoc)
+		unlink("here_doc.tmp");
 	while (p->cmd_path[i])
 		free(p->cmd_path[i++]);
 	free(p->cmd_path);
@@ -52,6 +54,8 @@ void	free_pipe(t_pipex *p)
 {
 	close(p->infile);
 	close(p->outfile);
+	if (p->heredoc)
+		unlink("here_doc.tmp");
 	free(p->pipe);
 	msg("PIPE ERROR");
 	exit(1);
