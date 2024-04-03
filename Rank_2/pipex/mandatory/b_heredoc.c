@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:36:34 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:57:45 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:37:50 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	heredoc_error(char *msg)
 	write(2, msg, ft_strlen(msg));
 }
 
+//stop after writting on line on terminal (but do cmd nontheless)
 void	heredoc(char *av, t_pipex *p)
 {
 	int		tmp;
@@ -44,17 +45,17 @@ void	heredoc(char *av, t_pipex *p)
 	{
 		write(1, "here_doc>", 9);
 		buff = get_next_line(0);
-		if (!buff)
+		if (buff)
 			exit(1);
-		if (!ft_strncmp(av, buff, ft_strlen(av)))
+		if (!ft_strncmp(av, buff, ft_strlen(av) + 1))
 			break ;
 		write(tmp, &buff, ft_strlen(buff));
 		write(tmp, "\n", 1);
 		free(buff);
 	}
 	free(buff);
+	close(tmp);
 	p->infile = open("here_doc.tmp", O_RDONLY);
 	if (p->infile < 0)
 		heredoc_error("Here_doc error");
-	close(tmp);
 }

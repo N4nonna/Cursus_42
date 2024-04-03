@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_child.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:04:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:56:53 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/01 14:36:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	child(char **av, char **env, t_pipex pip)
 		else
 			ft_dup2(pip.pipe[2 * pip.index - 2], pip.pipe[2 * pip.index + 1]);
 		close_pipe(&pip);
-		pip.cmd_arg = ft_split(av[2 + pip.index + pip.heredoc], ' ');
+		pip.cmd_arg = ft_split(av[2 + pip.index], ' ');
 		pip.cmd = get_cmd(pip.cmd_path, pip.cmd_arg[0]);
 		if (!pip.cmd)
 		{

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:46:14 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:11:29 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	infile(char **av, t_pipex *pipex)
 {
 	if (pipex->heredoc)
-		heredoc(av[2], pipex);
+		heredoc(av[1], pipex);
 	else
 		pipex->infile = open(av[1], O_RDONLY);
 	if (pipex->infile < 0)
