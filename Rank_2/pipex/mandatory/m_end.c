@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_end.c                                            :+:      :+:    :+:   */
+/*   m_end.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 12:28:38 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:28:57 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex_m.h"
 
-/*if outfile error, cmd need to act and not just exit*/
 void	error_msg(char *err)
 {
 	perror(err);
@@ -42,8 +41,6 @@ void	free_parent(t_pipex *p)
 	i = 0;
 	close(p->infile);
 	close(p->outfile);
-	if (p->heredoc)
-		unlink("here_doc.tmp");
 	while (p->cmd_path[i])
 		free(p->cmd_path[i++]);
 	free(p->cmd_path);
@@ -54,8 +51,6 @@ void	free_pipe(t_pipex *p)
 {
 	close(p->infile);
 	close(p->outfile);
-	if (p->heredoc)
-		unlink("here_doc.tmp");
 	free(p->pipe);
 	msg("PIPE ERROR");
 	exit(1);

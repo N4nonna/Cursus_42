@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:46:14 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:59:06 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ void	close_pipe(t_pipex *pipex)
 		i++;
 	}
 }
-/* for here_doc, need to find it (with cmp), 
-if it exist ->pipex.heredoc=1 else =0
-if pipex.heredoc=1 then open(av, o_create | o_wonly | o_append, 00644)
-in heredoc.c :
-gnl until limiter (oef?)*/
 
 int	main(int ac, char **av, char **env)
 {
@@ -85,4 +80,5 @@ int	main(int ac, char **av, char **env)
 	free_parent(&pipex);
 	return (0);
 }
-//valgrind --trace-children=yes --track-fds=yes --leaks-check=full in terminal not vscode
+//valgrind --trace-children=yes --track-fds=yes 
+//--leaks-check=full in terminal not vscode

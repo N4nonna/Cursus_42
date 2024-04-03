@@ -14,14 +14,16 @@ RESET		= \033[0m
 # SOURCES
 
 INCLUDES	=	includes/
-HEADER_SRCS	=	pipex.h pipex_bonus.h
+HEADER_SRCS	=	pipex_m.h pipex_bonus.h
 HEADER		=	$(addprefix $(INCLUDES), $(HEADER_SRCS))
 
 # MANDATORY
 
-SRCS_DIR	= src/
-SRC_FILES	= pipex_utils.c\
-			pipex.c
+SRCS_DIR	= mandatory/
+SRC_FILES	= m_child.c\
+			m_pipex.c\
+			m_end.c\
+			m_utils.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)
 
