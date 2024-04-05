@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:20:25 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 15:31:52 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:36:47 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// search for highest number from top to bottom
 int	closest_abv(t_stack *stack, int n)
 {
 	int	i;
@@ -30,6 +31,7 @@ int	closest_abv(t_stack *stack, int n)
 	return (j);
 }
 
+// search for lowest number from top to bottom
 int	closest_blw(t_stack *stack, int n)
 {
 	int	i;
@@ -48,6 +50,8 @@ int	closest_blw(t_stack *stack, int n)
 	return (j);
 }
 
+// search position of number n in stack A and define if it's better
+// to rotate it from bottom to top or top to bottom
 void	rot_a(t_stack *a, int n)
 {
 	int	find;
@@ -63,6 +67,8 @@ void	rot_a(t_stack *a, int n)
 		n_run(a, NULL, RA, a->top - find);
 }
 
+// search position of number n in stack B and define if it's better
+// to rotate it from bottom to top or top to bottom
 void	rot_b(t_stack *b, int n)
 {
 	int	find;

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:37:54 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 18:02:20 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:19:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	*sorted_array(t_stack *stack)
 	return (copy);
 }
 
+// allocate memory for stack index and create it 
+// by going throug all array
 void	index_stack(t_stack **stack)
 {
 	int		*copy;
@@ -65,6 +67,7 @@ void	index_stack(t_stack **stack)
 	free(array);
 }
 
+// compare number n to array and find his index number
 int	n_index(t_stack *stack, int n)
 {
 	int	i;

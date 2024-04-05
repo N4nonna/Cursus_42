@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:58:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 16:27:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:04:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,13 @@ int	from_top(t_stack *stack, int min, int max)
 	return (-1);
 }
 
-static void	n_swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
 void	reverse_array(int *arr, size_t size)
 {
 	static size_t	i;
 
 	if (i < size)
 	{
-		n_swap(&arr[i++], &arr[size - 1]);
+		ft_swap(&arr[i++], &arr[size - 1]);
 		reverse_array(arr, size - 1);
 	}
 	i = 0;

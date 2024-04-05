@@ -37,7 +37,7 @@ FTGET_DIR	=	ft_get/
 FTGET		=	get_next_line #get_next_line_utils
 
 FTUTILS_DIR	=	ft_utils/
-FTUTILS		=	ft_free_tab
+FTUTILS		=	ft_free_tab ft_swap
 
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))

@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:16:29 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 16:31:18 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:54:18 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// RA or RB
 void	rotate(t_stack *stack)
 {
 	int	i;
@@ -24,6 +25,7 @@ void	rotate(t_stack *stack)
 	stack->array[0] = tmp;
 }
 
+// RRA or RRB
 void	reverse_rotate(t_stack *stack)
 {
 	int	i;
@@ -36,6 +38,7 @@ void	reverse_rotate(t_stack *stack)
 	stack->array[stack->top] = tmp;
 }
 
+// PA or PB
 void	push(t_stack *from, t_stack *to)
 {
 	if (from->top == -1)
@@ -43,6 +46,7 @@ void	push(t_stack *from, t_stack *to)
 	to->array[++to->top] = from->array[from->top--];
 }
 
+// SA or SB
 void	swap(t_stack *stack)
 {
 	int	tmp;

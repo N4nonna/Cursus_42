@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:03:40 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 18:32:37 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:25:14 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// verify if the stack is already sorted
 bool	is_sort(t_stack *stack)
 {
 	int	i;
@@ -25,6 +26,7 @@ bool	is_sort(t_stack *stack)
 	return (true);
 }
 
+// define wich kind of sorting to do and create stack B
 void	sort(t_stack *a)
 {
 	t_stack	*b;

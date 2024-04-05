@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:23:41 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 18:45:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 13:59:06 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// sort stack A
 void	move_top(t_stack *a, int min, int max)
 {
 	int	i;
@@ -26,6 +27,7 @@ void	move_top(t_stack *a, int min, int max)
 	rot_a(a, a->array[i]);
 }
 
+// sort stack B
 void	move_min_max(t_stack *b)
 {
 	int	i;
@@ -49,6 +51,7 @@ static void	sort_chunk(t_stack *a, t_stack *b)
 	}
 }
 
+// move chunk from stack A to stack B after sorting this chunk
 static void	move_chunk(t_stack *a, t_stack *b, int min, int max)
 {
 	int	size;
@@ -62,6 +65,8 @@ static void	move_chunk(t_stack *a, t_stack *b, int min, int max)
 	}
 }
 
+// create 3 chunk, push one in stack B, sort this chunk and 
+// repush it in stack A until everything is sorted
 void	complex_sort(t_stack *a, t_stack *b)
 {
 	size_t	chunk;

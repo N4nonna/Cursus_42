@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:40:53 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/05 12:01:39 by mescoda          ###   ########.fr       */
+/*   Created: 2024/04/05 12:03:05 by mescoda           #+#    #+#             */
+/*   Updated: 2024/04/05 12:03:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_tab(char **tab)
+void	n_swap(int *a, int *b)
 {
-	int	i;
+	int	tmp;
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
+	tmp = *b;
+	*b = *a;
+	*a = tmp;
 }

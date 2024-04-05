@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:26:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/16 13:01:15 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:30:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// define lowest number
 static int	n_min(int *arr, size_t len)
 {
 	int		m;
@@ -29,6 +30,7 @@ int	min(t_stack *stack)
 	return (n_min(stack->array, stack->top + 1));
 }
 
+// define highest number
 static int	n_max(int *arr, size_t len)
 {
 	int		m;

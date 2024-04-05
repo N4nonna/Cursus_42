@@ -6,12 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:22:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 14:40:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:44:07 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// with three number we have just five possibility
 void	three_sort(t_stack *a)
 {
 	int	*arr;
@@ -35,6 +36,8 @@ void	three_sort(t_stack *a)
 	}
 }
 
+// compare number n in stack B to first number in stack A
+// and push N to stack A top or bottom
 void	put_top(t_stack *a, t_stack *b)
 {
 	int	top_b;
@@ -48,6 +51,8 @@ void	put_top(t_stack *a, t_stack *b)
 	run(a, b, PA);
 }
 
+// put two first number in stack B, sort the three number left
+// and push stack B in stack A
 void	comp_small_sort(t_stack *a, t_stack *b)
 {
 	n_run(a, b, PB, a->top - 2);
@@ -57,6 +62,7 @@ void	comp_small_sort(t_stack *a, t_stack *b)
 	rot_a(a, 0);
 }
 
+// depending of how many number we have, define wich function is better
 void	small_sort(t_stack *a, t_stack *b)
 {
 	if (a->top == 1)
