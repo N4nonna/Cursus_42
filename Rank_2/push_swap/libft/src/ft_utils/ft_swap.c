@@ -6,13 +6,13 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:03:05 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/05 12:03:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/06 16:48:00 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	n_swap(int *a, int *b)
+void	ft_swap(int *a, int *b)
 {
 	int	tmp;
 

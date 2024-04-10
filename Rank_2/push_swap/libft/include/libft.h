@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:28:00 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/05 12:03:58 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/06 16:48:14 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ char	*get_next_line(int fd);
 
 // ********** FT_UTILS **********
 void	ft_free_tab(char **tab);
-void	n_swap(int *a, int *b);
+void	ft_swap(int *a, int *b);
 
 #endif
