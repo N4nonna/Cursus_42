@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:10:09 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 12:41:51 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 14:53:02 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,13 @@ char	*get_next_line(int fd)
 	static char	*keep[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
+	if (fd == -1 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 		return (NULL);
+	if (fd == -2)
+	{
+		// free(keep);
+		return (NULL);
+	}
 	keep[fd] = ft_read_line(fd, keep[fd]);
 	if (!keep[fd])
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_m.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:28:44 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 16:24:48 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:04:42 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <stdlib.h>
 // open and unlink
 # include <fcntl.h>
+// errno
+# include <errno.h>
 
 typedef struct s_pipex
 {

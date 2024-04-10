@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_heredoc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:36:34 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:57:45 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 14:34:56 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	heredoc_error(char *msg)
 	write(2, msg, ft_strlen(msg));
 }
 
+// free static of gnl (done?)
 void	heredoc(char *av, t_pipex *p)
 {
 	int		tmp;
@@ -45,14 +46,15 @@ void	heredoc(char *av, t_pipex *p)
 		write(1, "here_doc>", 9);
 		buff = get_next_line(0);
 		if (!buff)
-			exit(1);
+			msg("Here_doc error");
 		if (!ft_strncmp(av, buff, ft_strlen(av)))
 			break ;
-		write(tmp, &buff, ft_strlen(buff));
+		write(tmp, buff, ft_strlen(buff));
 		write(tmp, "\n", 1);
 		free(buff);
 	}
 	free(buff);
+	get_next_line(-2);
 	p->infile = open("here_doc.tmp", O_RDONLY);
 	if (p->infile < 0)
 		heredoc_error("Here_doc error");

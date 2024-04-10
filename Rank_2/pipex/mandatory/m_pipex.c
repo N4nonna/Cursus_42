@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_pipex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 16:29:46 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:06:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	close_pipe(t_pipex *pipex)
 	}
 }
 
+// no pipe malloced for minishell
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	pipex;
@@ -71,7 +72,8 @@ int	main(int ac, char **av, char **env)
 	while (++pipex.index < 2)
 		child(av, env, pipex);
 	close_pipe(&pipex);
-	waitpid(-1, NULL, 0);
+	while (errno != ECHILD)
+		waitpid(-1, NULL, 0);
 	free_parent(&pipex);
 	return (0);
 }

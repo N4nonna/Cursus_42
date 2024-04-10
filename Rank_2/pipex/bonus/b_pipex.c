@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_pipex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 15:59:06 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:08:37 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ static void	infile(char **av, t_pipex *pipex)
 
 static void	outfile(char *av, t_pipex *pipex)
 {
-	pipex->outfile = open(av, O_CREAT | O_WRONLY | O_TRUNC, 00644);
+	if (pipex->heredoc)
+		pipex->outfile = open(av, O_CREAT | O_WRONLY | O_APPEND, 00644);
+	else
+		pipex->outfile = open(av, O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	if (pipex->outfile < 0)
 		msg("Outfile error");
 }
@@ -54,6 +57,7 @@ void	close_pipe(t_pipex *pipex)
 	}
 }
 
+// no pipe malloced for minishell
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	pipex;
@@ -76,7 +80,8 @@ int	main(int ac, char **av, char **env)
 	while (++pipex.index < pipex.cmd_num)
 		child(av, env, pipex);
 	close_pipe(&pipex);
-	waitpid(-1, NULL, 0);
+	while (errno != ECHILD)
+		waitpid(-1, NULL, 0);
 	free_parent(&pipex);
 	return (0);
 }

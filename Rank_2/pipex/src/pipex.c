@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:46:33 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/20 18:23:22 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/10 14:58:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,13 @@ int	main(int ac, char **av, char **env)
 		perror("Fork ");
 	if (!pid)
 		child(av, p_fd, env);
-	parent(av, p_fd, env);
+	if (pipe(p_fd) == -1)
+		exit (EXIT_FAILURE);
+	pid = fork();
+	if (pid == -1)
+		perror("Fork ");
+	if (!pid)
+		parent(av, p_fd, env);
+	close(p_fd[0]);
+	close(p_fd[1]);
 }
