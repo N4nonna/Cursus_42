@@ -28,7 +28,7 @@ void	child(char **av, char **env, t_pipex pip)
 		pip.cmd = get_cmd(pip.cmd_path, pip.cmd_arg[0]);
 		if (!pip.cmd)
 		{
-			error_msg("Child error");
+			perror(pip.cmd);
 			free_child(&pip);
 			exit(1);
 		}

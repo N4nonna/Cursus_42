@@ -17,7 +17,6 @@ if infile error, first cmd doesn't act but other do*/
 void	error_msg(char *err)
 {
 	perror(err);
-	exit(1);
 }
 
 void	msg(char *err)

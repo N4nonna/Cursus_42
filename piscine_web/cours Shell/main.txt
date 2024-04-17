@@ -1,0 +1,26 @@
+basic command:
+
+ls - list of element in current folder
+cd - comand directory, used to move from a directory to another
+mkdir - create a directory
+cp - copy file
+mv - move file into another directory
+touch - create a file
+nano - create/open/write on a file
+cat - read a file
+echo - write in terminal (create an echo-o-o-o-o)
+chmod - change authorisation of file/folder
+rm - remove file
+man - manuel of usage
+
+options:
+most of comands use options (accessible via man) to perform different actions
+to do a command with option we append "-[OPTION]" to the comand line
+we can add more than one option (if they are compatible)
+
+pipe:
+somethimes we want to perform multiple actions at the same time
+for that we use a pipe "|"
+[COMMAND A] | [COMMAND B]
+when command A is done, command B will be triggered
+ex: ls -l | echo "done"

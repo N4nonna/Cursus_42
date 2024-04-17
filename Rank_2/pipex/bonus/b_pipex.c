@@ -19,7 +19,7 @@ static void	infile(char **av, t_pipex *pipex)
 	else
 		pipex->infile = open(av[1], O_RDONLY);
 	if (pipex->infile < 0)
-		error_msg("Infile error");
+		error_msg(av[1]);
 }
 
 static void	outfile(char *av, t_pipex *pipex)
@@ -29,7 +29,7 @@ static void	outfile(char *av, t_pipex *pipex)
 	else
 		pipex->outfile = open(av, O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	if (pipex->outfile < 0)
-		msg("Outfile error");
+		error_msg(av);
 }
 
 static void	create_pipe(t_pipex *pipex)

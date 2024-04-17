@@ -1,0 +1,21 @@
+.foot {
+    font-family: monospace;
+    font-size: 1vw;
+    font-style: italic;
+    text-align: right;
+    color: cadetblue;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    table-layout: fixed;
+}
+
+td {
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 6vw;
+    text-align: center;
+}
