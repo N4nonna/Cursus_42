@@ -1,0 +1,11 @@
+.foot {
+    font-family: monospace;
+    font-size: 1vw;
+    font-style: italic;
+    text-align: right;
+    color: cadetblue;
+}
+
+body {
+	background-color: burlywood;
+}

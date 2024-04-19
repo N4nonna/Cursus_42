@@ -1,0 +1,24 @@
+.foot {
+    font-family: monospace;
+    font-size: 1vw;
+    font-style: italic;
+    text-align: right;
+    color: cadetblue;
+}
+
+body {
+	background-color: blanchedalmond;
+}
+
+.balloon {
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	border: none;
+	border-radius: 50%;
+	position: static;
+	max-block-size: 420px;
+	margin-top: 10%;
+	margin-left: 45%;
+	margin-right: 45%;
+}
