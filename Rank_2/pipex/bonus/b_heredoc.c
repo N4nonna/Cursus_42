@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:36:34 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/10 14:34:56 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:28:07 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	heredoc_error(char *msg)
 	write(2, msg, ft_strlen(msg));
 }
 
-// free static of gnl (done?)
 void	heredoc(char *av, t_pipex *p)
 {
 	int		tmp;
