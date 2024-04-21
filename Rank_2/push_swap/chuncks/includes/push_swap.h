@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:57:39 by mescoda           #+#    #+#             */
-/*   Updated: 2024/02/19 18:06:14 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/20 17:53:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // UTILS
 # define STACK_BUFFER 1024
 # define COMPLEXE_LIMIT 5
-# define CONST_CHUNK 50
+# define CONST_CHUNK 100
 
 // COLORS
 # define GREEN "\033[0;32m"
@@ -31,14 +31,14 @@
 # define RESET "\033[0m"
 
 // COMMANDS
-# define SA "SA"
-# define SB "SB"
-# define PA "PA"
-# define PB "PB"
-# define RA "RA"
-# define RB "RB"
-# define RRA "RRA"
-# define RRB "RRB"
+# define SA "sa"
+# define SB "sb"
+# define PA "pa"
+# define PB "pb"
+# define RA "ra"
+# define RB "rb"
+# define RRA "rra"
+# define RRB "rrb"
 
 typedef struct s_stack
 {

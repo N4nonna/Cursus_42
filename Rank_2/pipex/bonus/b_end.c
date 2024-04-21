@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/20 14:28:34 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 15:46:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	free_child(t_pipex *p)
 	int	i;
 
 	i = 0;
+	close(p->infile);
+	close(p->outfile);
+	if (p->heredoc)
+		unlink("here_doc.tmp");
 	while (p->cmd_arg[i])
 		free(p->cmd_arg[i++]);
 	free(p->cmd_arg);

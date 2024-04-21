@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/10 15:06:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 13:45:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	infile(char *av, t_pipex *pipex)
 {
 	pipex->infile = open(av, O_RDONLY);
 	if (pipex->infile < 0)
-		error_msg("Infile error");
+		error("Infile error");
 }
 
 static void	outfile(char *av, t_pipex *pipex)

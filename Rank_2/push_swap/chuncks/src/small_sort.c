@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:22:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/05 12:44:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/20 17:49:45 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	three_sort(t_stack *a)
 	arr = a->array;
 	if (arr[0] > arr[1] && arr[1] < arr[2] && arr[2] < arr[0])
 		run(a, NULL, SA);
-	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] > arr[0])
+	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] < arr[0])
 		run(a, NULL, RRA);
 	else if (arr[0] < arr[1] && arr[1] > arr[2] && arr[2] > arr[0])
 	{

@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:28:44 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/10 15:04:42 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 13:43:47 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ void	close_pipe(t_pipex *pipex);
 
 // B_CHILD
 void	child(char **av, char **env, t_pipex pip);
+void	free_child(t_pipex *p);
 
 // B_UTILS
 char	*get_cmd(char **path, char *arg);
-void	ft_dup2(char zero, char one);
+void	ft_dup2(char zero, char one, t_pipex *pip);
 char	*get_path(char **env);
 
 // B_END
 void	error_msg(char *err);
+void	error(char *err);
 void	msg(char *err);
-void	free_child(t_pipex *p);
 void	free_parent(t_pipex *p);
 void	free_pipe(t_pipex *p);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_end.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 16:28:57 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 13:40:52 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,14 @@ void	error_msg(char *err)
 	exit(1);
 }
 
+void	error(char *err)
+{
+	perror(err);
+}
+
 void	msg(char *err)
 {
 	write(2, err, ft_strlen(err));
-}
-
-void	free_child(t_pipex *p)
-{
-	int	i;
-
-	i = 0;
-	while (p->cmd_arg[i])
-		free(p->cmd_arg[i++]);
-	free(p->cmd_arg);
-	free(p->cmd);
 }
 
 void	free_parent(t_pipex *p)

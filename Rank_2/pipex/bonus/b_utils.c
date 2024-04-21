@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:53:17 by mescoda           #+#    #+#             */
-/*   Updated: 2024/03/27 15:27:47 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 16:47:07 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*get_cmd(char **path, char *arg)
 
 	while (*path)
 	{
+		if ((*path == NULL) || (arg == NULL))
+			return (NULL);
 		tmp = ft_strjoin(*path, "/");
 		cmd = ft_strjoin(tmp, arg);
 		free(tmp);
@@ -30,8 +32,22 @@ char	*get_cmd(char **path, char *arg)
 	return (NULL);
 }
 
-void	ft_dup2(char zero, char one)
+void	ft_dup2(char zero, char one, t_pipex *p)
 {
+	if (p->infile == -1 && p->index == 0)
+	{
+		if (p->outfile > 0)
+			close(p->outfile);
+		close_pipe(p);
+		exit(1);
+	}
+	if (p->outfile == -1 && p->index)
+	{
+		if (p->infile > 0)
+			close(p->infile);
+		close_pipe(p);
+		exit(1);
+	}
 	dup2(zero, 0);
 	dup2(one, 1);
 }

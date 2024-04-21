@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:28:44 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/10 15:04:37 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/21 15:53:41 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	heredoc(char *av, t_pipex *p);
 
 // B_UTILS
 char	*get_cmd(char **path, char *arg);
-void	ft_dup2(char zero, char one);
+void	ft_dup2(char zero, char one, t_pipex *p);
 char	*get_path(char **env);
 
 // B_END
