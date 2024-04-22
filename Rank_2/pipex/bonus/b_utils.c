@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:53:17 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 16:47:07 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:28:25 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_cmd(char **path, char *arg)
 
 	while (*path)
 	{
-		if ((*path == NULL) || (arg == NULL))
+		if (arg == NULL)
 			return (NULL);
 		tmp = ft_strjoin(*path, "/");
 		cmd = ft_strjoin(tmp, arg);
@@ -54,7 +54,12 @@ void	ft_dup2(char zero, char one, t_pipex *p)
 
 char	*get_path(char **env)
 {
-	while (ft_strncmp("PATH", *env, 4))
-		env++;
-	return (*env + 5);
+	while (*env != NULL)
+	{
+		while (ft_strncmp("PATH", *env, 4))
+			env++;
+		return (*env + 5);
+	}
+	perror_ex(*env);
+	return (NULL);
 }

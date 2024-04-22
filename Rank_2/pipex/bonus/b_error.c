@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   b_error.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 14:26:48 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/22 14:59:11 by mescoda          ###   ########.fr       */
+/*   Created: 2024/04/22 13:30:18 by mescoda           #+#    #+#             */
+/*   Updated: 2024/04/22 14:55:19 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	perror_msg(char *err)
 {
-	t_list	*tmp;
+	perror(err);
+}
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
+void	perror_free(char *err, t_pipex *p)
+{
+	perror(err);
+	free_all(p);
+	exit(1);
+}
+
+void	msg(char *err)
+{
+	write(2, err, ft_strlen(err));
+}
+
+void	msg_ex(char *err)
+{
+	write(2, err, ft_strlen(err));
+	exit(1);
+}
+
+void	perror_ex(char *err)
+{
+	perror(err);
+	exit(1);
 }

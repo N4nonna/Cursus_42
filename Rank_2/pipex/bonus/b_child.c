@@ -6,35 +6,31 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:04:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 16:07:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:15:23 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	child(char **av, char **env, t_pipex pip)
+void	child(char **av, char **env, t_pipex p)
 {
-	pip.pid = fork();
-	if (!pip.pid)
+	p.pid = fork();
+	if (!p.pid)
 	{
-		if (pip.index == 0)
-			ft_dup2(pip.infile, pip.pipe[1], &pip);
-		else if (pip.index == pip.cmd_num - 1)
-			ft_dup2(pip.pipe[2 * pip.index - 2], pip.outfile, &pip);
+		if (p.index == 0)
+			ft_dup2(p.infile, p.pipe[1], &p);
+		else if (p.index == p.cmd_num - 1)
+			ft_dup2(p.pipe[2 * p.index - 2], p.outfile, &p);
 		else
-			ft_dup2(pip.pipe[2 * pip.index - 2], pip.pipe[2 * pip.index + 1], &pip);
-		close_pipe(&pip);
-		pip.cmd_arg = ft_split(av[2 + pip.index + pip.heredoc], ' ');
-		pip.cmd = get_cmd(pip.cmd_path, pip.cmd_arg[0]);
-		if (!pip.cmd)
-		{
-			perror(pip.cmd);
-			free_child(&pip);
-			exit(1);
-		}
-		close(pip.infile);
-		close(pip.outfile);
-		execve(pip.cmd, pip.cmd_arg, env);
-		
+			ft_dup2(p.pipe[2 * p.index - 2], p.pipe[2 * p.index + 1], &p);
+		close_pipe(&p);
+		p.cmd_arg = ft_split(av[2 + p.index + p.heredoc], ' ');
+		ft_printf("%s\n", p.cmd_path);
+		p.cmd = get_cmd(p.cmd_path, p.cmd_arg[0]);
+		if (!p.cmd)
+			perror_free(p.cmd, &p);
+		close(p.infile);
+		close(p.outfile);
+		execve(p.cmd, p.cmd_arg, env);
 	}
 }

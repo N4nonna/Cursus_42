@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_end.c                                            :+:      :+:    :+:   */
+/*   b_free.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 15:46:08 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 13:53:40 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	error_msg(char *err)
+static void	close_all(t_pipex *p)
 {
-	perror(err);
-}
-
-void	msg(char *err)
-{
-	write(2, err, ft_strlen(err));
+	close(p->infile);
+	close(p->outfile);
+	if (p->heredoc)
+		unlink("here_doc.tmp");
 }
 
 void	free_child(t_pipex *p)
@@ -27,10 +25,7 @@ void	free_child(t_pipex *p)
 	int	i;
 
 	i = 0;
-	close(p->infile);
-	close(p->outfile);
-	if (p->heredoc)
-		unlink("here_doc.tmp");
+	close_all(p);
 	while (p->cmd_arg[i])
 		free(p->cmd_arg[i++]);
 	free(p->cmd_arg);
@@ -42,10 +37,7 @@ void	free_parent(t_pipex *p)
 	int	i;
 
 	i = 0;
-	close(p->infile);
-	close(p->outfile);
-	if (p->heredoc)
-		unlink("here_doc.tmp");
+	close_all(p);
 	while (p->cmd_path[i])
 		free(p->cmd_path[i++]);
 	free(p->cmd_path);
@@ -54,11 +46,35 @@ void	free_parent(t_pipex *p)
 
 void	free_pipe(t_pipex *p)
 {
-	close(p->infile);
-	close(p->outfile);
-	if (p->heredoc)
-		unlink("here_doc.tmp");
+	close_all(p);
 	free(p->pipe);
 	msg("PIPE ERROR");
 	exit(1);
+}
+
+void	free_all(t_pipex *p)
+{
+	int	i;
+
+	i = 0;
+	close_all(p);
+	while (p->cmd_arg[i])
+	{
+		free(p->cmd_arg[i]);
+		p->cmd_arg[i++] = NULL;
+	}
+	free(p->cmd_arg);
+	p->cmd_arg = NULL;
+	free(p->cmd);
+	p->cmd = NULL;
+	i = 0;
+	while (p->cmd_path[i])
+	{
+		free(p->cmd_path[i]);
+		p->cmd_path[i++] = NULL;
+	}
+	free(p->cmd_path);
+	p->cmd_path = NULL;
+	free(p->pipe);
+	p->pipe = NULL;
 }

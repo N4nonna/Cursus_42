@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 13:45:08 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 13:35:05 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,4 @@ int	main(int ac, char **av, char **env)
 	free_parent(&pipex);
 	return (0);
 }
-//valgrind --trace-children=yes --track-fds=yes
-//--leaks-check=full in terminal not vscode
+//valgrind --trace-children=yes --track-fds=yes --leak-check=full
