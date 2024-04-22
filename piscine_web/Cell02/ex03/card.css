@@ -1,0 +1,48 @@
+.foot {
+    font-family: monospace;
+    font-size: 1vw;
+    font-style: italic;
+    text-align: right;
+    color: cadetblue;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 25%;
+    table-layout: fixed;
+}
+
+td {
+    border: 1px solid black;
+    padding: 150px;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.user-img {
+    background-image: url(./../../SRC/original\ copy.jpg);
+    background-size: 100%;
+    padding-bottom: 180px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.user-info {
+    padding-bottom: 100px;
+}
+
+.contact {
+    padding-bottom: 10px;
+    padding-top: 15px;
+    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: cadetblue;
+    text-align: center;
+    font-size: smaller;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color:lavenderblush;
+}
