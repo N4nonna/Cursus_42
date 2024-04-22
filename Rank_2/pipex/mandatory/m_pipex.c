@@ -6,24 +6,24 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:49:13 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/22 13:35:05 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:37:10 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_m.h"
+#include "pipex_bonus.h"
 
-static void	infile(char *av, t_pipex *pipex)
+static void	infile(char **av, t_pipex *pipex)
 {
-	pipex->infile = open(av, O_RDONLY);
+	pipex->infile = open(av[1], O_RDONLY);
 	if (pipex->infile < 0)
-		error("Infile error");
+		perror_msg(av[1]);
 }
 
 static void	outfile(char *av, t_pipex *pipex)
 {
 	pipex->outfile = open(av, O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	if (pipex->outfile < 0)
-		msg("Outfile error");
+		perror_msg(av);
 }
 
 static void	create_pipe(t_pipex *pipex)
@@ -31,7 +31,7 @@ static void	create_pipe(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (i < 1)
+	while (i < pipex->cmd_num - 1)
 	{
 		if (pipe(pipex->pipe + 2 * i) < 0)
 			free_parent(pipex);
@@ -44,7 +44,7 @@ void	close_pipe(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (i < 2)
+	while (i < pipex->pipe_num)
 	{
 		close(pipex->pipe[i]);
 		i++;
@@ -57,19 +57,21 @@ int	main(int ac, char **av, char **env)
 	t_pipex	pipex;
 
 	if (ac < 5)
-		msg("Wrong number of argument");
-	infile(av[1], &pipex);
+		msg_ex("Wrong number of argument");
+	pipex.env_path = get_path(env);
+	infile(av, &pipex);
 	outfile(av[ac - 1], &pipex);
-	pipex.pipe = (int *)malloc(sizeof(int) * 2);
+	pipex.cmd_num = ac - 3;
+	pipex.pipe_num = 2 * (pipex.cmd_num - 1);
+	pipex.pipe = (int *)malloc(sizeof(int) * pipex.pipe_num);
 	if (!pipex.pipe)
 		free_pipe(&pipex);
-	pipex.env_path = get_path(env);
 	pipex.cmd_path = ft_split(pipex.env_path, ':');
 	if (!pipex.cmd_path)
 		msg("Error comand");
 	create_pipe(&pipex);
 	pipex.index = -1;
-	while (++pipex.index < 2)
+	while (++pipex.index < pipex.cmd_num)
 		child(av, env, pipex);
 	close_pipe(&pipex);
 	while (errno != ECHILD)
@@ -77,4 +79,3 @@ int	main(int ac, char **av, char **env)
 	free_parent(&pipex);
 	return (0);
 }
-//valgrind --trace-children=yes --track-fds=yes --leak-check=full

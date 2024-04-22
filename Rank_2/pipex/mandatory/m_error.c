@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   m_end.c                                            :+:      :+:    :+:   */
+/*   m_error.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 13:40:52 by mescoda          ###   ########.fr       */
+/*   Created: 2024/04/22 13:30:18 by mescoda           #+#    #+#             */
+/*   Updated: 2024/04/22 16:36:01 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_m.h"
+#include "pipex_bonus.h"
 
-void	error_msg(char *err)
+void	perror_msg(char *err)
 {
 	perror(err);
-	exit(1);
 }
 
-void	error(char *err)
+void	perror_free(char *err, t_pipex *p)
 {
 	perror(err);
+	free_all(p);
+	exit(1);
 }
 
 void	msg(char *err)
@@ -28,24 +29,14 @@ void	msg(char *err)
 	write(2, err, ft_strlen(err));
 }
 
-void	free_parent(t_pipex *p)
+void	msg_ex(char *err)
 {
-	int	i;
-
-	i = 0;
-	close(p->infile);
-	close(p->outfile);
-	while (p->cmd_path[i])
-		free(p->cmd_path[i++]);
-	free(p->cmd_path);
-	free(p->pipe);
+	write(2, err, ft_strlen(err));
+	exit(1);
 }
 
-void	free_pipe(t_pipex *p)
+void	perror_ex(char *err)
 {
-	close(p->infile);
-	close(p->outfile);
-	free(p->pipe);
-	msg("PIPE ERROR");
+	perror(err);
 	exit(1);
 }

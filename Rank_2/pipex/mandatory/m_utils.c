@@ -6,11 +6,11 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:53:17 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/21 13:39:55 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:40:09 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_m.h"
+#include "pipex_bonus.h"
 
 char	*get_cmd(char **path, char *arg)
 {
@@ -19,6 +19,8 @@ char	*get_cmd(char **path, char *arg)
 
 	while (*path)
 	{
+		if (arg == NULL)
+			return (NULL);
 		tmp = ft_strjoin(*path, "/");
 		cmd = ft_strjoin(tmp, arg);
 		free(tmp);
@@ -30,20 +32,20 @@ char	*get_cmd(char **path, char *arg)
 	return (NULL);
 }
 
-void	ft_dup2(char zero, char one, t_pipex *pip)
+void	ft_dup2(char zero, char one, t_pipex *p)
 {
-	if (pip->infile == -1 && pip->index == 0)
+	if (p->infile == -1 && p->index == 0)
 	{
-		if (pip->outfile > 0)
-			close(pip->outfile);
-		close_pipe(pip);
+		if (p->outfile > 0)
+			close(p->outfile);
+		close_pipe(p);
 		exit(1);
 	}
-	if (pip->outfile == -1 && pip->index)
+	if (p->outfile == -1 && p->index)
 	{
-		if (pip->infile > 0)
-			close(pip->infile);
-		close_pipe(pip);
+		if (p->infile > 0)
+			close(p->infile);
+		close_pipe(p);
 		exit(1);
 	}
 	dup2(zero, 0);
@@ -52,7 +54,12 @@ void	ft_dup2(char zero, char one, t_pipex *pip)
 
 char	*get_path(char **env)
 {
-	while (ft_strncmp("PATH", *env, 4))
-		env++;
-	return (*env + 5);
+	while (*env != NULL)
+	{
+		while (ft_strncmp("PATH", *env, 4))
+			env++;
+		return (*env + 5);
+	}
+	perror_ex(*env);
+	return (NULL);
 }

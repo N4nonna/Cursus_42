@@ -22,7 +22,8 @@ HEADER		=	$(addprefix $(INCLUDES), $(HEADER_SRCS))
 SRCS_DIR	= mandatory/
 SRC_FILES	= m_child.c\
 			m_pipex.c\
-			m_end.c\
+			m_free.c\
+			m_error.c\
 			m_utils.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)
