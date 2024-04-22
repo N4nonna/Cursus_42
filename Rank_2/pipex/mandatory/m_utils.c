@@ -54,6 +54,7 @@ void	ft_dup2(char zero, char one, t_pipex *p)
 
 char	*get_path(char **env)
 {
+
 	while (*env != NULL)
 	{
 		while (ft_strncmp("PATH", *env, 4))
