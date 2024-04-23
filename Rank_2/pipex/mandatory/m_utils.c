@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:53:17 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/22 16:40:09 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:22:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_dup2(char zero, char one, t_pipex *p)
 
 char	*get_path(char **env)
 {
-
 	while (*env != NULL)
 	{
 		while (ft_strncmp("PATH", *env, 4))

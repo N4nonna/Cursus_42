@@ -1,4 +1,5 @@
 NAME		= pipex
+NBONUS		= bonus_pipex
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
 RM			= rm -rf
@@ -43,6 +44,7 @@ BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 ###
 
 all:		$(NAME)
+bonus:		$(NBONUS)
 
 $(NAME):	$(OBJS)
 			@make -C libft
@@ -50,11 +52,11 @@ $(NAME):	$(OBJS)
 			@$(CC) $(OBJS) -Llibft -lft -o $(NAME)
 			@echo "$(GREEN)$(NAME) OK!$(RESET)"
 
-bonus:		$(BONUS_OBJS)
+$(NBONUS):	$(BONUS_OBJS)
 			@make -C libft
 			@echo "$(CYAN)libft OK!$(RESET)"
-			@$(CC) $(BONUS_OBJS) -Llibft -lft -o $(NAME)
-			@echo "$(GREEN)Bonus $(NAME) OK!$(RESET)"
+			@$(CC) $(BONUS_OBJS) -Llibft -lft -o $(NBONUS)
+			@echo "$(GREEN)$(NBONUS) OK!$(RESET)"
 
 %.o:		%.c $(HEADER) Makefile
 			@${CC} ${CFLAGS} -I $(INCLUDES) -I./libft/include -c $< -o $@
@@ -68,6 +70,7 @@ clean:
 fclean:		clean
 			@make fclean -C libft
 			@$(RM) $(NAME)
+			@$(RM) $(NBONUS)
 			@echo "$(RED)All clean!$(RESET)"
 
 re:			fclean all

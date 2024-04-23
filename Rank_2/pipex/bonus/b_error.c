@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:30:18 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/22 14:55:19 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:21:09 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	perror_free(char *err, t_pipex *p)
 	exit(1);
 }
 
+void	perror_ex(char *err)
+{
+	perror(err);
+	exit(1);
+}
+
 void	msg(char *err)
 {
 	write(2, err, ft_strlen(err));
@@ -32,11 +38,5 @@ void	msg(char *err)
 void	msg_ex(char *err)
 {
 	write(2, err, ft_strlen(err));
-	exit(1);
-}
-
-void	perror_ex(char *err)
-{
-	perror(err);
 	exit(1);
 }
