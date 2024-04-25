@@ -53,7 +53,7 @@ void	heredoc(char *av, t_pipex *p)
 		free(buff);
 	}
 	free(buff);
-	get_next_line(-2);
+	// get_next_line(-2);
 	p->infile = open("here_doc.tmp", O_RDONLY);
 	if (p->infile < 0)
 		heredoc_error("Here_doc error");

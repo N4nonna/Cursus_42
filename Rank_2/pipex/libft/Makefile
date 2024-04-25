@@ -30,7 +30,7 @@ FTPRINTF_DIR	=	ft_printf/
 FTPRINTF	=	ft_printf ft_print_int ft_print_pointer ft_print_string
 
 FTGET_DIR	=	ft_get/
-FTGET		=	get_next_line #get_next_line_utils
+FTGET		=	get_next_line #new_get_next_line get_next_line_utils
 
 FTUTILS_DIR	=	ft_utils/
 FTUTILS		=	ft_free_tab
