@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_heredoc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:36:34 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/22 14:17:36 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/08 12:24:28 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	heredoc(char *av, t_pipex *p)
 		free(buff);
 	}
 	free(buff);
-	// get_next_line(-2);
 	p->infile = open("here_doc.tmp", O_RDONLY);
 	if (p->infile < 0)
 		heredoc_error("Here_doc error");
