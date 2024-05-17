@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_a_to_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:15:42 by manon             #+#    #+#             */
-/*   Updated: 2024/05/15 18:50:20 by manon            ###   ########.fr       */
+/*   Updated: 2024/05/17 14:07:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ void	current_index(t_stack *stack)
 
 void	init_node_a(t_stack **a, t_stack **b)
 {
-	current_index(a);
-	current_index(b);
-	set_target_a(a, b);
-	cost_analysis_a(a, b);
-	set_cheapest(a);
+	current_index(*a);
+	current_index(*b);
+	set_target_a(*a, *b);
+	cost_analysis_a(*a, *b);
+	set_cheapest(*a);
 }

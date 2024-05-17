@@ -63,13 +63,13 @@ $(NAME):	$(OBJS)
 			@${CC} ${CFLAGS} -I $(INCLUDES) -I./../libft/include -c $< -o $@
 
 clean:
-			@make clean -C libft
+			@make clean -C ../libft
 			@$(RM) $(OBJS)
 #			@$(RM) $(BONUS_OBJS)
 			@echo "$(RED)Object files deleted!$(RESET)"
 
 fclean:		clean
-			@make fclean -C libft
+			@make fclean -C ../libft
 			@$(RM) $(NAME)
 #			@$(RM) $(NBONUS)
 			@echo "$(RED)All clean!$(RESET)"

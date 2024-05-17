@@ -6,23 +6,33 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:29:41 by manon             #+#    #+#             */
-/*   Updated: 2024/05/17 12:15:23 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/17 14:34:29 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_sorted(t_stack *stack)
+long	ft_atol(char *str)
 {
-	if (!stack)
-		return (1);
-	while (stack->next)
+	long	string;
+	long	sign;
+
+	string = 0;
+	sign = 1;
+	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (stack->nbr > stack->next->nbr)
-			return (false);
-		stack = stack->next;
+		if (*str == '-')
+			sign = -sign;
+		str++;
 	}
-	return (true);
+	while (*str >= '0' && *str <= '9')
+	{
+		string = string * 10 + (*str - '0');
+		str++;
+	}
+	return (string * sign);
 }
 
 t_stack	*find_min(t_stack *stack)
