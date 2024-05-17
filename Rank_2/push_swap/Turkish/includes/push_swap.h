@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:21:37 by manon             #+#    #+#             */
-/*   Updated: 2024/05/15 18:54:45 by manon            ###   ########.fr       */
+/*   Updated: 2024/05/17 12:24:30 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 # include <limits.h>
-# include "../libft.h"
+# include "libft.h"
 
 // ****** STRUCT ******
 
@@ -55,8 +55,9 @@ void	init_node_b(t_stack *a, t_stack *b);
 
 // utils.c
 bool	is_sorted(t_stack *stack);
-t_stack	find_min(t_stack *stack);
-t_stack	find_max(t_stack *stack);
+t_stack	*find_min(t_stack *stack);
+t_stack	*find_max(t_stack *stack);
+int		stack_len(t_stack *stack);
 
 // errors.c
 

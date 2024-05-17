@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:04:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/23 15:06:12 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/17 13:42:32 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	child(char **av, char **env, t_pipex p)
 		if (p.index == 0)
 			ft_dup2(p.infile, p.pipe[1], &p);
 		else
-			ft_dup2(p.pipe[0], p.outfile, &p);
+			ft_dup2(p.pipe[2 * p.index - 2], p.outfile, &p);
 		close_pipe(&p);
-		is_abspath(av[2], &p);
+		is_abspath(av[2 + p.index], &p);
 		close(p.infile);
 		close(p.outfile);
 		execve(p.cmd, p.cmd_arg, env);

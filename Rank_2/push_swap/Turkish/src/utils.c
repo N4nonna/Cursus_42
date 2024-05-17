@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:29:41 by manon             #+#    #+#             */
-/*   Updated: 2024/05/15 18:37:52 by manon            ###   ########.fr       */
+/*   Updated: 2024/05/17 12:15:23 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_sorted(t_stack *stack)
 	return (true);
 }
 
-t_stack	find_min(t_stack *stack)
+t_stack	*find_min(t_stack *stack)
 {
 	long int	min;
 	t_stack		*min_node;
@@ -45,7 +45,7 @@ t_stack	find_min(t_stack *stack)
 	return (min_node);
 }
 
-t_stack	find_max(t_stack *stack)
+t_stack	*find_max(t_stack *stack)
 {
 	long int	max;
 	t_stack		*max_node;
@@ -65,5 +65,17 @@ t_stack	find_max(t_stack *stack)
 	return (max_node);
 }
 
-int	stack_len(stack)
-{}
+int	stack_len(t_stack *stack)
+{
+	int	i;
+
+	if (!stack)
+		return (0);
+	i = -1;
+	while (stack)
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
+}
