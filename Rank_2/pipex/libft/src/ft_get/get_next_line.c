@@ -6,109 +6,109 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:10:09 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/25 12:23:03 by manon            ###   ########.fr       */
+/*   Updated: 2024/05/21 13:44:47 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_free(char *keep, char *buff)
-{
-	char	*tmp;
+// static char	*ft_free(char *keep, char *buff)
+// {
+// 	char	*tmp;
 
-	tmp = ft_strjoin(keep, buff);
-	free(keep);
-	keep = NULL;
-	return (tmp);
-}
+// 	tmp = ft_strjoin(keep, buff);
+// 	free(keep);
+// 	keep = NULL;
+// 	return (tmp);
+// }
 
-static char	*get_before_newline(const char *s)
-{
-	char	*res;
-	int		i;
+// static char	*get_before_newline(const char *s)
+// {
+// 	char	*res;
+// 	int		i;
 
-	i = 0;
-	if (!s[i])
-		return (NULL);
-	while (s[i] && s[i] != '\n')
-		i++;
-	res = ft_calloc(i + 2, sizeof(char));
-	i = 0;
-	while (s[i] && s[i] != '\n')
-	{
-		res[i] = s[i];
-		i++;
-	}
-	if (s[i] && s[i] == '\n')
-		res[i++] = '\n';
-	return (res);
-}
+// 	i = 0;
+// 	if (!s[i])
+// 		return (NULL);
+// 	while (s[i] && s[i] != '\n')
+// 		i++;
+// 	res = ft_calloc(i + 2, sizeof(char));
+// 	i = 0;
+// 	while (s[i] && s[i] != '\n')
+// 	{
+// 		res[i] = s[i];
+// 		i++;
+// 	}
+// 	if (s[i] && s[i] == '\n')
+// 		res[i++] = '\n';
+// 	return (res);
+// }
 
-static char	*get_after_newline(char *s)
-{
-	char	*res;
-	int		i;
-	int		j;
+// static char	*get_after_newline(char *s)
+// {
+// 	char	*res;
+// 	int		i;
+// 	int		j;
 
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (!s[i])
-	{
-		free(s);
-		s = NULL;
-		return (NULL);
-	}
-	res = ft_calloc((ft_strlen(s) - i - 1), sizeof(char));
-	i++;
-	j = 0;
-	while (s[i])
-		res[j++] = s[i++];
-	free(s);
-	s = NULL;
-	return (res);
-}
+// 	i = 0;
+// 	while (s[i] && s[i] != '\n')
+// 		i++;
+// 	if (!s[i])
+// 	{
+// 		free(s);
+// 		s = NULL;
+// 		return (NULL);
+// 	}
+// 	res = ft_calloc((ft_strlen(s) - i - 1), sizeof(char));
+// 	i++;
+// 	j = 0;
+// 	while (s[i])
+// 		res[j++] = s[i++];
+// 	free(s);
+// 	s = NULL;
+// 	return (res);
+// }
 
-static char	*ft_read_line(int fd, char *keep)
-{
-	char	*buff;
-	int		i;
+// static char	*ft_read_line(int fd, char *keep)
+// {
+// 	char	*buff;
+// 	int		i;
 
-	if (!keep)
-		keep = ft_calloc(1, 1);
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buff)
-		return (NULL);
-	i = 1;
-	while (i > 0)
-	{
-		i = read(fd, buff, BUFFER_SIZE);
-		if (i == -1)
-		{
-			free (buff);
-			return (NULL);
-		}
-		buff[i] = '\0';
-		keep = ft_free(keep, buff);
-		if (ft_strchr(buff, '\n'))
-			break ;
-	}
-	free(buff);
-	buff = NULL;
-	return (keep);
-}
+// 	if (!keep)
+// 		keep = ft_calloc(1, 1);
+// 	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+// 	if (!buff)
+// 		return (NULL);
+// 	i = 1;
+// 	while (i > 0)
+// 	{
+// 		i = read(fd, buff, BUFFER_SIZE);
+// 		if (i == -1)
+// 		{
+// 			free (buff);
+// 			return (NULL);
+// 		}
+// 		buff[i] = '\0';
+// 		keep = ft_free(keep, buff);
+// 		if (ft_strchr(buff, '\n'))
+// 			break ;
+// 	}
+// 	free(buff);
+// 	buff = NULL;
+// 	return (keep);
+// }
 
-char	*get_next_line(int fd)
-{
-	static char	*keep[1024];
-	char		*line;
+// char	*get_next_line(int fd)
+// {
+// 	static char	*keep[1024];
+// 	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE == 0 || read(fd, 0, 0) == -1)
-		return (NULL);
-	keep[fd] = ft_read_line(fd, keep[fd]);
-	if (!keep[fd])
-		return (NULL);
-	line = get_before_newline(keep[fd]);
-	keep[fd] = get_after_newline(keep[fd]);
-	return (line);
-}
+// 	if (fd == -1 || BUFFER_SIZE == 0 || read(fd, 0, 0) == -1)
+// 		return (NULL);
+// 	keep[fd] = ft_read_line(fd, keep[fd]);
+// 	if (!keep[fd])
+// 		return (NULL);
+// 	line = get_before_newline(keep[fd]);
+// 	keep[fd] = get_after_newline(keep[fd]);
+// 	return (line);
+// }

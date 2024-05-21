@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:28:00 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/03 12:42:00 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:46:19 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ int		ft_printpoint(unsigned long long ptr);
 
 // ********** FT_GET **********
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
+# define MAX_FD 1024
 
 char	*get_next_line(int fd);
 
