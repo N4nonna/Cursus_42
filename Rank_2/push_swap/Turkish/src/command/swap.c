@@ -1,38 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 14:13:03 by mescoda           #+#    #+#             */
-/*   Updated: 2024/05/21 16:33:16 by manon            ###   ########.fr       */
+/*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
+/*   Updated: 2024/05/21 15:47:02 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*curr;
 
-	if (!(*stack))
+static void	swap(t_stack **stack)
+{
+	t_stack	*top;
+
+	if (!(*stack) || !(*stack)->next)
 		return ;
-	curr = *stack;
-	while (*stack)
+	top = *stack;
+	*stack = *stack->next;
+	*stack->prev = NULL;
+	if (*stack->next)
 	{
-		tmp = curr->next;
-		curr->nbr = 0;
-		free(curr);
-		curr = tmp;
+		top->next = *stack->next;
+		*stack->next->next = *stack->next;
 	}
-	*stack = NULL;
+	*stack->next = top;
 }
 
-void	free_error(t_stack **stack)
+void	sa(t_stack **a)
 {
-	free_stack(stack);
-	ft_printf(RED"Error\n"RESET);
-	exit(1);
+	swap(&a);
+	ft_printf("sa\n");
+}
+
+void	sb(t_stack **b)
+{
+	swap(&b);
+	ft_printf("sb\n");
+}
+
+void	ss(t_stack **a, t_stack **b)
+{
+	swap(&a);
+	swap(&b);
+	ft_printf("ss\n");
 }

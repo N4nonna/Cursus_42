@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   r_rotate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 14:13:03 by mescoda           #+#    #+#             */
-/*   Updated: 2024/05/21 16:33:16 by manon            ###   ########.fr       */
+/*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
+/*   Updated: 2024/05/21 15:59:11 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack **stack)
+static void	r_rotate(t_stack **stack)
 {
-	t_stack	*tmp;
-	t_stack	*curr;
+	t_stack	*last;
 
-	if (!(*stack))
+	if (!(*stack) || !(*stack)->next)
 		return ;
-	curr = *stack;
-	while (*stack)
-	{
-		tmp = curr->next;
-		curr->nbr = 0;
-		free(curr);
-		curr = tmp;
-	}
-	*stack = NULL;
+	last = find_last(*stack);
+	last->prev->next = NULL;
+	last->next = *stack;
+	last->prev = NULL;
+	*stack = last;
+	last->next->prev = last;
 }
 
-void	free_error(t_stack **stack)
+void	rra(t_stack **a)
 {
-	free_stack(stack);
-	ft_printf(RED"Error\n"RESET);
-	exit(1);
+	r_rotate(&a);
+	ft_printf("rra\n");
+}
+
+void	rrb(t_stack **b)
+{
+	r_rotate(&b);
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	r_rotate(&a);
+	r_rotate(&b);
+	ft_printf("rrr\n");
 }

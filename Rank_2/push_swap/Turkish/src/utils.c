@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:29:41 by manon             #+#    #+#             */
-/*   Updated: 2024/05/17 14:34:29 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:10:49 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	*find_last(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
 
 long	ft_atol(char *str)
 {
@@ -81,11 +90,11 @@ int	stack_len(t_stack *stack)
 
 	if (!stack)
 		return (0);
-	i = -1;
+	i = 0;
 	while (stack)
 	{
-		i++;
 		stack = stack->next;
+		i++;
 	}
 	return (i);
 }

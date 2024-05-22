@@ -1,38 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 14:13:03 by mescoda           #+#    #+#             */
-/*   Updated: 2024/05/21 16:33:16 by manon            ###   ########.fr       */
+/*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
+/*   Updated: 2024/05/21 16:03:55 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack **stack)
+static void	push(t_stack **dest, t_stack **src)
 {
-	t_stack	*tmp;
-	t_stack	*curr;
+	t_stack	*pushed;
 
-	if (!(*stack))
+	if (!(*src))
 		return ;
-	curr = *stack;
-	while (*stack)
+	pushed = *src;
+	*src = src->next;
+	*src->prev = NULL;
+	pushed->prev = NULL;
+	if (!(*dest))
 	{
-		tmp = curr->next;
-		curr->nbr = 0;
-		free(curr);
-		curr = tmp;
+		*dest = pushed;
+		pushed->next = NULL;
 	}
-	*stack = NULL;
+	else
+	{
+		pushed->next = *dest;
+		pushed->next->prev = pushed;
+		*dest = pushed;
+	}
 }
 
-void	free_error(t_stack **stack)
+void	pa(t_stack **a, t_stack **b)
 {
-	free_stack(stack);
-	ft_printf(RED"Error\n"RESET);
-	exit(1);
+	push(&a, &b);
+	ft_printf("pa\n");
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	push(&b, &a);
+	ft_printf("pb\n");
 }

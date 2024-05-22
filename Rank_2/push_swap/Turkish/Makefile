@@ -20,13 +20,19 @@ HEADER		=	$(addprefix $(INCLUDES), $(HEADER_SRCS))
 # MANDATORY
 
 SRCS_DIR	= src/
-SRC_FILES	= init_a_to_b.c\
+SRC_FILES	= errors.c\
+			free.c\
+			init_a_to_b.c\
 			init_b_to_a.c\
 			init_stack.c\
 			main.c\
 			sort_stack.c\
 			sort_three.c\
-			utils.c
+			utils.c\
+			command/push.c\
+			command/r_rotate.c\
+			command/rotate.c\
+			command/swap.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)
 

@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:12:48 by manon             #+#    #+#             */
-/*   Updated: 2024/05/17 17:15:56 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:07:45 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static t_stack	find_last(t_stack *stack)
-{
-	return (*stack);
-}
 
 static void	append_node(t_stack **stack, int n)
 {

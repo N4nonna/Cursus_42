@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:21:37 by manon             #+#    #+#             */
-/*   Updated: 2024/05/17 16:34:56 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:34:36 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdbool.h>
 # include <limits.h>
 # include "libft.h"
+
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
 
 // ****** STRUCT ******
 
@@ -54,6 +57,7 @@ void	init_node_a(t_stack **a, t_stack **b);
 void	init_node_b(t_stack *a, t_stack *b);
 
 // utils.c
+t_stack	*find_last(t_stack *stack);
 long	ft_atol(char *str);
 t_stack	*find_min(t_stack *stack);
 t_stack	*find_max(t_stack *stack);
@@ -66,10 +70,20 @@ bool	is_sorted(t_stack *stack);
 
 // free.c
 void	free_error(t_stack **stack);
-void	free_all(t_stack *a, t_stack *b);
+void	free_stack(t_stack **stack);
 
 // ****** COMMAND FUNCTIONS ******
 
-
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
 
 #endif
