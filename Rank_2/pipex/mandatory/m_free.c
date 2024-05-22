@@ -6,7 +6,7 @@
 /*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:05:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/04/23 14:32:03 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/05/22 14:03:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	free_all(t_pipex *p)
 		p->cmd_arg[i++] = NULL;
 	}
 	free(p->cmd_arg);
-	
 	free(p->cmd);
-	
 	i = 0;
 	while (p->cmd_path[i])
 	{
