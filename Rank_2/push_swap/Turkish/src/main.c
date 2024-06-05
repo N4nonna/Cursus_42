@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:44:06 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 16:36:12 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/05 15:38:24 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	if (ac < 2 && !av[1][0])
 		return (1);
 	if (ac == 2)
-		av = ft_split_b(av[1], ' ');
+		av = split(av[1], ' ');
 	intit_stack(&a, av - 1);
 	if (!is_sorted(a))
 	{
