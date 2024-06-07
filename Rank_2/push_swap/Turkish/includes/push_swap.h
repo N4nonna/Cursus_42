@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:21:37 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 16:34:36 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/07 14:05:26 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,9 @@ void	rr(t_stack **a, t_stack **b);
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
+t_stack	*get_cheapest(t_stack *stack);
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
+void	reverse_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
+void	prep_for_push(t_stack **stack, t_stack *cheapest, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:57:08 by manon             #+#    #+#             */
-/*   Updated: 2024/06/05 15:41:44 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:55:24 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@ static void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
 
-	cheapest = set_cheapest(*a);
+	cheapest = get_cheapest(*a); // <--
 	if (cheapest->above_median && cheapest->target_node->above_median)
-		rotate_both(a, b, cheapest);
+		rotate_both(a, b, cheapest); // <--
 	else if (!cheapest->above_median && !cheapest->target_node->above_median)
-		reverse_rotate_both(a, b, cheapest);
-	prep_for_push(a, cheapest, 'a');
-	prep_for_push(b, cheapest, 'b');
+		reverse_rotate_both(a, b, cheapest); // <--
+	prep_for_push(a, cheapest, 'a'); // <--
+	prep_for_push(b, cheapest, 'b'); // <--
 	pb(a, b);
 }
 
 static void	move_b_to_a(t_stack **a, t_stack **b)
 {
-	prep_for_push(a, (*b)->target_node, 'a');
+	prep_for_push(a, (*b)->target_node, 'a'); // <--
 	pa(a, b);
 }
 
 static void	min_on_top(t_stack **a)
 {
-	while ((*a)->nbr != find_min((*a)->nbr))
+	while ((*a)->nbr != find_min(*a)->nbr)
 	{
-		if (find_min((*a)->above_median))
+		if (find_min(*a)->above_median)
 			ra(a);
 		else
 			rra(a);
@@ -54,7 +54,7 @@ void	sort_stack(t_stack **a, t_stack **b)
 		pb(a, b);
 	while (len_a-- > 3 && !is_sorted(*a))
 	{
-		init_node_a(*a, *b);
+		init_node_a(a, b);
 		move_a_to_b(a, b);
 	}
 	sort_three(a);

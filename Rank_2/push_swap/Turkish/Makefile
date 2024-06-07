@@ -32,7 +32,8 @@ SRC_FILES	= errors.c\
 			command/push.c\
 			command/r_rotate.c\
 			command/rotate.c\
-			command/swap.c
+			command/swap.c\
+			command/com_utils.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)
 
