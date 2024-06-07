@@ -1,4 +1,4 @@
-NAME		= pw
+NAME		= push_swap
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
 RM			= rm -rf
@@ -67,16 +67,16 @@ $(NAME):	$(OBJS)
 # 			@echo "$(GREEN)$(NBONUS) OK!$(RESET)"
 
 %.o:		%.c $(HEADER) Makefile
-			@${CC} ${CFLAGS} -I $(INCLUDES) -I./../libft/include -c $< -o $@
+			@${CC} ${CFLAGS} -I $(INCLUDES) -I./libft/include -c $< -o $@
 
 clean:
-			@make clean -C ../libft
+			@make clean -C libft
 			@$(RM) $(OBJS)
 #			@$(RM) $(BONUS_OBJS)
 			@echo "$(RED)Object files deleted!$(RESET)"
 
 fclean:		clean
-			@make fclean -C ../libft
+			@make fclean -C libft
 			@$(RM) $(NAME)
 #			@$(RM) $(NBONUS)
 			@echo "$(RED)All clean!$(RESET)"

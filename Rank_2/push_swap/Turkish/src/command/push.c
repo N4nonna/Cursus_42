@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 16:03:55 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:17:57 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	push(t_stack **dest, t_stack **src)
 	if (!(*src))
 		return ;
 	pushed = *src;
-	*src = src->next;
-	*src->prev = NULL;
+	*src = (*src)->next;
+	(*src)->prev = NULL;
 	pushed->prev = NULL;
 	if (!(*dest))
 	{
@@ -37,12 +37,12 @@ static void	push(t_stack **dest, t_stack **src)
 
 void	pa(t_stack **a, t_stack **b)
 {
-	push(&a, &b);
+	push(a, b);
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
-	push(&b, &a);
+	push(b, a);
 	ft_printf("pb\n");
 }

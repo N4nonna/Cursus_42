@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 15:59:11 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:19:26 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static void	r_rotate(t_stack **stack)
 
 void	rra(t_stack **a)
 {
-	r_rotate(&a);
+	r_rotate(a);
 	ft_printf("rra\n");
 }
 
 void	rrb(t_stack **b)
 {
-	r_rotate(&b);
+	r_rotate(b);
 	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack **a, t_stack **b)
 {
-	r_rotate(&a);
-	r_rotate(&b);
+	r_rotate(a);
+	r_rotate(b);
 	ft_printf("rrr\n");
 }

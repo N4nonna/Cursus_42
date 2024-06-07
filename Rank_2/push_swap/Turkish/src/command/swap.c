@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 15:47:02 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:22:54 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,31 @@ static void	swap(t_stack **stack)
 	if (!(*stack) || !(*stack)->next)
 		return ;
 	top = *stack;
-	*stack = *stack->next;
-	*stack->prev = NULL;
-	if (*stack->next)
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	if ((*stack)->next)
 	{
-		top->next = *stack->next;
-		*stack->next->next = *stack->next;
+		top->next = (*stack)->next;
+		(*stack)->next->next = (*stack)->next;
 	}
-	*stack->next = top;
+	(*stack)->next = top;
 }
 
 void	sa(t_stack **a)
 {
-	swap(&a);
+	swap(a);
 	ft_printf("sa\n");
 }
 
 void	sb(t_stack **b)
 {
-	swap(&b);
+	swap(b);
 	ft_printf("sb\n");
 }
 
 void	ss(t_stack **a, t_stack **b)
 {
-	swap(&a);
-	swap(&b);
+	swap(a);
+	swap(b);
 	ft_printf("ss\n");
 }
