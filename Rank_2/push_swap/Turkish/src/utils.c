@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:29:41 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 16:10:49 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 15:20:10 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long	ft_atol(char *str)
 
 t_stack	*find_min(t_stack *stack)
 {
-	long int	min;
+	long		min;
 	t_stack		*min_node;
 
 	if (!stack)
@@ -66,7 +66,7 @@ t_stack	*find_min(t_stack *stack)
 
 t_stack	*find_max(t_stack *stack)
 {
-	long int	max;
+	long		max;
 	t_stack		*max_node;
 
 	if (!stack)

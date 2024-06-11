@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:38:39 by manon             #+#    #+#             */
-/*   Updated: 2024/05/15 18:50:30 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 15:19:19 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_target_b(t_stack *a, t_stack *b)
 {
 	t_stack		*curr_a;
 	t_stack		*target;
-	long int	best_match;
+	long		best_match;
 
 	while (b)
 	{

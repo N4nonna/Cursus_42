@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:36:51 by manon             #+#    #+#             */
-/*   Updated: 2024/06/05 15:36:53 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/11 11:59:53 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ static int	count_word(char *s, char c)
 
 static char	*get_next(char *s, char c)
 {
-	static int	cursor;
+	static int	cursor = 0;
 	char		*next;
 	int			len;
 	int			i;
 
-	cursor = 0;
 	len = 0;
 	i = 0;
 	while (s[cursor] == c)
@@ -59,7 +58,7 @@ static char	*get_next(char *s, char c)
 	return (next);
 }
 
-char	**split(char *s, char c)
+char	**ft_split_b(char *s, char c)
 {
 	int		word_count;
 	char	**res;

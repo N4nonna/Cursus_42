@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
-/*   Updated: 2024/06/07 15:17:57 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 15:28:32 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ static void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*pushed;
 
-	if (!(*src))
+	if (!*src)
 		return ;
 	pushed = *src;
 	*src = (*src)->next;
-	(*src)->prev = NULL;
+	if (*src)
+		(*src)->prev = NULL;
 	pushed->prev = NULL;
-	if (!(*dest))
+	if (!*dest)
 	{
 		*dest = pushed;
 		pushed->next = NULL;

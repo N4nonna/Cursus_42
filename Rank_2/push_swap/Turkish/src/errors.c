@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:13:27 by mescoda           #+#    #+#             */
-/*   Updated: 2024/05/17 16:11:12 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/06/09 15:57:48 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,29 @@
 
 bool	error_syntax(char *str)
 {
-	int	i;
-
-	if (!str)
-		return (true);
-	if ((str[0] != '+' || str[0] != '-') || !(str[0] >= 0 && str[0] <= 9))
-		return (true);
-	i = 1;
-	while (str[i])
+	if (!(*str == '+' || *str == '-' || (*str >= '0' && *str <= '9')))
+		return (1);
+	if ((*str == '+' || *str == '-') && !(str[1] >= '0' && str[1] <= '9'))
+		return (1);
+	while (*++str)
 	{
-		if (!(str[i] >= 0 && str[i] <= 9))
-			return (true);
-		i++;
+		if (!(*str >= '0' && *str <= '9'))
+			return (1);
 	}
-	return (false);
+	return (0);
 }
 
 bool	error_dup(t_stack *a, int n)
 {
 	if (!a)
-		return (1);
-	while (a->next)
+		return (0);
+	while (a)
 	{
 		if (a->nbr == n)
-			return (true);
+			return (1);
 		a = a->next;
 	}
-	return (false);
+	return (0);
 }
 
 bool	is_sorted(t_stack *stack)

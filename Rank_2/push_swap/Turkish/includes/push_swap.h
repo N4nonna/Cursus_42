@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:21:37 by manon             #+#    #+#             */
-/*   Updated: 2024/06/07 15:03:28 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:33:28 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	sort_stack(t_stack **a, t_stack **b);
 // init_a_to_b.c
 void	set_cheapest(t_stack *stack);
 void	current_index(t_stack *stack);
-void	init_node_a(t_stack **a, t_stack **b);
+void	init_node_a(t_stack *a, t_stack *b);
 
 // init_b_to_a.c
 void	init_node_b(t_stack *a, t_stack *b);

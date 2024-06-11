@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:12:48 by manon             #+#    #+#             */
-/*   Updated: 2024/05/21 16:07:45 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 16:20:18 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	append_node(t_stack **stack, int n)
 
 void	intit_stack(t_stack **a, char **av)
 {
-	long int	n;
-	int			i;
+	long	n;
+	int		i;
 
 	i = 0;
 	while (av[i])

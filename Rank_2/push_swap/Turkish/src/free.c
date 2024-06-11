@@ -6,7 +6,7 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:13:03 by mescoda           #+#    #+#             */
-/*   Updated: 2024/05/21 16:33:16 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:19:06 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	free_stack(t_stack **stack)
 	t_stack	*tmp;
 	t_stack	*curr;
 
-	if (!(*stack))
+	if (!stack)
 		return ;
 	curr = *stack;
-	while (*stack)
+	while (curr)
 	{
 		tmp = curr->next;
 		curr->nbr = 0;

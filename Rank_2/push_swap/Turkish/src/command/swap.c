@@ -6,28 +6,23 @@
 /*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:07:00 by manon             #+#    #+#             */
-/*   Updated: 2024/06/07 15:22:54 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:23:19 by manon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 static void	swap(t_stack **stack)
 {
-	t_stack	*top;
-
-	if (!(*stack) || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
-	top = *stack;
 	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
 	if ((*stack)->next)
-	{
-		top->next = (*stack)->next;
-		(*stack)->next->next = (*stack)->next;
-	}
-	(*stack)->next = top;
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
+	(*stack)->prev = NULL;
 }
 
 void	sa(t_stack **a)
