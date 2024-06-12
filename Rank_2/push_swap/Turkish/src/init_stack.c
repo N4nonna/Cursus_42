@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:12:48 by manon             #+#    #+#             */
-/*   Updated: 2024/06/09 16:20:18 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/12 14:29:08 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	append_node(t_stack **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
+	node->cheapest = 0;
 	if (!(*stack))
 	{
 		*stack = node;

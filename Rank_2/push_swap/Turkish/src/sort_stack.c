@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manon <manon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mescoda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:57:08 by manon             #+#    #+#             */
-/*   Updated: 2024/06/09 14:44:30 by manon            ###   ########.fr       */
+/*   Updated: 2024/06/12 14:29:24 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 static void	move_a_to_b(t_stack **a, t_stack **b)
 {
-	t_stack	*cheapest;
+	t_stack	*cheapest_node;
 
-	cheapest = get_cheapest(*a);
-	if (cheapest->above_median && cheapest->target_node->above_median)
-		rotate_both(a, b, cheapest);
-	else if (!(cheapest->above_median)
-		&& !(cheapest->target_node->above_median))
-		reverse_rotate_both(a, b, cheapest);
-	prep_for_push(a, cheapest, 'a');
-	prep_for_push(b, cheapest->target_node, 'b');
+	cheapest_node = get_cheapest(*a);
+	if (cheapest_node->above_median
+		&& cheapest_node->target_node->above_median)
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+		reverse_rotate_both(a, b, cheapest_node);
+	prep_for_push(a, cheapest_node, 'a');
+	prep_for_push(b, cheapest_node->target_node, 'b');
 	pb(a, b);
 }
 
