@@ -1,0 +1,70 @@
+# Minishell
+
+Minishell is a simple shell implementation for Unix-like operating systems. It is a project from the 42 School curriculum, designed to help students understand the inner workings of a shell.
+
+## Features
+
+- Basic command execution
+- Built-in commands: `cd`, `echo`, `exit`, `env`, `setenv`, `unsetenv`
+- Input redirection (`<`)
+- Output redirection (`>`, `>>`)
+- Pipes (`|`)
+- Environment variable handling
+- Signal handling (e.g., `Ctrl+C`, `Ctrl+D`)
+
+## Getting Started
+
+### Prerequisites
+
+- Unix-like operating system (Linux, macOS, etc.)
+- GCC compiler
+
+### Installation
+
+1. Clone the repository:
+	```sh
+	git clone https://github.com/yourusername/minishell.git
+	cd minishell
+	```
+
+2. Compile the project:
+	```sh
+	make
+	```
+
+3. Run the shell:
+	```sh
+	./minishell
+	```
+
+## Usage
+
+Once you have started Minishell, you can use it like any other shell. Here are some examples:
+
+- Running a command:
+	```sh
+	ls -la
+	```
+
+- Using a pipe:
+	```sh
+	ls -la | grep minishell
+	```
+
+- Redirecting output:
+	```sh
+	echo "Hello, World!" > hello.txt
+	```
+
+- Changing directory:
+	```sh
+	cd /path/to/directory
+	```
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
