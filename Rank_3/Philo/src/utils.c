@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_error.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:30:18 by mescoda           #+#    #+#             */
-/*   Updated: 2024/11/25 10:48:57 by mescoda          ###   ########.fr       */
+/*   Created: 2024/12/03 13:09:46 by mescoda           #+#    #+#             */
+/*   Updated: 2024/12/03 13:38:11 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "philo.h"
 
-void	perror_msg(char *err)
+void	destroy_all(t_philo *philo, t_program *program, pthread_mutex_t *forks)
 {
-	perror(err);
+	
 }
 
-void	perror_free(char *err, t_pipex *p)
+void	print_msg(char *str)
 {
-	perror(err);
-	free_all(p);
-	exit(1);
+	
 }
 
-void	perror_ex(char *err)
+size_t	curr_time(void)
 {
-	perror(err);
-	exit(1);
+	
 }
 
-void	msg(char *err)
+int	ft_atoi(const char *str)
 {
-	write(2, err, ft_strlen(err));
-}
-
-void	msg_ex(char *err)
-{
-	write(2, err, ft_strlen(err));
-	exit(1);
+	
 }
