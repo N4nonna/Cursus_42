@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:15:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/03 13:15:12 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 11:59:55 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 void	thinking(t_philo *philo)
 {
-	printf("%ld %d is thinking\n", curr_time() - philo->start_time, philo->id);
+	print_msg("is thinking, hmmmmmmmmmmm...", philo, philo->id);
 }
 
 /*
@@ -29,7 +29,7 @@ void	thinking(t_philo *philo)
 */
 void	sleeping(t_philo *philo)
 {
-	printf("%ld %d is sleeping\n", curr_time() - philo->start_time, philo->id);
+	print_msg("is sleeping, ronpich", philo, philo->id);
 	usleep(philo->time_to_sleep);
 }
 
@@ -42,17 +42,17 @@ void	sleeping(t_philo *philo)
 void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
-	printf("%ld %d has taken a fork\n", curr_time() - philo->start_time, philo->id);
-	if (philo->nb_philo == 1)
+	print_msg("has taken left fork", philo, philo->id);
+	if (philo[0].nb_philo == 1)
 	{
 		usleep(philo->time_to_die);
 		pthread_mutex_unlock(philo->l_fork);
 		return ;
 	}
 	pthread_mutex_lock(philo->r_fork);
-	printf("%ld %d has taken a fork\n", curr_time() - philo->start_time, philo->id);
-	philo->is_eating == 1;
-	printf("%ld %d is eating\n", curr_time() - philo->start_time, philo->id);
+	print_msg("has taken right fork", philo, philo->id);
+	philo->is_eating = 1;
+	print_msg("is eating, nom nom nom", philo, philo->id);
 	pthread_mutex_lock(philo->eat_lock);
 	philo->last_meal = curr_time();
 	philo->nb_meals++;

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:15 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/03 13:36:29 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 11:21:22 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	*philo_routine(void *pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
-	if (philo->id % 2)
-		usleep(1);
-	while (dead_loop(philo) != 0)
+	if (philo->id % 2 == 0)
+		ft_usleep(1);
+	while (!dead_loop(philo))
 	{
-		thinking(philo);
 		eating(philo);
 		sleeping(philo);
+		thinking(philo);
 	}
 	return (pointer);
 }
@@ -58,28 +58,38 @@ void	*philo_routine(void *pointer)
 ***	@param philo -> Pointer to the philosopher structure.
 ***	@param program -> Pointer to the program structure.
 */
-void	create_threads(t_philo *philo, t_program *program)
+void	create_threads(t_philo *philo, t_program *program, \
+	pthread_mutex_t *forks)
 {
 	pthread_t	observer;
 	int			i;
 
 	i = 0;
+	//printf("--------------ENTERING THREADS----------------\n");
 	if (pthread_create(&observer, NULL, observer_routine, (void *)philo) != 0)
-		destroy_all(philo, program, &observer);
-	while (i < philo->nb_philo)
+		destroy_all("pthread_create cannot be done", program, forks, philo[0].nb_philo, 1);
+	//printf("Observer created\n");
+	while (i < philo[0].nb_philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, philo_routine, \
-			(void *)&philo[i]) != 0)
-			return (destroy_all(philo, program, &observer));
+			&philo[i]) != 0)
+			return (destroy_all("pthread_create cannot be done", \
+				program, forks, philo[0].nb_philo, 1));
+		//printf("Philosopher %d created\n", philo[i].id);
 		i++;
 	}
+	//printf("All Philosophers created\n");
 	i = 0;
 	if (pthread_join(observer, NULL) != 0)
-		return (destroy_all(philo, program, &observer));
-	while (i < philo->nb_philo)
+		return (destroy_all("pthread_join cannot be done", program, forks, philo[0].nb_philo, 1));
+	//printf("Observer joined\n");
+	while (i < philo[0].nb_philo)
 	{
-		if (pthread_join(philo->thread, NULL) != 0)
-			return (destroy_all(philo, program, &observer));
+		if (pthread_join(philo[i].thread, NULL) != 0)
+			return (destroy_all("pthread_join cannot be done", \
+				program, forks, philo[0].nb_philo, 1));
+		//printf("Philosopher %d joined\n", i + 1);
 		i++;
 	}
+	//printf("All Philosophers joined\n");
 }

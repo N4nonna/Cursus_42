@@ -57,7 +57,7 @@
 		we add it manually with buf[r]
 	-4. tmp will become a dupicata of keep with ft_strdup
 		then we'll free keep
-	-5. keep will contains a join version of tmp ans buf with join_strs
+	-5. keep will contains a join version of tmp and buf with join_strs
 		again, we'll free tmp
 	-6. if keep contains a newline with contains_newline, we break
 4. we end the while loop and free buf.

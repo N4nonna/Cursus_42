@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:18:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/03 13:36:08 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 11:57:46 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 //           ## DEFINES ##
 # define PHILO_MAX	200
-# define PHILO_MIN	1
+# define BLUE "\033[1;34m"
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
 
 //           ## STRUCTURES ##
 typedef struct s_philo
@@ -66,7 +68,8 @@ void	init_philo(t_philo *philo, t_program *program, \
 //           ## THREADS.C ##
 int		dead_loop(t_philo *philo);
 void	*philo_routine(void *pointer);
-void	create_threads(t_philo *philo, t_program *program);
+void	create_threads(t_philo *philo, t_program *program, \
+	pthread_mutex_t *forks);
 
 //           ## ROUTINE.C ##
 void	thinking(t_philo *philo);
@@ -76,10 +79,13 @@ void	eating(t_philo *philo);
 //           ## OBSERVER.C ##
 void	*observer_routine(void *pointer);
 int		check_dead(t_philo *philo);
+int		all_ate(t_philo *philo);
 
 //           ## UTILS.C ##
-void	destroy_all(t_philo *philo, t_program *program, pthread_mutex_t *forks);
-void	print_msg(char *str);
+int		ft_usleep(size_t temp);
+void	destroy_all(char *str, t_program *program, \
+	pthread_mutex_t *forks,int philo_nb, int err);
+void	print_msg(char *str, t_philo *philo, int id);
 size_t	curr_time(void);
 int		ft_atoi(const char *str);
 

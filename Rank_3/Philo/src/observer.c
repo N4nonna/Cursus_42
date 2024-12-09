@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:18:35 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/03 13:28:19 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:11:40 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,45 @@
 ***	@param philo -> Pointer to one philosopher structure. (philo[i])
 ***	@return -> 1 if all philosophers have eaten or strave, 0 otherwise.
 */
-static int	philo_dead(t_philo *philo)
+static int	philo_dead(t_philo philo)
 {
-	pthread_mutex_lock(philo->eat_lock);
-	if (philo->max_meals != -1 && philo->nb_meals >= philo->max_meals)
-		return (1);
-	if (curr_time() - philo->last_meal > philo->time_to_die)
+	//printf("--------------ENTERING PHILO_DEAD----------------\n");
+	pthread_mutex_lock(philo.eat_lock);
+	if ((curr_time() - philo.last_meal >= philo.time_to_die) && philo.is_eating == 0)
 	{
-		if (philo->is_eating == 1)
-			return (pthread_mutex_unlock(philo->eat_lock), 1);
+		//printf("Philo %d take too much time to eat\n", philo.id);
+		return (pthread_mutex_unlock(philo.eat_lock), 1);
 	}
-	return (pthread_mutex_unlock(philo->eat_lock), 0);
+	pthread_mutex_unlock(philo.eat_lock);
+	return (0);
+}
+
+int	all_ate(t_philo *philo)
+{
+	int	i;
+	int	meals;
+
+	i = 0;
+	meals = 0;
+	if (philo->max_meals == -1)
+		return (0);
+	while (i < philo[0].nb_philo)
+	{
+		pthread_mutex_lock(philo[i].eat_lock);
+		if (philo[i].nb_meals >= philo[i].max_meals)
+			meals++;
+		pthread_mutex_unlock(philo[i].eat_lock);
+		i++;
+	}
+	if (meals == philo[0].nb_philo)
+	{
+		print_msg(BLUE"ate to much. Burp !"RESET, philo, 0);
+		pthread_mutex_lock(philo->dead_lock);
+		*philo->is_dead = 1;
+		pthread_mutex_unlock(philo->dead_lock);
+		return (1);
+	}
+	return (0);
 }
 
 /*
@@ -45,15 +73,19 @@ int	check_dead(t_philo	*philo)
 	int	i;
 
 	i = 0;
-	while (i < philo->nb_philo)
+	//printf("--------------ENTERING CHECK_DEAD----------------\n");
+	while (i < philo[0].nb_philo)
 	{
-		if (philo_dead(philo) == 1)
+		//printf("Checking philosopher %d\n", philo[i].id);
+		if (philo_dead(philo[i]) == 1)
 		{
-			printf("%ld %d has died.", curr_time() - philo->start_time, philo->id);
+			print_msg(RED"has died. RIP."RESET, philo, philo[i].id);
 			pthread_mutex_lock(philo->dead_lock);
-			philo->is_dead = 1;
-			return (pthread_mutex_unlock(philo->dead_lock), 1);
+			*philo->is_dead = 1;
+			pthread_mutex_unlock(philo->dead_lock);
+			return (1);
 		}
+		//printf("Philosopher %d is still alive...\n", philo[i].id);
 		i++;
 	}
 	return (0);
@@ -72,10 +104,12 @@ void	*observer_routine(void *pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
+	//printf("--------------ENTERING OBSERVER----------------\n");
 	while (1)
 	{
-		if (check_dead(philo) == 1)
+		if (check_dead(philo) == 1 || all_ate(philo) == 1)
 			break ;
+		//printf("Philosopher %d is still alive\n", philo[i].id);
 	}
 	return (pointer);
 }

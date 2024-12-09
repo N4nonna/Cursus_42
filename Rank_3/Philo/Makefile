@@ -25,7 +25,7 @@ SRC_FILES	= main.c\
 			threads.c\
 			routine.c\
 			observer.c\
-			# utils.c
+			utils.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)
 

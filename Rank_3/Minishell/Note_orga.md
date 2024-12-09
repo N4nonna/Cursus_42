@@ -1,6 +1,6 @@
 
 
-# Ressources
+# Resources
 - bash man
 - subject
 - https://docs.google.com/spreadsheets/d/1cJqrIHxMpB-3eRIHGMBum9pGc52O_7KOpi4YrsaZNrg/edit?gid=0#gid=0
