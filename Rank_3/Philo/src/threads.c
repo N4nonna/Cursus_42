@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:15 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 11:21:22 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 13:14:05 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	dead_loop(t_philo *philo)
 	Check if the philosopher is dead, then makes him think, eat and sleep.
 ***	@param pointer -> Pointer to the philosopher structure.
 */
-void	*philo_routine(void *pointer)
+void	*ph_routine(void *pointer)
 {
 	t_philo	*philo;
 
@@ -65,31 +65,25 @@ void	create_threads(t_philo *philo, t_program *program, \
 	int			i;
 
 	i = 0;
-	//printf("--------------ENTERING THREADS----------------\n");
-	if (pthread_create(&observer, NULL, observer_routine, (void *)philo) != 0)
-		destroy_all("pthread_create cannot be done", program, forks, philo[0].nb_philo, 1);
-	//printf("Observer created\n");
+	if (pthread_create(&observer, NULL, obs_routine, (void *)philo) != 0)
+		destroy_all(RED"ERROR : Can't create observer thread."RESET, \
+			program, forks, philo[0].nb_philo);
 	while (i < philo[0].nb_philo)
 	{
-		if (pthread_create(&philo[i].thread, NULL, philo_routine, \
-			&philo[i]) != 0)
-			return (destroy_all("pthread_create cannot be done", \
-				program, forks, philo[0].nb_philo, 1));
-		//printf("Philosopher %d created\n", philo[i].id);
+		if (pthread_create(&philo[i].thread, NULL, ph_routine, &philo[i]) != 0)
+			return (destroy_all(RED"ERROR: Can't create philo thread."RESET, \
+				program, forks, philo[0].nb_philo));
 		i++;
 	}
-	//printf("All Philosophers created\n");
 	i = 0;
 	if (pthread_join(observer, NULL) != 0)
-		return (destroy_all("pthread_join cannot be done", program, forks, philo[0].nb_philo, 1));
-	//printf("Observer joined\n");
+		return (destroy_all(RED"ERROR: Can't join observer thread."RESET, \
+			program, forks, philo[0].nb_philo));
 	while (i < philo[0].nb_philo)
 	{
 		if (pthread_join(philo[i].thread, NULL) != 0)
-			return (destroy_all("pthread_join cannot be done", \
-				program, forks, philo[0].nb_philo, 1));
-		//printf("Philosopher %d joined\n", i + 1);
+			return (destroy_all(RED"ERROR: Can't join philo thread."RESET, \
+				program, forks, philo[0].nb_philo));
 		i++;
 	}
-	//printf("All Philosophers joined\n");
 }

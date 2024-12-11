@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:17:32 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 10:59:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/10 14:05:02 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ static int	check_args(int ac, char **av)
 	while (i < ac - 1)
 	{
 		if (ft_atoi(av[1]) > PHILO_MAX || is_num(av[1]) == 1)
-			return (printf("Error: Wrong number of philosopher !"), 1);
+			return (printf(RED"ERROR: Wrong number of philosopher !"RESET), 1);
 		if (ft_atoi(av[2]) <= 0 && is_num(av[2]) == 1)
-			return (printf("Error: Wrong time to die !"), 1);
+			return (printf(RED"ERROR: Wrong time to die !"RESET), 1);
 		if (ft_atoi(av[3]) <= 0 && is_num(av[3]) == 1)
-			return (printf("Error: Wrong time to sleep !"), 1);
+			return (printf(RED"ERROR: Wrong time to sleep !"RESET), 1);
 		if (ft_atoi(av[4]) <= 0 && is_num(av[4]) == 1)
-			return (printf("Error: Wrong time to eat !"), 1);
+			return (printf(RED"ERROR: Wrong time to eat !"RESET), 1);
 		if (av[5])
 		{
 			if (ft_atoi(av[5]) <= 0 && is_num(av[5]) == 1)
-				return (printf("Error: Wrong maximum time to eat !"), 1);
+				return (printf(RED"ERROR: Wrong maximum time to eat !"RESET), 1);
 		}
 		i++;
 	}
@@ -82,22 +82,23 @@ int	main(int ac, char **av)
 	t_philo			philo[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
 
-	//printf("Starting program...\n");
 	if (ac < 5 || ac > 6)
-		return (printf("Error: Wrong number of arguments\n"), 1);
-	//printf("Arguments check passed\n");
+		return (printf(RED"ERROR: Wrong number of arguments\n"RESET), 1);
 	if (check_args(ac, av) == 1)
 		return (1);
-	//printf("Arguments are valid\n");
 	init_prog(&program);
-	//printf("Program initialized\n");
 	init_forks(forks, ft_atoi(av[1]));
-	//printf("Forks initialized\n");
 	init_philo(philo, &program, forks, av);
-	//printf("Philosophers initialized\n");
 	create_threads(philo, &program, forks);
-	//printf("Threads created\n");
-	destroy_all("END", &program, forks, ft_atoi(av[1]), 0);
-	//printf("Program ended\n");
+	destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
 	return (0);
 }
+
+
+/*
+	TODO: 
+		- check why the program wont end when a philosopher is dead
+		- check why program take so much time to kill a philosopher
+			when he is the only one around the table
+		- check at what range it's ok if a philo die (in ms)
+*/

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:58:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 10:59:26 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:53:24 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 static void	init_input(t_philo *philo, char **av)
 {
 	philo->nb_philo = ft_atoi(av[1]);
-	//printf(BLUE"nb philo : %d\n"RESET, philo->nb_philo);
-	// #TODO: Define PHILO_NUM ? 
 	philo->time_to_die = ft_atoi(av[2]);
 	philo->time_to_eat = ft_atoi(av[3]);
 	philo->time_to_sleep = ft_atoi(av[4]);
@@ -82,13 +80,8 @@ void	init_forks(pthread_mutex_t *forks, int nb_philo)
 	int	i;
 
 	i = -1;
-	//printf(RED"-----------------INITIALIZING FORKS-----------------\n"RESET);
-	//printf("nb philo : %d\n", nb_philo);
 	while (++i < nb_philo)
-	{
 		pthread_mutex_init(&forks[i], NULL);
-		//printf("Fork %d initialized\n", i + 1);
-	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:18:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 11:57:46 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 13:12:29 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_philo(t_philo *philo, t_program *program, \
 
 //           ## THREADS.C ##
 int		dead_loop(t_philo *philo);
-void	*philo_routine(void *pointer);
+void	*ph_routine(void *pointer);
 void	create_threads(t_philo *philo, t_program *program, \
 	pthread_mutex_t *forks);
 
@@ -77,14 +77,14 @@ void	sleeping(t_philo *philo);
 void	eating(t_philo *philo);
 
 //           ## OBSERVER.C ##
-void	*observer_routine(void *pointer);
+void	*obs_routine(void *pointer);
 int		check_dead(t_philo *philo);
 int		all_ate(t_philo *philo);
 
 //           ## UTILS.C ##
 int		ft_usleep(size_t temp);
 void	destroy_all(char *str, t_program *program, \
-	pthread_mutex_t *forks,int philo_nb, int err);
+	pthread_mutex_t *forks, int philo_nb);
 void	print_msg(char *str, t_philo *philo, int id);
 size_t	curr_time(void);
 int		ft_atoi(const char *str);

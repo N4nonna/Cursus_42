@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:09:46 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 12:01:17 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:54:43 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,21 @@ int	ft_usleep(size_t temp)
 }
 
 void	destroy_all(char *str, t_program *program, \
-	pthread_mutex_t *forks, int philo_nb, int err)
+	pthread_mutex_t *forks, int philo_nb)
 {
 	int	i;
 
 	i = 0;
-	//printf("-----------------DESTROYING ALL-----------------\n");
-	if (err == 1)
-		printf(RED"Error: "RESET);
 	if (*str)
 		printf("%s\n", str);
-	//printf("Begining to destroy all mutex.\n");
 	pthread_mutex_destroy(&program->dead_lock);
-	//printf(RED"Dead lock has been destroyed.\n"RESET);
 	pthread_mutex_destroy(&program->eat_lock);
-	//printf(RED"Eat lock has been destroyed.\n"RESET);
 	pthread_mutex_destroy(&program->write_lock);
-	//printf(RED"Write lock has been destroyed.\n"RESET);
-	//printf(RED"All mutex has been destroyed.\n"RESET);
-	//printf("nb philo = %d\n", philo_nb);
 	while (i < philo_nb)
 	{
 		pthread_mutex_destroy(&forks[i]);
-		//printf("Fork %d has been destroyed.\n", i);
 		i++;
 	}
-	//printf("All mutex has been destroyed.\n");
 }
 
 void	print_msg(char *str, t_philo *philo, int id)
@@ -67,7 +56,7 @@ size_t	curr_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		printf("Error: gettimeof day() doesn't work.\n");
+		print_msg(RED"ERROR: gettimeofday() doesn't work.\n"RESET, NULL, 0);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:15:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 11:59:55 by mescoda          ###   ########.fr       */
+/*   Updated: 2024/12/11 13:55:30 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	sleeping(t_philo *philo)
 */
 void	eating(t_philo *philo)
 {
+	// condition philo 1
 	pthread_mutex_lock(philo->l_fork);
 	print_msg("has taken left fork", philo, philo->id);
 	if (philo[0].nb_philo == 1)
