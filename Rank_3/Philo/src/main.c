@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:17:32 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/10 14:05:02 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 11:51:37 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	check_args(int ac, char **av)
 		if (av[5])
 		{
 			if (ft_atoi(av[5]) <= 0 && is_num(av[5]) == 1)
-				return (printf(RED"ERROR: Wrong maximum time to eat !"RESET), 1);
+				return (printf(RED"ERROR: Wrong max number of meal !"RESET), 1);
 		}
 		i++;
 	}
@@ -90,15 +90,15 @@ int	main(int ac, char **av)
 	init_forks(forks, ft_atoi(av[1]));
 	init_philo(philo, &program, forks, av);
 	create_threads(philo, &program, forks);
+	printf(BLUE"DESTROY ?\n"RESET);
 	destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
 	return (0);
 }
 
-
 /*
 	TODO: 
-		- check why the program wont end when a philosopher is dead
-		- check why program take so much time to kill a philosopher
-			when he is the only one around the table
-		- check at what range it's ok if a philo die (in ms)
+		- check why sometimes the program wont end when a philosopher is dead
+			(time to destroy all forks ??)
+		- check at what range it's ok if a philo die (in ms) 
+			and/or if it's due to my computer
 */

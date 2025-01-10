@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:18:35 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/10 13:57:54 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 12:04:32 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,20 @@ int	check_dead(t_philo	*philo)
 		{
 			print_msg(RED"has died. RIP."RESET, philo, philo[i].id);
 			pthread_mutex_lock(philo->dead_lock);
+			printf(RED"lock dead\n"RESET);
 			*philo->is_dead = 1;
 			pthread_mutex_unlock(philo->dead_lock);
+			printf(RED"unlock dead\n"RESET);
 			return (1);
 		}
-		else if (*philo->is_dead == 1)
-		{
-			print_msg(RED"has died. RIP."RESET, philo, philo[i].id);
-			pthread_mutex_lock(philo->dead_lock);
-			pthread_mutex_unlock(philo->dead_lock);
-			return (1);
-		}
+		// else if (*philo->is_dead == 1)
+		// {
+		// 	print_msg(BLUE"has died. RIP."RESET, philo, philo[i].id);
+		// 	pthread_mutex_lock(philo->dead_lock);
+		// 	printf(RED"lock dead\n"RESET);
+		// 	pthread_mutex_unlock(philo->dead_lock);
+		// 	return (1);
+		// }
 		i++;
 	}
 	return (0);
@@ -116,7 +119,10 @@ void	*obs_routine(void *pointer)
 	while (1)
 	{
 		if (check_dead(philo) == 1 || all_ate(philo) == 1)
+		{
+			printf(RED"Observer is dead\n"RESET);
 			break ;
+		}
 	}
 	return (pointer);
 }

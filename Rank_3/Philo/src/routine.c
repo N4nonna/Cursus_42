@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:15:30 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/11 13:55:30 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 10:45:40 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ void	sleeping(t_philo *philo)
 	usleep(philo->time_to_sleep);
 }
 
+void	one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(philo->l_fork);
+	print_msg(RED"has taken left fork"RESET, philo, philo->id);
+	usleep(philo->time_to_die);
+	pthread_mutex_unlock(philo->l_fork);
+	return ;
+}
+
 /*
 ***	Eating routine
 	This function is the eating routine of the philosopher.
@@ -41,15 +50,8 @@ void	sleeping(t_philo *philo)
 */
 void	eating(t_philo *philo)
 {
-	// condition philo 1
 	pthread_mutex_lock(philo->l_fork);
 	print_msg("has taken left fork", philo, philo->id);
-	if (philo[0].nb_philo == 1)
-	{
-		usleep(philo->time_to_die);
-		pthread_mutex_unlock(philo->l_fork);
-		return ;
-	}
 	pthread_mutex_lock(philo->r_fork);
 	print_msg("has taken right fork", philo, philo->id);
 	philo->is_eating = 1;

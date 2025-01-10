@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:18:11 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 13:12:29 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 10:44:28 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	create_threads(t_philo *philo, t_program *program, \
 //           ## ROUTINE.C ##
 void	thinking(t_philo *philo);
 void	sleeping(t_philo *philo);
+void	one_philo(t_philo *philo);
 void	eating(t_philo *philo);
 
 //           ## OBSERVER.C ##

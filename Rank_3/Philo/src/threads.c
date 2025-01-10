@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:15 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 13:14:05 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 12:02:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	*ph_routine(void *pointer)
 	philo = (t_philo *)pointer;
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
+	if (philo->nb_philo == 1)
+	{
+		one_philo(philo);
+		return (pointer);
+	}
 	while (!dead_loop(philo))
 	{
 		eating(philo);
@@ -66,8 +71,8 @@ void	create_threads(t_philo *philo, t_program *program, \
 
 	i = 0;
 	if (pthread_create(&observer, NULL, obs_routine, (void *)philo) != 0)
-		destroy_all(RED"ERROR : Can't create observer thread."RESET, \
-			program, forks, philo[0].nb_philo);
+		return (destroy_all(RED"ERROR : Can't create observer thread."RESET, \
+			program, forks, philo[0].nb_philo));
 	while (i < philo[0].nb_philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, ph_routine, &philo[i]) != 0)
@@ -75,6 +80,7 @@ void	create_threads(t_philo *philo, t_program *program, \
 				program, forks, philo[0].nb_philo));
 		i++;
 	}
+	printf(BLUE"create done\n"RESET);
 	i = 0;
 	if (pthread_join(observer, NULL) != 0)
 		return (destroy_all(RED"ERROR: Can't join observer thread."RESET, \
@@ -86,4 +92,5 @@ void	create_threads(t_philo *philo, t_program *program, \
 				program, forks, philo[0].nb_philo));
 		i++;
 	}
+	printf(BLUE"join done\n"RESET);
 }

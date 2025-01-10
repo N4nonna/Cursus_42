@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:09:46 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 12:54:43 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/10 10:55:26 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	destroy_all(char *str, t_program *program, \
 	int	i;
 
 	i = 0;
+	printf(RED"--------- ENTERING DESTROY -----------\n"RESET);
 	if (*str)
 		printf("%s\n", str);
 	pthread_mutex_destroy(&program->dead_lock);
@@ -35,6 +36,7 @@ void	destroy_all(char *str, t_program *program, \
 	pthread_mutex_destroy(&program->write_lock);
 	while (i < philo_nb)
 	{
+		printf(RED"--------- DESTROYING FORK %d ---------\n"RESET, i);
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
