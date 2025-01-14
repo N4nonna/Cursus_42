@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:18:11 by mescoda           #+#    #+#             */
-/*   Updated: 2025/01/10 10:44:28 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/11 11:26:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	init_philo(t_philo *philo, t_program *program, \
 //           ## THREADS.C ##
 int		dead_loop(t_philo *philo);
 void	*ph_routine(void *pointer);
-void	create_threads(t_philo *philo, t_program *program, \
+int		create_threads(t_philo *philo, t_program *program, \
 	pthread_mutex_t *forks);
 
 //           ## ROUTINE.C ##

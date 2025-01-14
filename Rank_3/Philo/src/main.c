@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:17:32 by mescoda           #+#    #+#             */
-/*   Updated: 2025/01/10 11:51:37 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/11 11:27:50 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,18 @@ int	main(int ac, char **av)
 	init_prog(&program);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philo(philo, &program, forks, av);
-	create_threads(philo, &program, forks);
-	printf(BLUE"DESTROY ?\n"RESET);
-	destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
+	if (create_threads(philo, &program, forks) == 0)
+		destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
 	return (0);
 }
 
 /*
 	TODO: 
-		- check why sometimes the program wont end when a philosopher is dead
+		[x] check why sometimes the program wont end when a philosopher is dead
 			(time to destroy all forks ??)
-		- check at what range it's ok if a philo die (in ms) 
+		[ ] check at what range it's ok if a philo die (in ms) 
 			and/or if it's due to my computer
+		[x] check if the program is working with 1 philo
+		[ ] check with 5 800 200 200 (should work)
+		[ ] check with 4 310 200 100 (shoul not work)
 */

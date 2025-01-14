@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:18:35 by mescoda           #+#    #+#             */
-/*   Updated: 2025/01/10 12:04:32 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/01/11 14:15:44 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@
 ***	@param philo -> Pointer to one philosopher structure. (philo[i])
 ***	@return -> 1 if all philosophers have eaten or strave, 0 otherwise.
 */
-static int	philo_dead(t_philo philo)
+static int	philo_dead(t_philo *philo, size_t time)
 {
-	pthread_mutex_lock(philo.eat_lock);
-	if ((curr_time() - philo.last_meal >= philo.time_to_die) \
-		&& philo.is_eating == 0)
-		return (pthread_mutex_unlock(philo.eat_lock), 1);
-	pthread_mutex_unlock(philo.eat_lock);
+	pthread_mutex_lock(philo->eat_lock);
+	if ((curr_time() - philo->last_meal >= time) \
+		&& philo->is_eating == 0)
+	{
+		pthread_mutex_unlock(philo->eat_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->eat_lock);
 	return (0);
 }
 
@@ -80,24 +83,16 @@ int	check_dead(t_philo	*philo)
 	i = 0;
 	while (i < philo[0].nb_philo)
 	{
-		if (philo_dead(philo[i]) == 1)
+		if (philo_dead(&philo[i], philo[i].time_to_die) == 1)
 		{
 			print_msg(RED"has died. RIP."RESET, philo, philo[i].id);
 			pthread_mutex_lock(philo->dead_lock);
-			printf(RED"lock dead\n"RESET);
+			printf(BLUE"lock dead\n"RESET);
 			*philo->is_dead = 1;
 			pthread_mutex_unlock(philo->dead_lock);
-			printf(RED"unlock dead\n"RESET);
+			printf(BLUE"unlock dead\n"RESET);
 			return (1);
 		}
-		// else if (*philo->is_dead == 1)
-		// {
-		// 	print_msg(BLUE"has died. RIP."RESET, philo, philo[i].id);
-		// 	pthread_mutex_lock(philo->dead_lock);
-		// 	printf(RED"lock dead\n"RESET);
-		// 	pthread_mutex_unlock(philo->dead_lock);
-		// 	return (1);
-		// }
 		i++;
 	}
 	return (0);
@@ -124,5 +119,6 @@ void	*obs_routine(void *pointer)
 			break ;
 		}
 	}
-	return (pointer);
+	printf(BLUE"Exiting observer\n"RESET);
+	return (NULL);
 }
