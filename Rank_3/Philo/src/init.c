@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:58:14 by mescoda           #+#    #+#             */
-/*   Updated: 2024/12/09 12:53:24 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/11 11:10:39 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	init_philo(t_philo *philo, t_program *program, \
 		philo[i].eat_lock = &program->eat_lock;
 		philo[i].write_lock = &program->write_lock;
 		init_input(&philo[i], av);
-		philo[i].l_fork = &forks[i];
+		philo[i].r_fork = &forks[i];
 		if (i == 0)
-			philo[i].r_fork = &forks[philo[i].nb_philo - 1];
+			philo[i].l_fork = &forks[philo[i].nb_philo - 1];
 		else
-			philo[i].r_fork = &forks[i - 1];
+			philo[i].l_fork = &forks[i - 1];
 	}
 }
 

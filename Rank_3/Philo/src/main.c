@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:17:32 by mescoda           #+#    #+#             */
-/*   Updated: 2025/01/11 11:27:50 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/11 13:13:59 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int ac, char **av)
 		return (printf(RED"ERROR: Wrong number of arguments\n"RESET), 1);
 	if (check_args(ac, av) == 1)
 		return (1);
+	printf(BLUE"A TABLE !!\n"RESET);
 	init_prog(&program);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philo(philo, &program, forks, av);
@@ -98,9 +99,9 @@ int	main(int ac, char **av)
 	TODO: 
 		[x] check why sometimes the program wont end when a philosopher is dead
 			(time to destroy all forks ??)
-		[ ] check at what range it's ok if a philo die (in ms) 
+		[x] check at what range it's ok if a philo die (in ms) 
 			and/or if it's due to my computer
 		[x] check if the program is working with 1 philo
-		[ ] check with 5 800 200 200 (should work)
-		[ ] check with 4 310 200 100 (shoul not work)
+		[x] check with 5 800 200 200 (should work)
+		[x] check with 4 310 200 100 (shoul not work)
 */

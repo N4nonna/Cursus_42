@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:18:35 by mescoda           #+#    #+#             */
-/*   Updated: 2025/01/11 14:15:44 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/11 13:10:04 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 */
 static int	philo_dead(t_philo *philo, size_t time)
 {
+	pthread_mutex_lock(philo->dead_lock);
+	if (*philo->is_dead == 1)
+	{
+		pthread_mutex_unlock(philo->dead_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->dead_lock);
 	pthread_mutex_lock(philo->eat_lock);
 	if ((curr_time() - philo->last_meal >= time) \
 		&& philo->is_eating == 0)
@@ -30,6 +37,16 @@ static int	philo_dead(t_philo *philo, size_t time)
 	}
 	pthread_mutex_unlock(philo->eat_lock);
 	return (0);
+}
+
+static void	print_death(char *str, int id, t_philo *philo)
+{
+	size_t	time;
+
+	time = curr_time() - philo->start_time;
+	pthread_mutex_lock(philo->write_lock);
+	printf(RED"%zums Philo %d %s\n"RESET, time, id, str);
+	pthread_mutex_unlock(philo->write_lock);
 }
 
 /*
@@ -59,10 +76,10 @@ int	all_ate(t_philo *philo)
 	}
 	if (meals == philo[0].nb_philo)
 	{
-		print_msg(BLUE"All philosophers ate to much. Burp !"RESET, philo, 0);
 		pthread_mutex_lock(philo->dead_lock);
 		*philo->is_dead = 1;
 		pthread_mutex_unlock(philo->dead_lock);
+		print_death(BLUE"All philosophers ate to much. Burp !"RESET, 0, philo);
 		return (1);
 	}
 	return (0);
@@ -85,12 +102,10 @@ int	check_dead(t_philo	*philo)
 	{
 		if (philo_dead(&philo[i], philo[i].time_to_die) == 1)
 		{
-			print_msg(RED"has died. RIP."RESET, philo, philo[i].id);
 			pthread_mutex_lock(philo->dead_lock);
-			printf(BLUE"lock dead\n"RESET);
 			*philo->is_dead = 1;
 			pthread_mutex_unlock(philo->dead_lock);
-			printf(BLUE"unlock dead\n"RESET);
+			print_death(RED"has died. RIP."RESET, philo[i].id, philo);
 			return (1);
 		}
 		i++;
@@ -114,11 +129,7 @@ void	*obs_routine(void *pointer)
 	while (1)
 	{
 		if (check_dead(philo) == 1 || all_ate(philo) == 1)
-		{
-			printf(RED"Observer is dead\n"RESET);
 			break ;
-		}
 	}
-	printf(BLUE"Exiting observer\n"RESET);
 	return (NULL);
 }
