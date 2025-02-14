@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:58:14 by mescoda           #+#    #+#             */
-/*   Updated: 2025/02/11 11:10:39 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:12:38 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	init_philo(t_philo *philo, t_program *program, \
 		philo[i].id = i + 1;
 		philo[i].is_eating = 0;
 		philo[i].nb_meals = 0;
-		philo[i].last_meal = curr_time();
 		philo[i].start_time = curr_time();
+		philo[i].last_meal = curr_time();
 		philo[i].is_dead = &program->is_dead;
 		philo[i].dead_lock = &program->dead_lock;
 		philo[i].eat_lock = &program->eat_lock;
 		philo[i].write_lock = &program->write_lock;
 		init_input(&philo[i], av);
-		philo[i].r_fork = &forks[i];
+		philo[i].l_fork = &forks[i];
 		if (i == 0)
-			philo[i].l_fork = &forks[philo[i].nb_philo - 1];
+			philo[i].r_fork = &forks[philo[i].nb_philo - 1];
 		else
-			philo[i].l_fork = &forks[i - 1];
+			philo[i].r_fork = &forks[i - 1];
 	}
 }
 
@@ -88,9 +88,10 @@ void	init_forks(pthread_mutex_t *forks, int nb_philo)
 **	Initializes the program structure by creating mutex threads for the locks
 **	@param program -> Pointer to the program structure to be initialized.
 */
-void	init_prog(t_program *program)
+void	init_prog(t_program *program, t_philo *philo)
 {
 	program->is_dead = 0;
+	program->philo = philo;
 	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->eat_lock, NULL);
 	pthread_mutex_init(&program->write_lock, NULL);

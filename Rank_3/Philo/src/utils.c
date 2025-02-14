@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:09:46 by mescoda           #+#    #+#             */
-/*   Updated: 2025/02/11 13:07:03 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/14 11:08:22 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_usleep(size_t temp)
 	size_t	start;
 
 	start = curr_time();
-	while (curr_time() - start < temp)
+	while ((curr_time() - start) < temp)
 		usleep(500);
 	return (0);
 }

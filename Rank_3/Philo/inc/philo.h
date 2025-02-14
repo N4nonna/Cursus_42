@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:18:11 by mescoda           #+#    #+#             */
-/*   Updated: 2025/02/11 12:44:19 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/14 11:42:47 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_program
 int		main(int ac, char **av);
 
 //           ## INIT.C ##
-void	init_prog(t_program *program);
+void	init_prog(t_program *program, t_philo *philo);
 void	init_forks(pthread_mutex_t *forks, int nb_philo);
 void	init_philo(t_philo *philo, t_program *program, \
 			pthread_mutex_t *forks, char **av);

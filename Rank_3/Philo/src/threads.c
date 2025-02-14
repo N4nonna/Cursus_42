@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:15 by mescoda           #+#    #+#             */
-/*   Updated: 2025/02/11 13:09:04 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/14 11:55:42 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
 	if (*philo->is_dead == 1)
-		return (pthread_mutex_unlock(philo->dead_lock), 1);
-	else
-		return (pthread_mutex_unlock(philo->dead_lock), 0);
+	{
+		pthread_mutex_unlock(philo->dead_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->dead_lock);
+	return (0);
 }
 
 /*
@@ -39,23 +42,23 @@ void	*ph_routine(void *pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
+	// if (philo->nb_philo == 1)
+	// {
+	// 	one_philo(philo);
+	// 	return (pointer);
+	// }
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
-	if (philo->nb_philo == 1)
-	{
-		one_philo(philo);
-		return (pointer);
-	}
 	while (!dead_loop(philo))
 	{
 		eating(philo);
-		pthread_mutex_lock(philo->dead_lock);
-		if (*philo->is_dead == 1)
-		{
-			pthread_mutex_unlock(philo->dead_lock);
-			return (NULL);
-		}
-		pthread_mutex_unlock(philo->dead_lock);
+		// pthread_mutex_lock(philo->dead_lock);
+		// if (*philo->is_dead == 1)
+		// {
+		// 	pthread_mutex_unlock(philo->dead_lock);
+		// 	return (NULL);
+		// }
+		// pthread_mutex_unlock(philo->dead_lock);
 		sleeping(philo);
 		thinking(philo);
 	}
@@ -77,25 +80,25 @@ int	create_threads(t_philo *philo, t_program *program, \
 	int			i;
 
 	i = -1;
-	if (pthread_create(&observer, NULL, obs_routine, (void *)philo) != 0)
-		return (destroy_all(RED"ERROR : Can't create observer thread."RESET, \
-			program, forks, philo[0].nb_philo), 1);
+	if (pthread_create(&observer, NULL, &obs_routine, program->philo) != 0)
+		destroy_all(RED"ERROR : Can't create observer thread."RESET, \
+			program, forks, philo[0].nb_philo);
 	while (++i < philo[0].nb_philo)
 	{
-		if (pthread_create(&philo[i].thread, NULL, ph_routine, \
+		if (pthread_create(&philo[i].thread, NULL, &ph_routine, \
 			(void *)&philo[i]) != 0)
-			return (destroy_all(RED"ERROR: Can't create philo thread."RESET, \
-				program, forks, philo[0].nb_philo), 1);
+			destroy_all(RED"ERROR: Can't create philo thread."RESET, \
+				program, forks, philo[0].nb_philo);
 	}
 	i = -1;
 	if (pthread_join(observer, NULL) != 0)
-		return (destroy_all(RED"ERROR: Can't join observer thread."RESET, \
-			program, forks, philo[0].nb_philo), 1);
+		destroy_all(RED"ERROR: Can't join observer thread."RESET, \
+			program, forks, philo[0].nb_philo);
 	while (++i < philo[0].nb_philo)
 	{
 		if (pthread_join(philo[i].thread, NULL) != 0)
-			return (destroy_all(RED"ERROR: Can't join philo thread."RESET, \
-				program, forks, philo[0].nb_philo), 1);
+			destroy_all(RED"ERROR: Can't join philo thread."RESET, \
+				program, forks, philo[0].nb_philo);
 	}
 	return (0);
 }

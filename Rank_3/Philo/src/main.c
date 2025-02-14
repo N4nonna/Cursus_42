@@ -6,7 +6,7 @@
 /*   By: mescoda <mescoda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:17:32 by mescoda           #+#    #+#             */
-/*   Updated: 2025/02/11 13:13:59 by mescoda          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:16:41 by mescoda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_num(char *av)
 	i = 0;
 	while (av[i])
 	{
-		if (!(av[i] >= '0' && av[i] <= '9'))
+		if (av[i] < '0' || av[i] > '9')
 			return (1);
 		i++;
 	}
@@ -41,28 +41,29 @@ static int	is_num(char *av)
 ***	@param av -> The array of strings containing the arguments.
 ***	@return -> 0 if the arguments are correct, 1 otherwise.
 */
-static int	check_args(int ac, char **av)
+static int	check_args(char **av)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (i < ac - 1)
+	// i = 0;
+	// while (i < ac - 1)
+	// {
+	if (ft_atoi(av[1]) > PHILO_MAX || is_num(av[1]) == 1 || \
+		ft_atoi(av[1]) <= 0)
+		return (printf(RED"ERROR: Wrong number of philosopher !"RESET), 1);
+	if (ft_atoi(av[2]) <= 0 && is_num(av[2]) == 1)
+		return (printf(RED"ERROR: Wrong time to die !"RESET), 1);
+	if (ft_atoi(av[3]) <= 0 && is_num(av[3]) == 1)
+		return (printf(RED"ERROR: Wrong time to sleep !"RESET), 1);
+	if (ft_atoi(av[4]) <= 0 && is_num(av[4]) == 1)
+		return (printf(RED"ERROR: Wrong time to eat !"RESET), 1);
+	if (av[5])
 	{
-		if (ft_atoi(av[1]) > PHILO_MAX || is_num(av[1]) == 1)
-			return (printf(RED"ERROR: Wrong number of philosopher !"RESET), 1);
-		if (ft_atoi(av[2]) <= 0 && is_num(av[2]) == 1)
-			return (printf(RED"ERROR: Wrong time to die !"RESET), 1);
-		if (ft_atoi(av[3]) <= 0 && is_num(av[3]) == 1)
-			return (printf(RED"ERROR: Wrong time to sleep !"RESET), 1);
-		if (ft_atoi(av[4]) <= 0 && is_num(av[4]) == 1)
-			return (printf(RED"ERROR: Wrong time to eat !"RESET), 1);
-		if (av[5])
-		{
-			if (ft_atoi(av[5]) <= 0 && is_num(av[5]) == 1)
-				return (printf(RED"ERROR: Wrong max number of meal !"RESET), 1);
-		}
-		i++;
+		if (ft_atoi(av[5]) <= 0 && is_num(av[5]) == 1)
+			return (printf(RED"ERROR: Wrong max number of meal !"RESET), 1);
 	}
+	// 	i++;
+	// }
 	return (0);
 }
 
@@ -82,16 +83,16 @@ int	main(int ac, char **av)
 	t_philo			philo[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
 
-	if (ac < 5 || ac > 6)
+	if (ac != 5 && ac != 6)
 		return (printf(RED"ERROR: Wrong number of arguments\n"RESET), 1);
-	if (check_args(ac, av) == 1)
+	if (check_args(av) == 1)
 		return (1);
 	printf(BLUE"A TABLE !!\n"RESET);
-	init_prog(&program);
+	init_prog(&program, philo);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philo(philo, &program, forks, av);
-	if (create_threads(philo, &program, forks) == 0)
-		destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
+	create_threads(philo, &program, forks);
+	destroy_all(BLUE"END OF PROGRAM"RESET, &program, forks, ft_atoi(av[1]));
 	return (0);
 }
 
